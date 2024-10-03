@@ -1,0 +1,22 @@
+﻿  glad.c
+  GraphicsInitializer.cpp
+  ShaderMaker.cpp
+  TriangleOpenGL.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\TriangleOpenGL.cpp(180,21): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\TriangleOpenGL.cpp(180,16): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+  UserInterfaceHandler.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\UserInterfaceHandler.cpp(24,21): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\UserInterfaceHandler.cpp(24,16): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+  Generating Code...
+UserInterfaceHandler.obj : error LNK2005: "void __cdecl framebuffer_size_callback(struct GLFWwindow *,int,int)" (?framebuffer_size_callback@@YAXPEAUGLFWwindow@@HH@Z) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "void __cdecl key_callback(struct GLFWwindow *,int,int,int,int)" (?key_callback@@YAXPEAUGLFWwindow@@HHHH@Z) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "void __cdecl mouse_callback(struct GLFWwindow *,int,int,int)" (?mouse_callback@@YAXPEAUGLFWwindow@@HHH@Z) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "bool isMouseDown" (?isMouseDown@@3_NA) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "float r" (?r@@3MA) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "float g" (?g@@3MA) already defined in TriangleOpenGL.obj
+UserInterfaceHandler.obj : error LNK2005: "float b" (?b@@3MA) already defined in TriangleOpenGL.obj
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+TriangleOpenGL.obj : error LNK2019: unresolved external symbol "void __cdecl INIT_VAO(void)" (?INIT_VAO@@YAXXZ) referenced in function main
+    Hint on symbols that are defined and could potentially match:
+      "void __cdecl INIT_VAO(struct Figura *)" (?INIT_VAO@@YAXPEAUFigura@@@Z)
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\x64\Debug\Progetto2.exe : fatal error LNK1120: 1 unresolved externals

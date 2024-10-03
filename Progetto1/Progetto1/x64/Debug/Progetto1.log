@@ -1,0 +1,9 @@
+﻿  Progetto1.cpp
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(68,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(73,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(74,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(75,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(78,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(79,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Downloads\Progetto1.cpp(80,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Progetto1.vcxproj -> C:\Users\marco.paggetti\source\repos\Progetto1\x64\Debug\Progetto1.exe

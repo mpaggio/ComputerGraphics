@@ -1,10 +1,9 @@
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "UserInterfaceHandler.h"
 
-bool isMouseDown = false;
-float r = 0, g = 0, b = 0;
+extern GLFWwindow* window;
+extern bool isMouseDown;
+extern float r, g, b;
 
 void mouse_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)

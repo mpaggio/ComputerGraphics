@@ -131,13 +131,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
-    <ClCompile Include="GraphicsInitializer.cpp" />
+    <ClCompile Include="GraphicInitializer.cpp" />
     <ClCompile Include="ShaderMaker.cpp" />
     <ClCompile Include="TriangleOpenGL.cpp" />
     <ClCompile Include="UserInterfaceHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GraphicInitializer.h" />
+    <ClInclude Include="Lib.h" />
     <ClInclude Include="ShaderMaker.h" />
+    <ClInclude Include="Structures.h" />
     <ClInclude Include="UserInterfaceHandler.h" />
   </ItemGroup>
   <ItemGroup>

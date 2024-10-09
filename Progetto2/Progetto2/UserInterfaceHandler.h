@@ -1,4 +1,4 @@
-#include <glad/glad.h>
+#pragma once
 #include <GLFW/glfw3.h>
 
 //Prototipi funzioni 

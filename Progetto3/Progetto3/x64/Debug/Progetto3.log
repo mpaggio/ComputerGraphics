@@ -1,0 +1,21 @@
+﻿  FiguresOpenGL.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(16,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,45): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,61): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,76): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,61): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,83): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,71): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,94): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(121,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(122,55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(123,55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(124,60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(125,60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(126,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(127,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Progetto3.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\x64\Debug\Progetto3.exe

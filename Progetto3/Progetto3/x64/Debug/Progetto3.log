@@ -1,21 +1,37 @@
 ﻿  FiguresOpenGL.cpp
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(16,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,22): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,45): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,61): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,76): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,40): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,61): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,83): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,23): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,71): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,94): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(121,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(122,55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(123,55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(124,60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(125,60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(126,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(127,63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Progetto3.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto3\x64\Debug\Progetto3.exe
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(16,23): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,28): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,51): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,66): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(17,81): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,46): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,68): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(18,90): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,28): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,53): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,77): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(19,100): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(121,27): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(122,55): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(123,55): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(124,60): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(125,60): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(126,63): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\FiguresOpenGL.cpp(127,63): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+  gestione_interazioni.cpp
+  init_geometrie.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(23,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(39,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(47,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(56,22): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(63,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(71,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(80,22): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(81,22): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\Progetto3\init_geometrie.cpp(87,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  inizializzazioni.cpp
+  ShaderMaker.cpp
+  Generazione del codice in corso...
+  glad.c
+LINK : warning LNK4098: la libreria predefinita 'MSVCRT' è in conflitto con l'utilizzo di altre librerie; usare /NODEFAULTLIB:libreria
+  Progetto3.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Progetto3\x64\Debug\Progetto3.exe

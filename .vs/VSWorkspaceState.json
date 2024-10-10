@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Progetto2"
+    "\\Progetto2",
+    "\\Progetto2\\Progetto2"
   ],
-  "SelectedNode": "\\Progetto2\\Progetto2.sln",
+  "SelectedNode": "\\Progetto2\\Progetto2\\TriangleOpenGL.cpp",
   "PreviewInSolutionExplorer": false
 }

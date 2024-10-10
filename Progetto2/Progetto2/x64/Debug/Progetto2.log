@@ -1,4 +1,4 @@
 ﻿  GraphicInitializer.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto2\Progetto2\GraphicInitializer.cpp(86,42): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto2\Progetto2\GraphicInitializer.cpp(187,42): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  Progetto2.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Progetto2\x64\Debug\Progetto2.exe
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\GraphicInitializer.cpp(86,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\Progetto2\GraphicInitializer.cpp(268,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Progetto2.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto2\x64\Debug\Progetto2.exe

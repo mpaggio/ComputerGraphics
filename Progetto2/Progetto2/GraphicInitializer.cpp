@@ -90,24 +90,24 @@ void INIT_SQUARE(Figura* fig) {
 
 void INIT_HEART(Figura* fig) {
     // Triangolo 1:
-    fig->vertices.push_back(vec3(0.0f, 0.3f, 0.0f));
-    fig->vertices.push_back(vec3(-0.2f, 0.0f, 0.0f)); 
-    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(-0.8f, 0.4f, 0.0f));
+    fig->vertices.push_back(vec3(-0.4f, 0.8f, 0.0f)); 
+    fig->vertices.push_back(vec3(0.0f, 0.6f, 0.0f));
 
     // Triangolo 2:
-    fig->vertices.push_back(vec3(0.0f, 0.3f, 0.0f));
-    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
-    fig->vertices.push_back(vec3(0.2f, 0.0f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, 0.6f, 0.0f));
+    fig->vertices.push_back(vec3(0.4f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.8f, 0.4f, 0.0f));
 
     // Triangolo 3:
-    fig->vertices.push_back(vec3(-0.2f, 0.0f, 0.0f));
-    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
-    fig->vertices.push_back(vec3(0.0f, 0.0f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, 0.6f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.6f, 0.0f));
+    fig->vertices.push_back(vec3(0.8f, 0.4f, 0.0f));
 
     // Triangolo 4:
-    fig->vertices.push_back(vec3(0.2f, 0.0f, 0.0f));
-    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
-    fig->vertices.push_back(vec3(0.0f, 0.0f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, 0.6f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.6f, 0.0f));
+    fig->vertices.push_back(vec3(-0.8f, 0.4f, 0.0f));
 
     // Colori:
     // --> Triangolo 1
@@ -133,58 +133,139 @@ void INIT_HEART(Figura* fig) {
 }
 
 void INIT_BUTTERFLY(Figura* fig) {
-    // Svuota i vettori per evitare conflitti
-    fig->vertices.clear();
-    fig->colors.clear();
-
     // Vertici della farfalla
-    // Parte sinistra
-    fig->vertices.push_back(vec3(-0.5f, 0.0f, 0.0f)); // P1
-    fig->vertices.push_back(vec3(0.0f, 0.5f, 0.0f));  // P2
-    fig->vertices.push_back(vec3(-0.5f, 0.5f, 0.0f)); // P3
+    // Triangolo 1:
+    fig->vertices.push_back(vec3(-0.8f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(-0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(-0.8f, 0.4f, 0.0f));
 
-    fig->vertices.push_back(vec3(-0.5f, 0.0f, 0.0f)); // P1
-    fig->vertices.push_back(vec3(-0.5f, 0.5f, 0.0f)); // P3
-    fig->vertices.push_back(vec3(0.0f, 0.5f, 0.0f));  // P2
+    // Triangolo 2:
+    fig->vertices.push_back(vec3(0.8f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.8f, 0.4f, 0.0f));
 
-    // Parte destra
-    fig->vertices.push_back(vec3(0.5f, 0.0f, 0.0f));  // P4
-    fig->vertices.push_back(vec3(0.0f, 0.5f, 0.0f));  // P2
-    fig->vertices.push_back(vec3(0.5f, 0.5f, 0.0f));   // P5
+    // Triangolo 3:
+    fig->vertices.push_back(vec3(-0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(-0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(-0.8f, 0.4f, 0.0f));
 
-    fig->vertices.push_back(vec3(0.5f, 0.0f, 0.0f));  // P4
-    fig->vertices.push_back(vec3(0.5f, 0.5f, 0.0f));   // P5
-    fig->vertices.push_back(vec3(0.0f, 0.5f, 0.0f));   // P2
+    // Triangolo 4:
+    fig->vertices.push_back(vec3(0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.8f, 0.4f, 0.0f));
 
-    // Corpo della farfalla
-    fig->vertices.push_back(vec3(0.0f, 0.0f, 0.0f)); // Corpo centrale
-    fig->vertices.push_back(vec3(0.0f, 0.1f, 0.0f)); // Parte superiore del corpo
-    fig->vertices.push_back(vec3(0.0f, -0.1f, 0.0f)); // Parte inferiore del corpo
+    // Triangolo 5:
+    fig->vertices.push_back(vec3(-0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(-0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, 0.4f, 0.0f));
+
+    // Triangolo 6:
+    fig->vertices.push_back(vec3(0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.7f, 0.8f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, 0.4f, 0.0f));
+
+    // Triangolo 7:
+    fig->vertices.push_back(vec3(-0.3f, -0.1f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(-0.4f, -0.4f, 0.0f));
+
+    // Triangolo 8:
+    fig->vertices.push_back(vec3(0.3f, -0.1f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.4f, -0.4f, 0.0f));
+
+    // Triangolo 9:
+    fig->vertices.push_back(vec3(-0.4f, -0.4f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(-0.2f, -0.6f, 0.0f));
+
+    // Triangolo 10:
+    fig->vertices.push_back(vec3(0.4f, -0.4f, 0.0f));
+    fig->vertices.push_back(vec3(0.0f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.2f, -0.6f, 0.0f));
+
+    // Triangolo 11:
+    fig->vertices.push_back(vec3(-0.4f, -0.4f, 0.0f));
+    fig->vertices.push_back(vec3(-0.4f, -0.6f, 0.0f));
+    fig->vertices.push_back(vec3(-0.2f, -0.6f, 0.0f));
+
+    // Triangolo 12:
+    fig->vertices.push_back(vec3(0.4f, -0.4f, 0.0f));
+    fig->vertices.push_back(vec3(0.4f, -0.6f, 0.0f));
+    fig->vertices.push_back(vec3(0.2f, -0.6f, 0.0f));
+
+    // Triangolo 13:
+    fig->vertices.push_back(vec3(0.0f, 0.6f, 0.0f));
+    fig->vertices.push_back(vec3(-0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.2f, -0.2f, 0.0f));
+
+    // Triangolo 14:
+    fig->vertices.push_back(vec3(-0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.2f, -0.2f, 0.0f));
+    fig->vertices.push_back(vec3(0.f, -0.4f, 0.0f));
+
+
 
     // Colori per i vertici della farfalla
     // Colori per i triangoli delle ali
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
 
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
 
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
 
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
 
-    fig->colors.push_back(vec4(0.0, 0.0, 0.0, 1.0)); // Nero per il corpo
-    fig->colors.push_back(vec4(0.0, 0.0, 0.0, 1.0)); // Nero per il corpo
-    fig->colors.push_back(vec4(0.0, 0.0, 0.0, 1.0)); // Nero per il corpo
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+    fig->colors.push_back(vec4(1.0, 0.3, 0.0, 1.0)); // Rosso
+
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
+
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
+    fig->colors.push_back(vec4(1.0, 0.7, 0.0, 1.0)); // Rosso scuro per il corpo
 
     // Imposta il numero di vertici e triangoli
     fig->nVertices = fig->vertices.size();
-    fig->nTriangles = 5; // 5 triangoli totali (2 ali + corpo)
+    fig->nTriangles = 13; 
     fig->render = GL_TRIANGLES;
 }

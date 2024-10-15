@@ -1,15 +1,19 @@
 #pragma once
 #include "lib.h"
 
-
+bool isCursorDominant = false;
+bool areCentersToBeChanged = false;
 extern GLFWwindow* window;
 extern bool isMouseDown;
 extern float r, g, b;
-extern double xpos, ypos;
+extern double xPos, yPos;
 
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
 
     // Visualizza le coordinate del mouse che si muove sulla finestra grafica
+    if (isCursorDominant) {
+        glfwGetCursorPos(window, &xPos, &yPos);
+    }
 
     std::cout << "Px: " << xpos << " y: " << ypos << std::endl;
 }
@@ -22,10 +26,13 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
     {
+        areCentersToBeChanged = true;
         //glfwGetCursorPos è un'utilità fornita dalla libreria GLFW che permette di recuperare la posizione attuale del cursore
         //del mouse all'interno di una finestra OpenGL.
-        glfwGetCursorPos(window, &xpos, &ypos);
-        std::cout << "Coordinate del mouse tasto sinistro premuto : x = " << xpos << ", y = " << ypos << std::endl;
+        if (!isCursorDominant) {
+            glfwGetCursorPos(window, &xPos, &yPos);
+        }
+        std::cout << "Coordinate del mouse tasto sinistro premuto : x = " << xPos << ", y = " << yPos << std::endl;
     }
 }
 
@@ -50,6 +57,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             r = 0.0;
             g = 1.0;
             b = 0.0;
+        }
+        break;
+    case GLFW_KEY_SPACE:
+        if (action == GLFW_PRESS) {
+            isCursorDominant = !isCursorDominant;
         }
         break;
 

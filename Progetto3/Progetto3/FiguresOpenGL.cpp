@@ -16,8 +16,9 @@ int width = 1000, heigth = 1000;
 float r = 1.0, g = 0.6, b = 1.0;
 float centroCerchioX = -0.2, centroCerchioY = -0.3, raggioX = 0.1, raggioY = 0.1;
 float centroCuoreX = 0.0, centroCuoreY = 0.15, raggioCuoreX = 0.007, raggioCuoreY = 0.007;
-float centroFarfallaX = 0.2, centroFarfallaY = -0.33, raggioFarfallaX = 0.04, raggioFarfallaY= 0.04;
-double xpos, ypos;
+float centroFarfallaX = 0.2, centroFarfallaY = -0.33, raggioFarfallaX = 0.04, raggioFarfallaY = 0.04;
+double xPos, yPos;
+extern bool areCentersToBeChanged;
 vector<Figura> Scena;
 Figura triangolo = {  }, cerchio = {  }, cuore = {  }, farfalla = {  };  //crea una nuova istanza della struttura Figura di nome  "triangolo".
 //----------------------------------------------------------------------------------------
@@ -43,9 +44,10 @@ int main(void)
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(width, heigth, "Hello World", NULL, NULL);
+
     if (!window)
     {
-        std::cout << "Failde to create the window !" << std::endl;
+        std::cout << "Failed to create the window !" << std::endl;
         glfwTerminate(); //Libera le risorse allcoata da glfwInit
         return -1;
     }
@@ -53,12 +55,16 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window); //crea il context corrente e lo associa a window. In opengl un rendering context è una macchina astati che memorizza tutte le informazioni necessarie e le risorse per il rendering grafico
 
+    /* Nasconde il cursore */
+    // ******  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+
     //verifica se la libreria GLAD è riuscita a caricare correttamente tutti i puntatori 
     // alle funzioni OpenGL necessarie.
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cout << "Failde to load opengl function pointers !" << std::endl;
+        std::cout << "Failed to load opengl function pointers !" << std::endl;
         glfwTerminate();
         return -1;
     }
@@ -119,13 +125,20 @@ int main(void)
 
         // Gestione della pulsazione nel tempo
         float currentTime = glfwGetTime();
-        raggioX = sin(currentTime * 2.0 * PI) * 0.005 + 0.07;
-        raggioY = sin(currentTime * 2.0 * PI) * 0.005 + 0.07;
+        raggioX = sin(currentTime * 2.0 * PI) * 0.01 + 0.1;
+        raggioY = sin(currentTime * 2.0 * PI) * 0.01 + 0.1;
         raggioCuoreX = sin(currentTime * 2.0 * PI) * 0.005 + 0.01;
         raggioCuoreY = sin(currentTime * 2.0 * PI) * 0.005 + 0.01;
-        raggioFarfallaX = sin(currentTime * 2.0 * PI) * 0.005 + 0.03;
-        raggioFarfallaY = sin(currentTime * 2.0 * PI) * 0.005 + 0.03;
+        raggioFarfallaX = sin(currentTime * 2.0 * PI) * 0.01 + 0.03;
+        raggioFarfallaY = sin(currentTime * 2.0 * PI) * 0.01 + 0.03;
 
+        // Gestione della posizione del cursore per le coordinate del cerchio
+        if (areCentersToBeChanged) {
+            centroCerchioX = (xPos / width) * 2 - 1;
+            centroCerchioY = 1 - (yPos / heigth) * 2;
+        }
+
+        cout << "/// ECCO IL CENTRO DEL CERCHIO --> " << centroCerchioX << ", " << centroCerchioY << endl;
         INIT_CIRCLE(centroCerchioX, centroCerchioY, raggioX, raggioY, &Scena[1]);
         INIT_HEART(centroCuoreX, centroCuoreY, raggioCuoreX, raggioCuoreY, &Scena[2]);
         INIT_BUTTERFLY(centroFarfallaX, centroFarfallaY, raggioFarfallaX, raggioFarfallaY, &Scena[3]);

@@ -133,6 +133,12 @@ int main(void)
         raggioFarfallaY = sin(currentTime * 2.0 * PI) * 0.01 + 0.03;
 
         // Gestione della posizione del cursore per le coordinate del cerchio
+        /*
+            [height, 0] --> [-1, 1]  -->    heigth = -2
+            [0, width]  --> [-1, 1]  -->    width  = +2
+            x' = x * 2 / width - 1;
+            y' = 1 - y * 2 / height; --> perchè height vale -2 
+        */
         if (areCentersToBeChanged) {
             centroCerchioX = (xPos / width) * 2 - 1;
             centroCerchioY = 1 - (yPos / heigth) * 2;

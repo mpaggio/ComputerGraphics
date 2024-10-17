@@ -1,0 +1,10 @@
+﻿  main.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(13,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(17,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(90,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(90,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(98,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(98,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(154,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\Progetto4\main.cpp(156,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Progetto4.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto4\x64\Debug\Progetto4.exe

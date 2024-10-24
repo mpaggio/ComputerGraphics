@@ -12,7 +12,7 @@
 unsigned int programId, MatProj, MatModel;
 float r = 0.0, g = 0.4, b = 1.0;
 double mousex,mousey;
-int height=1150, width=1200;
+int height=900, width=900;
 Figura  butterfly = { }, heart = { };  //crea una nuova istanza della struttura Figura di nome   "butterfly" ed "heart"
 extern float alpha=0.8;  // Permette di modificare l'opacità dei colori
 int i,j;
@@ -138,10 +138,22 @@ int main(void)
     Projection = ortho(0.0f, float(width), 0.0f, float(height));
 
     float horizontalStep = ((float)width) / (numCols);
-    float verticalStep = ((float)height) / (numRows);
+    float verticalStep = ((float)height) / (2 * numRows);
+    
+    float offsetY = 0.0f;
+    float incrementY = 1.0f;
+    float firstRowY = 0.0f;
+    float lastRowY = 0.0f;
+
+    /* ANCORA DA IMPLEMENTARE NEL CODICE (modifica della posizione x della griglia) */
+    float offsetX = 0.0f;
+    float incrementX = 1.0f;
+    float firstColX = 0.0f;
+    float lastColX = 0.0f;
 
     while (!glfwWindowShouldClose(window))
     {
+        float pulseFactor = abs(sin(radians(angolo))) + 0.2;
 
         /* Render here */
         glClearColor(r, g, b, 1.0f);
@@ -151,16 +163,21 @@ int main(void)
 
         // Ciclare sulle righe modifica la y:
         for (i = 0; i < numRows; i++) {
-            y = height - i * verticalStep - verticalStep / 3.0;
+            y = offsetY + height - i * verticalStep - verticalStep / 2.0;
+            if (i == 0) {
+                firstRowY = y;
+            }
+            else if (i == numRows - 1) {
+                lastRowY = y;
+            }
             for (j = 0; j < numCols; j++) {
                 x = j * horizontalStep + horizontalStep / 2.0;
                 if (i % 2 == 0) {
                     // Creiamo il modello del primo oggetto della scena
                     Scena[0].Model = mat4(1.0);
                     Scena[0].Model = translate(Scena[0].Model, vec3(x, y, 0.0)); // Matrice di traslazione che porta la figura al centro
-                    Scena[0].Model = scale(Scena[0].Model, vec3(200.0, 200.0, 1.0));
-                    Scena[0].Model = rotate(Scena[0].Model, radians(angolo), vec3(0.0, 0.0, 1.0));
-
+                    Scena[0].Model = scale(Scena[0].Model, vec3(200.0 * pulseFactor, 200.0 * pulseFactor, 1.0));
+                    
                     // Trasferiamo a MatModel e a MatProjection i valori che abbiamo calcolato
                     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(Scena[0].Model));
 
@@ -183,6 +200,15 @@ int main(void)
                 }
             }
         }
+
+        if (lastRowY <= verticalStep/2) {
+            incrementY = 1.0f;
+        }
+        else if (firstRowY >= float(height) - (200.0f * 1.2f) / (2.0f * 3.0f)) {
+            incrementY = -1.0f;
+        }
+
+        offsetY = offsetY + incrementY;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

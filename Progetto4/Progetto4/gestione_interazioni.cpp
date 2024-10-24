@@ -3,6 +3,7 @@
 
 
 extern GLFWwindow* window;
+extern int height, width;
 extern bool isMouseDown;
 extern float r, g, b;
 extern double mousex,mousey;
@@ -64,7 +65,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void framebuffer_size_callback(GLFWwindow* window, int functionWidth, int functionHeight) {
     //  Stampa le dimensioni della finestra ridimensionata
+    height = functionHeight;
+    width = functionWidth;
     std::cout << "Dimensione finestra larghezza: " << width << " altezza " << height << std::endl;
 }

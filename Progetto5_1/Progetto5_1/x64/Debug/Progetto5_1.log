@@ -1,0 +1,22 @@
+﻿  Esercitazione5_1.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(11,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(97,31): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(97,31): warning C4244:         with
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(97,31): warning C4244:         [
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(97,31): warning C4244:             T=float
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(97,31): warning C4244:         ]
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(98,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(98,32): warning C4244:         with
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(98,32): warning C4244:         [
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(98,32): warning C4244:             T=float
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(98,32): warning C4244:         ]
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(122,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(122,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(135,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(135,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\Esercitazione5_1.cpp(188,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  gestione_interazioni.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\gestione_interazioni.cpp(71,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\Progetto5_1\gestione_interazioni.cpp(73,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Progetto5_1.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto5_1\x64\Debug\Progetto5_1.exe

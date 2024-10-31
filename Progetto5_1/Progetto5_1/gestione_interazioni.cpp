@@ -65,12 +65,16 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         break;
 
    
-    
-    case GLFW_KEY_R:
-        if (mods & GLFW_MOD_SHIFT)
-             angolo = angolo + 10.0;
-        else
-             angolo = angolo - 10.0;
+    case GLFW_KEY_D:
+        if (action == GLFW_PRESS) {
+            angolo = angolo - 10.0;
+        }
+        break;
+
+    case GLFW_KEY_A:
+        if (action == GLFW_PRESS) {
+            angolo = angolo + 10.0;
+        }
         break;
 
     case GLFW_KEY_SPACE:

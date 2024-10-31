@@ -1,0 +1,3 @@
+﻿  Gui_S.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6\Progetto6\Gui_S.cpp(62,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Progetto6.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6\x64\Debug\Progetto6.exe

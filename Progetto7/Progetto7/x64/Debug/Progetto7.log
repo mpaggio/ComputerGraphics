@@ -1,0 +1,23 @@
+﻿  init_geometrie.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(19,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(31,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(61,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(70,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(79,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(80,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(98,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(101,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(114,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(122,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(141,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(144,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(166,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(216,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(219,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(230,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(233,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(280,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(283,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(304,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(307,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Progetto7.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto7\x64\Debug\Progetto7.exe

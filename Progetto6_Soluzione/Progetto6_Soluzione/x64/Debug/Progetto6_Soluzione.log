@@ -1,0 +1,9 @@
+﻿  Progetto6_Soluzione.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(19,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(170,47): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(184,53): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(185,49): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(195,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(207,63): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\Progetto6_Soluzione\Progetto6_Soluzione.cpp(214,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Progetto6_Soluzione.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto6_Soluzione\x64\Debug\Progetto6_Soluzione.exe

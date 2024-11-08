@@ -1,0 +1,5 @@
+﻿  gestione_interazioni.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(100,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,22): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  Progetto8.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\x64\Debug\Progetto8.exe

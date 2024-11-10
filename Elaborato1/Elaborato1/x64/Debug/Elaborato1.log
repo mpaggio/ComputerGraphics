@@ -1,0 +1,25 @@
+﻿  init_geometrie.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(21,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(33,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(63,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(73,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(112,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(123,14): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(132,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(133,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(148,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(151,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(160,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(168,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(184,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(202,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(241,34): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(244,18): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(254,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(290,34): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(293,18): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(314,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(350,34): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(353,18): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\init_geometrie.cpp(374,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  Elaborato1.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\x64\Debug\Elaborato1.exe

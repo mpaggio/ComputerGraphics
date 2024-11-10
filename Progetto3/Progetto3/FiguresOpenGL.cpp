@@ -79,8 +79,8 @@ int main(void)
 
     // Cerchio
     cerchio.nTriangles = 30;
-    INIT_CIRCLE(centroCerchioX, centroCerchioY, raggioX, raggioY, &cerchio);
-    INIT_DYNAMIC_VAO(&cerchio);
+    INIT_CIRCLE_WITH_SPIKES(centroCerchioX, centroCerchioY, 0.05, 10, &cerchio);
+    INIT_VAO(&cerchio);
     Scena.push_back(cerchio);
 
     // Cuore

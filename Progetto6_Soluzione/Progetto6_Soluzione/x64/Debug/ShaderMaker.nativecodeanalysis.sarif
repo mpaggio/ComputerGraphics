@@ -1,0 +1,263 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6386",
+          "message": {
+            "text": "Sovraccarico del buffer durante la scrittura in 'buf'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 2,
+                  "endLine": 21,
+                  "endColumn": 22
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ShaderMaker::readShaderSource",
+                  "decoratedName": "?readShaderSource@ShaderMaker@@SAPEADPEBD@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 12,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 14,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 16,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 17,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 19,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 20,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'buf' è una matrice di 0 byte"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 21,
+                            "startColumn": 7
+                          }
+                        },
+                        "message": {
+                          "text": "'buf' è un argomento In/Out per 'fread' (dichiarato alle c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h.239)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                          },
+                          "region": {
+                            "startLine": 21,
+                            "startColumn": 7
+                          }
+                        },
+                        "message": {
+                          "text": "Scrittura non valida in 'buf' (non compreso nel relativo intervallo di lettura)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Overflow aritmetico: verrà usato l'operatore '+' su un valore a 4 byte e verrà eseguito il cast del risultato in un valore a 8 byte. Per evitare l'overflow, eseguire il cast del valore nel tipo più ampio prima di chiamare l'operatore '+' (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+                },
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 28
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ShaderMaker::readShaderSource",
+                  "decoratedName": "?readShaderSource@ShaderMaker@@SAPEADPEBD@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.33.31630.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/mpagg/Desktop/ComputerGraphics/Progetto6_Soluzione/Progetto6_Soluzione/ShaderMaker.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "52cefed34ecf1408139b474f5bee6b7048ad3030d19b056d979172266f7d911d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/dependencies_gl_glfw/include/glad/glad.h"
+          },
+          "hashes": {
+            "sha-256": "086e37c65eb9293a329c0d4f8b3b26069e66c6076d606ee85cd1a6b29a421abd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/dependencies_gl_glfw/include/khr/khrplatform.h"
+          },
+          "hashes": {
+            "sha-256": "7b1e01aaa7ad8f6fc34b5c7bdf79ebf5189bb09e2c4d2e79fc5d350623d11e83"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/dependencies_gl_glfw/include/glfw/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "aa370985f6b493bbe0358a36ab49f5780a6397c0209c6d98a62143dea595b73c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mpagg/desktop/computergraphics/progetto6_soluzione/progetto6_soluzione/shadermaker.h"
+          },
+          "hashes": {
+            "sha-256": "f2cfea95647715c74078c202ba3446f6615595d94fbe1e630e6d7fbbac4b69d1"
+          }
+        }
+      ]
+    }
+  ]
+}

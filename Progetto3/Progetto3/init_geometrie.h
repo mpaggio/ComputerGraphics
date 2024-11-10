@@ -9,5 +9,6 @@
 #include "strutture.h"
 void INIT_TRIANGLE(Figura* fig);
 void INIT_CIRCLE(float centerX, float centerY, float raggioX, float raggioY, Figura* fig);
+void INIT_CIRCLE_WITH_SPIKES(float cx, float cy, float raggio, int nSpines, Figura* fig);
 void INIT_HEART(float centerX, float centerY, float raggioX, float raggioY, Figura* fig);
 void INIT_BUTTERFLY(float centerX, float centerY, float raggioX, float raggioY, Figura* fig);

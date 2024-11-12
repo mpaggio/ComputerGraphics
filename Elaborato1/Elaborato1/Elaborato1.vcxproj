@@ -173,7 +173,7 @@
     <None Include="fragmentShaderM.glsl" />
     <None Include="fragmentShaderSf.glsl" />
     <None Include="fragmentShaderSky_OK.glsl" />
-    <None Include="fragmentShader_Onde_nuvole.glsl" />
+    <None Include="fragmentShader_Strada.glsl" />
     <None Include="FragmentShader_Text.glsl" />
     <None Include="imgui.ini" />
     <None Include="packages.config" />
@@ -181,13 +181,12 @@
     <None Include="VertexShader_Text.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="alieno.txt" />
-    <Text Include="asteroide.txt" />
-    <Text Include="barca.txt" />
-    <Text Include="corpo_navicella.txt" />
-    <Text Include="cupola_navicella.txt" />
-    <Text Include="mycurve.txt" />
-    <Text Include="ship.txt" />
+    <Text Include="ruota_macchina.txt" />
+    <Text Include="proiettile.txt" />
+    <Text Include="corpo_macchina.txt" />
+    <Text Include="cupola_macchina.txt" />
+    <Text Include="macchia_fango.txt" />
+    <Text Include="buco_strada.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

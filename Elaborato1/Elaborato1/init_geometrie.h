@@ -13,8 +13,7 @@ void INIT_BUTTERFLY(float cx, float cy, float raggiox, float raggioy, Figura* fi
 void INIT_HEART(float cx, float cy, float raggiox, float raggioy, Figura* fig);
 void INIT_PIANO(Figura* fig);
 void INIT_FORMA(Curva* curva);
-void INIT_CUPOLA_NAVICELLA(Curva* curva);
-void INIT_CORPO_NAVICELLA(Curva* curva);
-void INIT_ALIENO(Curva* curva);
+void INIT_CUPOLA_MACCHINA(Curva* curva);
+void INIT_CORPO_MACCHINA(Curva* curva);
+void INIT_RUOTA_MACCHINA(Curva* curva);
 void INIT_PROIETTILE(Curva* curva);
-void INIT_CIRCLE_WITH_SPIKES(float cx, float cy, float raggio, int nSpines, Figura* fig);

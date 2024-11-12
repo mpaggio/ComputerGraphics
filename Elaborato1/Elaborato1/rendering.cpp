@@ -9,16 +9,17 @@
 
 
 // ....................... VARIABILI GLOBALI .......................
-extern int  height, width, nClouds;
+extern int  height, width;
 
-float angolo_player;
+float angolo;
 extern float r, g, b;
-extern float angolo;
-extern float deltaTime;
+extern float speed, targetSpeed, speedTransitionRate, deltaTime;
+extern float w_update, h_update, speed;
 
-extern unsigned int MatProjS, MatModelS, MatProj, MatModel, vec_resS, loc_time,loc_numberOfClouds;
+extern unsigned int MatProjS, MatModelS, MatProj, MatModel, vec_resS, loc_time, loc_deltaTime;
 extern unsigned int programId_text;
 extern unsigned int VAO_Text, VBO_Text;
+extern GLint loc_speed, loc_resolution;
 
 extern bool show_bounding_boxes;
 
@@ -27,8 +28,8 @@ extern vec2 resolution;
 extern vector<float> timerFig;
 extern vector<Figura> Scena;
 
-extern Figura background, sfera_di_energia;
-extern Curva  corpo_navicella, cupola_navicella, asteroide, alieno;
+extern Figura background;
+extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada;
 
 // .................................................................
 
@@ -53,7 +54,14 @@ void render(float currentFrame, int frame) {
     glUniformMatrix4fv(MatModelS, 1, GL_FALSE, value_ptr(Scena[0].Model));
     glUniform2fv(vec_resS, 1, value_ptr(resolution));
     glUniform1f(loc_time, currentFrame);
-    glUniform1i(loc_numberOfClouds, nClouds);
+
+    updateSpeed(speed, targetSpeed, speedTransitionRate);
+    updateDeltaTime();
+
+    glUniform1f(loc_speed, speed);
+    glUniform2f(loc_resolution, w_update, h_update);
+    glUniform1f(loc_deltaTime, deltaTime);
+
 
     // Lega il Vertex Array Object (VAO) di ogni struttura di tipo Figura memorizzata in Scena
     glBindVertexArray(Scena[0].VAO);
@@ -66,75 +74,111 @@ void render(float currentFrame, int frame) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // CUPOLA NAVICELLA
-    angolo_player = cos(radians(float(frame/3))) * 10.0;
-    glUseProgram(Scena[1].programId);
+    angolo = cos(radians(float(frame/3))) * 10.0;
+    glUseProgram(proiettile.programId);
    
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-    cupola_navicella.Model = mat4(1.0);
-    cupola_navicella.Model = translate(cupola_navicella.Model, vec3(cupola_navicella.position.x, cupola_navicella.position.y, 0.0));
-    cupola_navicella.Model = rotate(cupola_navicella.Model, radians(angolo_player), vec3(0.0, 0.0, 1.0));
+    cupola_macchina.Model = mat4(1.0);
+    cupola_macchina.Model = translate(cupola_macchina.Model, vec3(cupola_macchina.position.x, cupola_macchina.position.y - 150.0, 0.0));
 
     // CORPO NAVICELLA
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-    corpo_navicella.Model = translate(cupola_navicella.Model, vec3(corpo_navicella.position.x, corpo_navicella.position.y - 20.0, 0.0));
-    corpo_navicella.Model = scale(corpo_navicella.Model, vec3(180.0, 180.0, 1.0));
-    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(corpo_navicella.Model));
-    glBindVertexArray(corpo_navicella.VAO);
+    corpo_macchina.Model = translate(cupola_macchina.Model, vec3(corpo_macchina.position.x, corpo_macchina.position.y, 0.0));
+    corpo_macchina.Model = scale(corpo_macchina.Model, vec3(200.0, 200.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(corpo_macchina.Model));
+    glBindVertexArray(corpo_macchina.VAO);
 
     //Update Bounding box del proiettile
-    updateBB(&corpo_navicella);
+    updateBB(&corpo_macchina);
 
     //disegna il proiettile (nelle utilme 4 posizioni del VBO sono memorizzati i vertici del Bounding Box
-    glDrawArrays(corpo_navicella.render, 0, corpo_navicella.nv - 4);
+    glDrawArrays(corpo_macchina.render, 0, corpo_macchina.nv - 4);
     //disegna il Bounding Box
     if (show_bounding_boxes)
-        glDrawArrays(GL_LINE_LOOP, corpo_navicella.nv - 4, 4);
+        glDrawArrays(GL_LINE_LOOP, corpo_macchina.nv - 4, 4);
 
 
 
-    // ALIENO
+    // RUOTA MACCHINA 1
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-    alieno.Model = translate(cupola_navicella.Model, vec3(alieno.position.x, alieno.position.y, 0.0));
-    alieno.Model = scale(alieno.Model, vec3(90.0, 90.0, 1.0));
-    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(alieno.Model));
-    glBindVertexArray(alieno.VAO);
-
-    //Update Bounding box del proiettile
-    updateBB(&alieno);
-
-    //disegna il proiettile (nelle utilme 4 posizioni del VBO sono memorizzati i vertici del Bounding Box
-    glDrawArrays(alieno.render, 0, alieno.nv - 4);
-    //disegna il Bounding Box
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 50.0, ruota_macchina.position.y + 80.0, 0.0));
+    ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
+    //ruota_macchina.Model = rotate(ruota_macchina.Model, radians(angolo), vec3(0.0, 0.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
+    glBindVertexArray(ruota_macchina.VAO);
+    updateBB(&ruota_macchina);
+    glDrawArrays(ruota_macchina.render, 0, ruota_macchina.nv - 4);
     if (show_bounding_boxes)
-        glDrawArrays(GL_LINE_LOOP, alieno.nv - 4, 4);
+        glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
 
-    aggiornaProiettile(&sfera_di_energia);
-    cout << "SFERA" << sfera_di_energia.position.x << ", " << sfera_di_energia.position.y << endl;
-    cout << "CUPOLA" << cupola_navicella.position.x << ", " << cupola_navicella.position.y << endl;
-
-    // SFERA DI ENERGIA
-    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-    sfera_di_energia.Model = translate(cupola_navicella.Model, vec3(sfera_di_energia.position.x, sfera_di_energia.position.y - 60.0, 0.0));
-    sfera_di_energia.Model = scale(sfera_di_energia.Model, vec3(20.0, 20.0, 1.0));
-    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(sfera_di_energia.Model));
-    glBindVertexArray(sfera_di_energia.VAO);
-    //disegna il proiettile (nelle utilme 4 posizioni del VBO sono memorizzati i vertici del Bounding Box
-    glDrawArrays(sfera_di_energia.render, 0, sfera_di_energia.nv - 4);
-    //disegna il Bounding Boxs
+    // RUOTA MACCHINA 2
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 50.0, ruota_macchina.position.y - 80.0, 0.0));
+    ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
+    glBindVertexArray(ruota_macchina.VAO);
+    updateBB(&ruota_macchina);
+    glDrawArrays(ruota_macchina.render, 0, ruota_macchina.nv - 4);
     if (show_bounding_boxes)
-        glDrawArrays(GL_LINE_LOOP, sfera_di_energia.nv - 4, 4);
+        glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
 
-    //Update Bounding box del proiettile
-    updateBB(&sfera_di_energia);
+    // RUOTA MACCHINA 3
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 50.0, ruota_macchina.position.y + 80.0, 0.0));
+    ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
+    glBindVertexArray(ruota_macchina.VAO);
+    updateBB(&ruota_macchina);
+    glDrawArrays(ruota_macchina.render, 0, ruota_macchina.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
+
+    // RUOTA MACCHINA 4
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 50.0, ruota_macchina.position.y - 80.0, 0.0));
+    ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
+    glBindVertexArray(ruota_macchina.VAO);
+    updateBB(&ruota_macchina);
+    glDrawArrays(ruota_macchina.render, 0, ruota_macchina.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
+
+
+
+    aggiornaProiettile(&proiettile);
+    
+    // PROIETTILE
+    if (!proiettile.isalive) {
+        glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+        proiettile.Model = translate(cupola_macchina.Model, vec3(proiettile.position.x, proiettile.position.y - 60.0, 0.0));
+        proiettile.Model = scale(proiettile.Model, vec3(20.0, 20.0, 1.0));
+        glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(proiettile.Model));
+        glBindVertexArray(proiettile.VAO);
+        glDrawArrays(proiettile.render, 0, proiettile.nv - 4);
+        if (show_bounding_boxes)
+            glDrawArrays(GL_LINE_LOOP, proiettile.nv - 4, 4);
+        updateBB(&proiettile);
+    }
+    else {
+        glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+        proiettile.Model = mat4(1.0);
+        proiettile.Model = translate(proiettile.Model, vec3(proiettile.position.x, proiettile.position.y - 60.0, 0.0));
+        proiettile.Model = scale(proiettile.Model, vec3(20.0, 20.0, 1.0));
+        glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(proiettile.Model));
+        glBindVertexArray(proiettile.VAO);
+        glDrawArrays(proiettile.render, 0, proiettile.nv - 4);
+        if (show_bounding_boxes)
+            glDrawArrays(GL_LINE_LOOP, proiettile.nv - 4, 4);
+        updateBB(&proiettile);
+    }
+    
 
 
     //Aggiorna la matrice di modellazione del player postmoltiplicando per una matrice di scala
-    cupola_navicella.Model = scale(cupola_navicella.Model, cupola_navicella.scale);
-    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(cupola_navicella.Model));
-    glBindVertexArray(cupola_navicella.VAO);
+    cupola_macchina.Model = scale(cupola_macchina.Model, cupola_macchina.scale);
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(cupola_macchina.Model));
+    glBindVertexArray(cupola_macchina.VAO);
 
     //Fa il rendering del player
-    glDrawArrays(cupola_navicella.render, 0, cupola_navicella.nv);
+    glDrawArrays(cupola_macchina.render, 0, cupola_macchina.nv);
     
     //Disegna le shape animate
     for (i = 1; i < Scena.size(); i++) {
@@ -154,7 +198,7 @@ void render(float currentFrame, int frame) {
 
 
 
-            glUseProgram(Scena[i].programId);
+            glUseProgram(proiettile.programId);
             glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
 
             Scena[i].Model = mat4(1.0);
@@ -177,7 +221,7 @@ void render(float currentFrame, int frame) {
 
     //Verifica se c'è collisione tra le shape della scena ed il proiettile
     for (i = 1; i < Scena.size(); i++) {
-        if (checkCollision(sfera_di_energia, Scena[i])) {
+        if (checkCollision(proiettile, Scena[i])) {
             Scena[i].isalive = false;
         }
     }

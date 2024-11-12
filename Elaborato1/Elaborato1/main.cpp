@@ -19,26 +19,24 @@
 int height = 1000, width = 1000;
 int frame;
 int i, j;
-int nClouds;
 
 unsigned int programId, programIdS, programId_text;
 unsigned int VAO_Text, VBO_Text;
 
 float r = 0.0, g = 0.2, b = 1.0;
 float alpha;
-float angolo = 0.0;
-float w_update, h_update;
-float deltaTime = 0.0f;
-float lastFrame;
+float speed = 1.0f, targetSpeed = 1.0f, speedTransitionRate = 5.0f, minSpeed = 0.1f;
+float deltaTime = 0.0f, lastFrame = 0.0f;
+float w_update = height, h_update = width;
 
 double mousex,mousey;
 bool show_bounding_boxes = false;
 
-Figura background = {}, sfera_di_energia = {};
-Curva  corpo_navicella = {}, cupola_navicella = {}, asteroide = {}, alieno = {};
+Figura background = {};
+Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {}, macchia_fango = {}, buco_strada = {};
 
-GLuint MatProj, MatModel, MatProjS, MatModelS, vec_resS,loc_time;
-GLuint loc_numberOfClouds, loc_cloudDensity;
+GLuint MatProj, MatModel, MatProjS, MatModelS, vec_resS,loc_time, loc_deltaTime;
+GLint loc_speed, loc_resolution;
 
 mat4 Projection;
 vec2 resolution;
@@ -106,27 +104,34 @@ int main(void) {
 
     // ........................ CREAZIONE DELLE GEOMETRIE ........................
     
-    // CUPOLA NAVICELLA
-    cupola_navicella.programId = programId;
-    cupola_navicella.position.x = width / 2.0;
-    cupola_navicella.position.y = height / 3.0;
-    cupola_navicella.scale = vec3(180.0, 180.0, 1.0);
-    INIT_CUPOLA_NAVICELLA(&cupola_navicella);
-    INIT_VAO_Curva(&cupola_navicella);
+    // CUPOLA MACCHINA
+    cupola_macchina.programId = programId;
+    cupola_macchina.position.x = width / 2.0;
+    cupola_macchina.position.y = height / 3.0;
+    cupola_macchina.scale = vec3(180.0, 180.0, 1.0);
+    INIT_CUPOLA_MACCHINA(&cupola_macchina);
+    INIT_VAO_Curva(&cupola_macchina);
 
-    // CORPO NAVICELLA
-    corpo_navicella.programId = programId;
-    corpo_navicella.position.x = 0.0;
-    corpo_navicella.position.y = 0.0;
-    INIT_CORPO_NAVICELLA(&corpo_navicella);
-    INIT_VAO_Curva(&corpo_navicella);
+    // CORPO MACCHINA
+    corpo_macchina.programId = programId;
+    corpo_macchina.position.x = 0.0;
+    corpo_macchina.position.y = 0.0;
+    INIT_CORPO_MACCHINA(&corpo_macchina);
+    INIT_VAO_Curva(&corpo_macchina);
 
-    //ALIENO
-    alieno.programId = programId;
-    alieno.position.x = 0.0;
-    alieno.position.y = 0.0;
-    INIT_ALIENO(&alieno);
-    INIT_VAO_Curva(&alieno);
+    // RUOTA MACCHINA
+    ruota_macchina.programId = programId;
+    ruota_macchina.position.x = 0.0;
+    ruota_macchina.position.y = 0.0;
+    INIT_RUOTA_MACCHINA(&ruota_macchina);
+    INIT_VAO_Curva(&ruota_macchina);
+
+    // PROIETTILE
+    proiettile.programId = programId;
+    proiettile.position.x = 0.0;
+    proiettile.position.y = 0.0;
+    INIT_PROIETTILE(&proiettile);
+    INIT_VAO_Curva(&proiettile);
 
     // BACKGROUND
     background.nTriangles = 2;
@@ -135,16 +140,6 @@ int main(void) {
     INIT_PIANO(&background);
     INIT_VAO(&background);
     Scena.push_back(background);
-
-    // SFERA DI ENERGIA
-    sfera_di_energia.nTriangles = 100;
-    sfera_di_energia.programId = programId;
-    sfera_di_energia.isalive = false;
-    sfera_di_energia.scale = vec3(30.0, 30.0, 1.0);
-    INIT_CIRCLE_WITH_SPIKES(0.0, 0.0, 1.5, 10, & sfera_di_energia);
-    sfera_di_energia.timerFig = 0.0;
-    INIT_VAO(&sfera_di_energia);
-    Scena.push_back(sfera_di_energia);
     
     // .......................................................................
    
@@ -162,11 +157,11 @@ int main(void) {
     
     vec_resS = glGetUniformLocation(programIdS, "resolution");
     loc_time = glGetUniformLocation(programIdS, "time");
-    loc_numberOfClouds = glGetUniformLocation(programIdS, "numberOfClouds");
+    loc_speed = glGetUniformLocation(programIdS, "speed");
+    loc_resolution = glGetUniformLocation(programIdS, "resolution");
+    loc_deltaTime = glGetUniformLocation(programIdS, "deltaTime");
 
     // .......................................................................
-
-
 
     // Imposta la posizione iniziale del mouse
     int oX = int(float(width)/2.0);

@@ -3,6 +3,10 @@
 #include "strutture.h"
 #include <random>
 
+
+extern float speed, deltaTime, lastFrame, minSpeed;
+
+
 vec2 randomPosition(int width, int height) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
@@ -124,4 +128,20 @@ void updateBB(Curva* fig)
     fig->max_BB = fig->max_BB_obj;
     fig->min_BB = fig->Model * fig->min_BB;
     fig->max_BB = fig->Model * fig->max_BB;
+}
+
+
+void updateSpeed(float s, float ts, float str) {
+    if (ts < minSpeed) {
+        ts = minSpeed;
+    }
+    float delta = ts - s;
+    speed += delta * (1.0f - exp(-str * delta));
+}
+
+
+void updateDeltaTime() {
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
 }

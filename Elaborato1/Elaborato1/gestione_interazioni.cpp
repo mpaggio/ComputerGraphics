@@ -5,10 +5,13 @@
 
 
 // ...................... VARIABILI GLOBALI ......................
+bool first_time_clicking = true;
+
 extern int height, width;
 
+extern float targetSpeed, speedTransitionRate;
 extern float  w_update, h_update;
-extern float angolo;
+extern float angolo, speed;
 extern float r, g, b;
 
 extern double mousex, mousey;
@@ -20,8 +23,7 @@ extern mat4 Projection;
 
 extern GLFWwindow* window;
 extern Curva spezzata;
-extern Curva cupola_navicella;
-extern Figura sfera_di_energia;
+extern Curva cupola_macchina, proiettile;
 
 // ...............................................................
 
@@ -47,7 +49,13 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         mousex = xpos;
         mousey = height - ypos;
 
-        sfera_di_energia.isalive = true;
+        proiettile.isalive = true;
+
+        if (first_time_clicking) {
+            first_time_clicking = false;
+            proiettile.position.x = cupola_macchina.position.x;
+            proiettile.position.y = cupola_macchina.position.y;
+        } 
     }
 }
 
@@ -63,32 +71,33 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 glfwSetWindowShouldClose(window, GLFW_TRUE);
             }
             break;
-        case GLFW_KEY_W:
-            if (action == GLFW_PRESS) {
-                if (cupola_navicella.position.y + 2 * movement_step < height) {
-                    cupola_navicella.position.y += movement_step;
-                }
-            }
-            break;
         case GLFW_KEY_A:
             if (action == GLFW_PRESS) {
-                if (cupola_navicella.position.x - 3 * movement_step > 0) {
-                    cupola_navicella.position.x -= movement_step;
-                }
-            }
-            break;
-        case GLFW_KEY_S:
-            if (action == GLFW_PRESS) {
-                if (cupola_navicella.position.y - 3 * movement_step > 0) {
-                    cupola_navicella.position.y -= movement_step;
+                if (cupola_macchina.position.x - 3 * movement_step > 0) {
+                    cupola_macchina.position.x -= movement_step;
                 }
             }
             break;
         case GLFW_KEY_D:
             if (action == GLFW_PRESS) {
-                if (cupola_navicella.position.x + 3 * movement_step < width) {
-                    cupola_navicella.position.x += movement_step;
+                if (cupola_macchina.position.x + 3 * movement_step < width) {
+                    cupola_macchina.position.x += movement_step;
                 }
+            }
+            break;
+        case GLFW_KEY_S:
+            if (action == GLFW_PRESS) {
+                targetSpeed = 0.5f;
+            }
+            break;
+        case GLFW_KEY_W:
+            if (action == GLFW_PRESS) {
+                targetSpeed = 3.0f;
+            }
+            break;
+        case GLFW_KEY_R:
+            if (action == GLFW_PRESS) {
+                targetSpeed = 1.0f;
             }
             break;
 
@@ -143,7 +152,7 @@ void aggiornaProiettile(Figura* proiettile) {
 
     float vel_y_proiettile = 2.0;
 
-    cout << "Sfera di energia viva: " << sfera_di_energia.isalive << endl;
+    cout << "proiettile vivo: " << proiettile->isalive << endl;
     if (proiettile->isalive == true) {
         proiettile->position.y += vel_y_proiettile;
 
@@ -155,4 +164,25 @@ void aggiornaProiettile(Figura* proiettile) {
         }
     }
 }
+
+
+
+void aggiornaProiettile(Curva* proiettile) {
+
+    float vel_y_proiettile = 1.0;
+
+    cout << "proiettile vivo: " << proiettile->isalive << endl;
+    if (proiettile->isalive == true) {
+        proiettile->position.y += vel_y_proiettile;
+
+        //Controllo se il proiettile raggiunge il 
+        if (proiettile->position.y > height + 100.0) {
+            proiettile->isalive = false;
+            proiettile->position.y = 0.0;
+            proiettile->position.x = 0.0;
+            first_time_clicking = true;
+        }
+    }
+}
+
 

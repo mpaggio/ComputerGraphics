@@ -25,7 +25,7 @@ void INIT_SHADER(void)
 
     //CCrea un program shader per la renderizzazione del background
     vertexShader = (char*)"vertexshaderM.glsl";
-    fragmentShader = (char*)"fragmentShader_Onde_nuvole.glsl";
+    fragmentShader = (char*)"fragmentShader_Strada.glsl";
      
 
     programIdS = ShaderMaker::createProgram(vertexShader, fragmentShader);

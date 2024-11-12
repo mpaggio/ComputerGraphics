@@ -67,55 +67,6 @@ void INIT_CIRCLE(float cx, float cy, float raggiox, float raggioy, Figura* fig) 
 
 
 
-void INIT_CIRCLE_WITH_SPIKES(float cx, float cy, float raggio, int nSpine, Figura* fig) {
-
-    int i;
-    float stepA = (2 * PI) / nSpine;  // Angolo tra le spine
-    float t, xx, yy;
-    float spikeLength = 0.8f;  // Fattore che determina quanto lungo è ogni spina
-
-    // Aggiungi il centro del cerchio (per il TRIANGLE_FAN)
-    fig->vertices.push_back(vec3(cx, cy, 0.0));
-    fig->colors.push_back(vec4(0.0, 0.9, 1.0, 1.0)); // Colore del cerchio
-
-    // Genera il cerchio e le spine
-    for (i = 0; i <= nSpine + 2; i++) {
-        t = i * stepA;
-        xx = cx + raggio * cos(t);
-        yy = cy + raggio * sin(t);
-
-        // Aggiungi il vertice per il cerchio
-        fig->vertices.push_back(vec3(xx, yy, 0.0));
-        fig->colors.push_back(vec4(0.0, 0.9, 1.0, 1.0));
-
-        // Aggiungi la spina (che si estende oltre la circonferenza)
-        float spikeX = cx + spikeLength * cos(t);
-        float spikeY = cy + spikeLength * sin(t);
-
-        // Aggiungi il vertice per la spina
-        fig->vertices.push_back(vec3(spikeX, spikeY, 0.0));
-        fig->colors.push_back(vec4(0.0, 0.0, 1.0, 1.0));
-    }
-
-    // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)
-    findBB(fig);
-    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->min_BB_obj.y, 0.0));
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->min_BB_obj.y, 0.0));
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->max_BB_obj.y, 0.0));
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->max_BB_obj.y, 0.0));
-    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-
-    // Definisci il tipo di rendering (triangoli)
-    fig->nv = fig->vertices.size();
-    fig->render = GL_TRIANGLE_FAN;
-
-}
-
-
-
 void INIT_BUTTERFLY(float cx, float cy, float raggiox, float raggioy, Figura* fig)
 {
 	int i;
@@ -209,12 +160,12 @@ void INIT_PIANO(Figura* fig)
 
 
 
-void INIT_CUPOLA_NAVICELLA(Curva* curva) {
+void INIT_CUPOLA_MACCHINA(Curva* curva) {
     float* t;
     float step_t;
     int i;
     Dati dati[1000];
-    FILE* file = fopen("cupola_navicella.txt", "r");
+    FILE* file = fopen("cupola_macchina.txt", "r");
 
     if (file == NULL) {
         perror("Impossibile aprire il file");
@@ -246,7 +197,7 @@ void INIT_CUPOLA_NAVICELLA(Curva* curva) {
         t[i] = (float)i * step_t;
 
     t[curva->CP.size()] = 1.0;
-    vec3 centro = vec3(0.0, 0.0, 0.0);
+    vec3 centro = vec3(0.0, -0.2, 0.0);
     vec4 color_top = vec4(0.0, 0.4, 1.0, 0.5);
     vec4 color_bot = vec4(0.0, 0.9, 1.0, 0.5);
     CostruisciHermite(t, curva, centro, color_top, color_bot);
@@ -259,12 +210,12 @@ void INIT_CUPOLA_NAVICELLA(Curva* curva) {
 
 
 
-void INIT_CORPO_NAVICELLA(Curva* curva) {
+void INIT_CORPO_MACCHINA(Curva* curva) {
     float* t;
     float step_t;
     int i;
     Dati dati[1000];
-    FILE* file = fopen("corpo_navicella.txt", "r");
+    FILE* file = fopen("corpo_macchina.txt", "r");
 
     if (file == NULL) {
         perror("Impossibile aprire il file");
@@ -295,9 +246,9 @@ void INIT_CORPO_NAVICELLA(Curva* curva) {
         t[i] = (float)i * step_t;
 
     t[curva->CP.size()] = 1.0;
-    vec3 centro = vec3(0.0, 0.0, 0.0);
-    vec4 color_top = vec4(0.3, 0.3, 0.3, 1.0);
-    vec4 color_bot = vec4(0.7, 0.7, 0.7, 1.0);
+    vec3 centro = vec3(-0.01, 0.2, 0.0);
+    vec4 color_top = vec4(0.8, 0.0, 0.0, 1.0);
+    vec4 color_bot = vec4(1.0, 0.0, 0.0, 1.0);
     CostruisciHermite(t, curva, centro, color_top, color_bot);
 
     // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)
@@ -319,12 +270,72 @@ void INIT_CORPO_NAVICELLA(Curva* curva) {
 
 
 
-void INIT_ALIENO(Curva* curva) {
+void INIT_RUOTA_MACCHINA(Curva* curva) {
     float* t;
     float step_t;
     int i;
     Dati dati[1000];
-    FILE* file = fopen("alieno.txt", "r");
+    FILE* file = fopen("ruota_macchina.txt", "r");
+
+    if (file == NULL) {
+        perror("Impossibile aprire il file");
+    }
+
+    int riga = 0;
+    while (fscanf(file, "%f %f %f", &dati[riga].x, &dati[riga].y, &dati[riga].z) == 3) {
+        riga++;
+
+        if (riga >= 1000) {
+            printf("Troppe righe nel file. L'array dati   stato completamente riempito.\n");
+            break;
+        }
+    }
+
+    fclose(file);
+
+    for (int i = 0; i < riga; i++) {
+        curva->CP.push_back(vec3(dati[i].x, dati[i].y, dati[i].z));
+        curva->colCP.push_back(vec4(0.0, 0.0, 0.0, 1.0));
+        curva->Derivata.push_back(vec3(0.0, 0.0, 0.0));
+    }
+    curva->ncp = curva->CP.size();
+
+    t = new float[curva->CP.size()];
+    step_t = 1.0 / (curva->CP.size() - 1);
+    for (i = 0; i < curva->CP.size(); i++)
+        t[i] = (float)i * step_t;
+
+    t[curva->CP.size()] = 1.0;
+    vec3 centro = vec3(-0.2, 0.2, 0.0);
+    vec4 color_top = vec4(0.0, 0.0, 0.0, 1.0);
+    vec4 color_bot = vec4(0.0, 0.0, 0.0, 1.0);
+    CostruisciHermite(t, curva, centro, color_top, color_bot);
+
+    // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)
+    findBB(curva);
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
+    curva->nv = curva->vertices.size();
+    curva->render = GL_TRIANGLE_FAN;
+
+}
+
+
+
+
+void INIT_PROIETTILE(Curva* curva) {
+    float* t;
+    float step_t;
+    int i;
+    Dati dati[1000];
+    FILE* file = fopen("proiettile.txt", "r");
 
     if (file == NULL) {
         perror("Impossibile aprire il file");
@@ -356,8 +367,8 @@ void INIT_ALIENO(Curva* curva) {
 
     t[curva->CP.size()] = 1.0;
     vec3 centro = vec3(0.0, 0.0, 0.0);
-    vec4 color_top = vec4(0.0, 0.3, 0.0, 1.0);
-    vec4 color_bot = vec4(0.0, 0.7, 0.0, 1.0);
+    vec4 color_top = vec4(1.0, 0.5, 0.0, 1.0);
+    vec4 color_bot = vec4(1.0, 0.8, 0.0, 1.0);
     CostruisciHermite(t, curva, centro, color_top, color_bot);
 
     // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)

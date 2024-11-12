@@ -136,7 +136,7 @@
     <None Include="vertexShaderM.glsl" />
     <None Include="VertexShader_Text.glsl" />
     <None Include="imgui.ini" />
-    <None Include="fragmentShader_Onde_nuvole.glsl" />
+    <None Include="fragmentShader_Strada.glsl" />
     <None Include="fragmentShaderM.glsl" />
     <None Include="FragmentShader_Text.glsl" />
     <None Include="fragmentShaderSf.glsl" />
@@ -144,12 +144,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ship.txt" />
-    <Text Include="mycurve.txt" />
-    <Text Include="barca.txt" />
-    <Text Include="cupola_navicella.txt" />
-    <Text Include="corpo_navicella.txt" />
-    <Text Include="asteroide.txt" />
-    <Text Include="alieno.txt" />
+    <Text Include="buco_strada.txt" />
+    <Text Include="macchia_fango.txt" />
+    <Text Include="cupola_macchina.txt" />
+    <Text Include="corpo_macchina.txt" />
+    <Text Include="proiettile.txt" />
+    <Text Include="ruota_macchina.txt" />
   </ItemGroup>
 </Project>

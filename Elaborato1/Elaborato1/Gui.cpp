@@ -6,7 +6,6 @@
 
 
 
-extern int  nClouds;
 extern bool show_bounding_boxes;
 
 
@@ -49,7 +48,7 @@ void my_interface( ) {
     ImGui::Checkbox("Mostra Bounding Box", &show_bounding_boxes);
 
     // Crea uno slider per selezionare il numero di nuvole dello sfondo
-    ImGui::SliderInt("# ofClouds", &nClouds, 1,15, "%d");
+    //ImGui::SliderInt("# ofClouds", &nClouds, 1,15, "%d");
 
     // Termina la finestra
     ImGui::End();

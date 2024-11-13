@@ -386,3 +386,123 @@ void INIT_PROIETTILE(Curva* curva) {
     curva->render = GL_TRIANGLE_FAN;
 
 }
+
+
+
+
+void INIT_MACCHIA_FANGO(Curva* curva) {
+    float* t;
+    float step_t;
+    int i;
+    Dati dati[1000];
+    FILE* file = fopen("macchia_fango.txt", "r");
+
+    if (file == NULL) {
+        perror("Impossibile aprire il file");
+    }
+
+    int riga = 0;
+    while (fscanf(file, "%f %f %f", &dati[riga].x, &dati[riga].y, &dati[riga].z) == 3) {
+        riga++;
+
+        if (riga >= 1000) {
+            printf("Troppe righe nel file. L'array dati   stato completamente riempito.\n");
+            break;
+        }
+    }
+
+    fclose(file);
+
+    for (int i = 0; i < riga; i++) {
+        curva->CP.push_back(vec3(dati[i].x, dati[i].y, dati[i].z));
+        curva->colCP.push_back(vec4(0.0, 0.0, 0.0, 1.0));
+        curva->Derivata.push_back(vec3(0.0, 0.0, 0.0));
+    }
+    curva->ncp = curva->CP.size();
+
+    t = new float[curva->CP.size()];
+    step_t = 1.0 / (curva->CP.size() - 1);
+    for (i = 0; i < curva->CP.size(); i++)
+        t[i] = (float)i * step_t;
+
+    t[curva->CP.size()] = 1.0;
+    vec3 centro = vec3(0.0, 0.0, 0.0);
+    vec4 color_top = vec4(0.3, 0.0, 0.0, 1.0);
+    vec4 color_bot = vec4(0.5, 0.0, 0.0, 1.0);
+    CostruisciHermite(t, curva, centro, color_top, color_bot);
+
+    // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)
+    findBB(curva);
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
+    curva->nv = curva->vertices.size();
+    curva->render = GL_TRIANGLE_FAN;
+
+}
+
+
+
+
+void INIT_BUCO_STRADA(Curva* curva) {
+    float* t;
+    float step_t;
+    int i;
+    Dati dati[1000];
+    FILE* file = fopen("buco_strada.txt", "r");
+
+    if (file == NULL) {
+        perror("Impossibile aprire il file");
+    }
+
+    int riga = 0;
+    while (fscanf(file, "%f %f %f", &dati[riga].x, &dati[riga].y, &dati[riga].z) == 3) {
+        riga++;
+
+        if (riga >= 1000) {
+            printf("Troppe righe nel file. L'array dati   stato completamente riempito.\n");
+            break;
+        }
+    }
+
+    fclose(file);
+
+    for (int i = 0; i < riga; i++) {
+        curva->CP.push_back(vec3(dati[i].x, dati[i].y, dati[i].z));
+        curva->colCP.push_back(vec4(0.0, 0.0, 0.0, 1.0));
+        curva->Derivata.push_back(vec3(0.0, 0.0, 0.0));
+    }
+    curva->ncp = curva->CP.size();
+
+    t = new float[curva->CP.size()];
+    step_t = 1.0 / (curva->CP.size() - 1);
+    for (i = 0; i < curva->CP.size(); i++)
+        t[i] = (float)i * step_t;
+
+    t[curva->CP.size()] = 1.0;
+    vec3 centro = vec3(0.0, 0.0, 0.0);
+    vec4 color_top = vec4(0.0, 0.0, 0.0, 1.0);
+    vec4 color_bot = vec4(0.4, 0.4, 0.4, 1.0);
+    CostruisciHermite(t, curva, centro, color_top, color_bot);
+
+    // Calcola la bounding box dell'oggetto (opzionale, ma utile per ottimizzare il rendering)
+    findBB(curva);
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->min_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->max_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+    curva->vertices.push_back(vec3(curva->min_BB_obj.x, curva->max_BB_obj.y, 0.0));
+    curva->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
+    curva->nv = curva->vertices.size();
+    curva->render = GL_TRIANGLE_FAN;
+
+}

@@ -11,8 +11,7 @@ vec2 randomPosition(int width, int height) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_real_distribution<> disX(0.0f, static_cast<float>(width));
-    std::uniform_real_distribution<> disY(0.0f, static_cast<float>(height));
-    return glm::vec2(disX(gen), disY(gen));
+    return glm::vec2(disX(gen), height - 80.0f);
 }
 
 void findBB(Figura* fig) {
@@ -95,7 +94,7 @@ bool checkCollision(Figura obj1, Figura obj2) {
     return collisionX && collisionY;
 }
 
-bool checkCollision(Curva obj1, Figura obj2) {
+bool checkCollision(Curva obj1, Curva obj2) {
     // guardo collisioni su asse x
 
     bool collisionX = obj1.min_BB.x <= obj2.max_BB.x &&

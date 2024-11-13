@@ -6,9 +6,11 @@
 #include "init_geometrie.h"
 #include "gestione_interazioni.h"
 #include "Utilities.h"
+#include "Gui.h"
 
 
 // ....................... VARIABILI GLOBALI .......................
+double timeCarSwing = 0;
 extern int  height, width;
 
 float angolo;
@@ -21,7 +23,8 @@ extern unsigned int programId_text;
 extern unsigned int VAO_Text, VBO_Text;
 extern GLint loc_speed, loc_resolution;
 
-extern bool show_bounding_boxes;
+bool car_swing = false;
+extern bool show_bounding_boxes, game_end;
 
 extern mat4 Projection;
 extern vec2 resolution;
@@ -30,6 +33,8 @@ extern vector<Figura> Scena;
 
 extern Figura background;
 extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada;
+
+extern GLFWwindow* window;
 
 // .................................................................
 
@@ -73,6 +78,7 @@ void render(float currentFrame, int frame) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+
     // CUPOLA NAVICELLA
     angolo = cos(radians(float(frame/3))) * 10.0;
     glUseProgram(proiettile.programId);
@@ -80,11 +86,56 @@ void render(float currentFrame, int frame) {
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     cupola_macchina.Model = mat4(1.0);
     cupola_macchina.Model = translate(cupola_macchina.Model, vec3(cupola_macchina.position.x, cupola_macchina.position.y - 150.0, 0.0));
+    if (car_swing) {
+        cupola_macchina.Model = rotate(cupola_macchina.Model, radians(angolo), vec3(0.0, 0.0, 1.0));
+    }
+    if (glfwGetTime() - timeCarSwing >= 2.0) {
+        car_swing = false;
+    }
 
-    // CORPO NAVICELLA
+
+    // BUCO STRADA
+    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+    buco_strada.Model = mat4(1.0);
+    buco_strada.position.y -= 0.5f;
+    if (buco_strada.position.y < 0) {
+        buco_strada.position = randomPosition(width, height);
+    }
+    buco_strada.Model = translate(buco_strada.Model, vec3(buco_strada.position.x, buco_strada.position.y, 0.0));
+    buco_strada.Model = scale(buco_strada.Model, vec3(150.0, 150.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(buco_strada.Model));
+    glBindVertexArray(buco_strada.VAO);
+    updateBB(&buco_strada);
+    glDrawArrays(buco_strada.render, 0, buco_strada.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, buco_strada.nv - 4, 4);
+
+    // MACCHIA FANGO
+    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+    macchia_fango.Model = mat4(1.0);
+    macchia_fango.position.y -= 0.5f;
+    if (macchia_fango.position.y < 0) {
+        macchia_fango.position = randomPosition(width, height);
+        cout << macchia_fango.position.x << ", " << buco_strada.position.x << endl;
+        while (macchia_fango.position.x - buco_strada.position.x > -70.0f
+            && macchia_fango.position.x - buco_strada.position.x < 70.0f) {
+            macchia_fango.position = randomPosition(width, height);
+        }
+    }
+    macchia_fango.Model = translate(macchia_fango.Model, vec3(macchia_fango.position.x, macchia_fango.position.y, 0.0));
+    macchia_fango.Model = scale(macchia_fango.Model, vec3(120.0, 120.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(macchia_fango.Model));
+    glBindVertexArray(macchia_fango.VAO);
+    updateBB(&macchia_fango);
+    glDrawArrays(macchia_fango.render, 0, macchia_fango.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, macchia_fango.nv - 4, 4);
+
+
+    // CORPO MACCHINA
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     corpo_macchina.Model = translate(cupola_macchina.Model, vec3(corpo_macchina.position.x, corpo_macchina.position.y, 0.0));
-    corpo_macchina.Model = scale(corpo_macchina.Model, vec3(200.0, 200.0, 1.0));
+    corpo_macchina.Model = scale(corpo_macchina.Model, vec3(140.0, 140.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(corpo_macchina.Model));
     glBindVertexArray(corpo_macchina.VAO);
 
@@ -101,7 +152,7 @@ void render(float currentFrame, int frame) {
 
     // RUOTA MACCHINA 1
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 50.0, ruota_macchina.position.y + 80.0, 0.0));
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 40.0, ruota_macchina.position.y + 60.0, 0.0));
     ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
     //ruota_macchina.Model = rotate(ruota_macchina.Model, radians(angolo), vec3(0.0, 0.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
@@ -112,7 +163,7 @@ void render(float currentFrame, int frame) {
         glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
 
     // RUOTA MACCHINA 2
-    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 50.0, ruota_macchina.position.y - 80.0, 0.0));
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 40.0, ruota_macchina.position.y - 60.0, 0.0));
     ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
     glBindVertexArray(ruota_macchina.VAO);
@@ -122,7 +173,7 @@ void render(float currentFrame, int frame) {
         glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
 
     // RUOTA MACCHINA 3
-    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 50.0, ruota_macchina.position.y + 80.0, 0.0));
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 40.0, ruota_macchina.position.y + 60.0, 0.0));
     ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
     glBindVertexArray(ruota_macchina.VAO);
@@ -132,7 +183,7 @@ void render(float currentFrame, int frame) {
         glDrawArrays(GL_LINE_LOOP, ruota_macchina.nv - 4, 4);
 
     // RUOTA MACCHINA 4
-    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 50.0, ruota_macchina.position.y - 80.0, 0.0));
+    ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x + 40.0, ruota_macchina.position.y - 60.0, 0.0));
     ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
     glBindVertexArray(ruota_macchina.VAO);
@@ -219,11 +270,11 @@ void render(float currentFrame, int frame) {
         }
     }
 
-    //Verifica se c'è collisione tra le shape della scena ed il proiettile
-    for (i = 1; i < Scena.size(); i++) {
-        if (checkCollision(proiettile, Scena[i])) {
-            Scena[i].isalive = false;
-        }
+    if (checkCollision(corpo_macchina, buco_strada)) {
+        game_end = true;
     }
-
+    if (checkCollision(corpo_macchina, macchia_fango)) {
+        car_swing = true;
+        timeCarSwing = glfwGetTime();
+    }
 }

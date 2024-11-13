@@ -169,14 +169,13 @@ void aggiornaProiettile(Figura* proiettile) {
 
 void aggiornaProiettile(Curva* proiettile) {
 
-    float vel_y_proiettile = 1.0;
+    float vel_y_proiettile = 0.6;
 
-    cout << "proiettile vivo: " << proiettile->isalive << endl;
     if (proiettile->isalive == true) {
         proiettile->position.y += vel_y_proiettile;
 
         //Controllo se il proiettile raggiunge il 
-        if (proiettile->position.y > height + 100.0) {
+        if (proiettile->position.y > height) {
             proiettile->isalive = false;
             proiettile->position.y = 0.0;
             proiettile->position.x = 0.0;

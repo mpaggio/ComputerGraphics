@@ -1,4 +1,5 @@
 #pragma once 
+#include "lib.h"
 #include "ImGui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imGui/imgui_impl_opengl3.h" 
@@ -6,6 +7,7 @@
 
 
 
+extern GLFWwindow* window;
 extern bool show_bounding_boxes;
 
 
@@ -73,3 +75,33 @@ void close_GUI() {
 }
  
  
+void displayEndGame() {
+
+    ImGui_ImplGlfw_NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();
+
+    ImGui::NewFrame();
+    ImGui::Begin("Fine Partita");
+
+    ImVec2 newWindowSize(600, 400);
+    ImGui::SetWindowSize(newWindowSize);
+
+    ImVec2 newPosition(200, 200);
+    ImGui::SetWindowPos(newPosition);
+
+    ImGui::Text("SEI MORTO!!! \n(la macchina è finita in un buco)\n\nClicca il pulsante \"Fine Partita\" per terminare");
+    // ImGui::Text("Punteggio finale: %d", punteggioFinale);
+
+    ImVec2 windowSize = ImGui::GetWindowSize();
+    ImVec2 buttonSize(150, 40);
+
+    ImVec2 cursorPos(windowSize.x - buttonSize.x - 10, windowSize.y - buttonSize.y - 10);
+    ImGui::SetCursorPos(cursorPos);
+
+    if (ImGui::Button("Chiudi il gioco")) {
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    }
+
+    ImGui::End();
+    ImGui::Render();
+}

@@ -30,7 +30,7 @@ float deltaTime = 0.0f, lastFrame = 0.0f;
 float w_update = height, h_update = width;
 
 double mousex,mousey;
-bool show_bounding_boxes = false;
+bool show_bounding_boxes = false, game_end = false;
 
 Figura background = {};
 Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {}, macchia_fango = {}, buco_strada = {};
@@ -42,13 +42,14 @@ mat4 Projection;
 vec2 resolution;
 vector<Figura> Scena;
 
+GLFWwindow* window;
+
 // ..........................................................................
 
 
  
 
 int main(void) {
-    GLFWwindow* window;
 
     /* Initialize the library */
     if (!glfwInit()) {
@@ -108,7 +109,7 @@ int main(void) {
     cupola_macchina.programId = programId;
     cupola_macchina.position.x = width / 2.0;
     cupola_macchina.position.y = height / 3.0;
-    cupola_macchina.scale = vec3(180.0, 180.0, 1.0);
+    cupola_macchina.scale = vec3(120.0, 120.0, 1.0);
     INIT_CUPOLA_MACCHINA(&cupola_macchina);
     INIT_VAO_Curva(&cupola_macchina);
 
@@ -140,6 +141,22 @@ int main(void) {
     INIT_PIANO(&background);
     INIT_VAO(&background);
     Scena.push_back(background);
+
+    // BUCO STRADA
+    buco_strada.programId = programId;
+    buco_strada.position = randomPosition(width, height);
+    INIT_BUCO_STRADA(&buco_strada);
+    INIT_VAO_Curva(&buco_strada);
+
+    // MACCHIA FANGO
+    macchia_fango.programId = programId;
+    macchia_fango.position = randomPosition(width, height);
+    while (macchia_fango.position.x - buco_strada.position.x > - 70.0f 
+        && macchia_fango.position.x - buco_strada.position.x < 70.0f) {
+        macchia_fango.position = randomPosition(width, height);
+    }
+    INIT_MACCHIA_FANGO(&macchia_fango);
+    INIT_VAO_Curva(&macchia_fango);
     
     // .......................................................................
    
@@ -196,8 +213,13 @@ int main(void) {
         frame++;
         
         // Renderizzazione
-        my_interface();
-        render(currentFrame, frame);
+        if (game_end) {
+            displayEndGame();
+        }
+        else {
+            my_interface();
+            render(currentFrame, frame);
+        }
 
         // Renderizza i dati di disegno di ImGui
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

@@ -4,8 +4,6 @@
 #include <random>
 
 
-extern float speed, deltaTime, lastFrame, minSpeed;
-
 
 vec2 randomPosition(int width, int height) {
     static std::random_device rd;
@@ -133,17 +131,3 @@ void updateBB(Curva* fig)
 }
 
 
-void updateSpeed(float s, float ts, float str) {
-    if (ts < minSpeed) {
-        ts = minSpeed;
-    }
-    float delta = ts - s;
-    speed += delta * (1.0f - exp(-str * delta));
-}
-
-
-void updateDeltaTime() {
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
-}

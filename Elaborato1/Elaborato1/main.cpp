@@ -16,7 +16,7 @@
 
 // ........................ VARIABILI GLOBALI ........................
 
-int height = 1100, width = 1100;
+int height = 1000, width = 950;
 int frame;
 int i, j;
 
@@ -25,8 +25,7 @@ unsigned int VAO_Text, VBO_Text;
 
 float r = 0.0, g = 0.2, b = 1.0;
 float alpha;
-float speed = 1.0f, targetSpeed = 1.0f, speedTransitionRate = 5.0f, minSpeed = 0.1f;
-float deltaTime = 0.0f, lastFrame = 0.0f;
+float speed = 1.5f, deltaTime = 0.0f, lastFrame = 0.0f;
 float w_update = height, h_update = width;
 
 double mousex,mousey;

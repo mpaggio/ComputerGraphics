@@ -6,10 +6,12 @@
 
 // ...................... VARIABILI GLOBALI ......................
 bool first_time_clicking = true;
+extern bool isSlowingDown;
 
 extern int height, width;
 
-extern float targetSpeed, speedTransitionRate;
+extern float targetSpeed, speedTransitionRate, minSpeed;
+extern float slowDownStartTime;
 extern float  w_update, h_update;
 extern float angolo, speed;
 extern float r, g, b;
@@ -83,21 +85,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 if (cupola_macchina.position.x + 3 * movement_step < width) {
                     cupola_macchina.position.x += movement_step;
                 }
-            }
-            break;
-        case GLFW_KEY_S:
-            if (action == GLFW_PRESS) {
-                targetSpeed = 0.5f;
-            }
-            break;
-        case GLFW_KEY_W:
-            if (action == GLFW_PRESS) {
-                targetSpeed = 3.0f;
-            }
-            break;
-        case GLFW_KEY_R:
-            if (action == GLFW_PRESS) {
-                targetSpeed = 1.0f;
             }
             break;
 

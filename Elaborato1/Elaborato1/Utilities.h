@@ -8,5 +8,3 @@ bool checkCollision(Figura obj1, Figura obj2);
 bool checkCollision(Curva obj1, Curva obj2);
 void updateBB(Figura* fig);
 void updateBB(Curva* fig);
-void updateSpeed(float speed, float targetSpeed, float speedTransitionRate);
-void updateDeltaTime();

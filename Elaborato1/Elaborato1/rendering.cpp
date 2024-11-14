@@ -15,7 +15,7 @@ extern int  height, width;
 
 float angolo;
 extern float r, g, b;
-extern float speed, targetSpeed, speedTransitionRate, deltaTime;
+extern float speed, deltaTime;
 extern float w_update, h_update, speed;
 
 extern unsigned int MatProjS, MatModelS, MatProj, MatModel, vec_resS, loc_time, loc_deltaTime;
@@ -24,7 +24,7 @@ extern unsigned int VAO_Text, VBO_Text;
 extern GLint loc_speed, loc_resolution;
 
 bool car_swing = false;
-extern bool show_bounding_boxes, game_end;
+extern bool show_bounding_boxes, game_end, isTransitioning, isRoadTransitioning;
 
 extern mat4 Projection;
 extern vec2 resolution;
@@ -60,9 +60,6 @@ void render(float currentFrame, int frame) {
     glUniform2fv(vec_resS, 1, value_ptr(resolution));
     glUniform1f(loc_time, currentFrame);
 
-    updateSpeed(speed, targetSpeed, speedTransitionRate);
-    updateDeltaTime();
-
     glUniform1f(loc_speed, speed);
     glUniform2f(loc_resolution, w_update, h_update);
     glUniform1f(loc_deltaTime, deltaTime);
@@ -81,7 +78,7 @@ void render(float currentFrame, int frame) {
 
 
 
-    // CUPOLA NAVICELLA
+    // CUPOLA MACCHINA
     angolo = cos(radians(float(frame/3))) * 10.0;
     glUseProgram(proiettile.programId);
    

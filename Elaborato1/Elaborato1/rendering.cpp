@@ -79,6 +79,8 @@ void render(float currentFrame, int frame) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
+
+
     // CUPOLA NAVICELLA
     angolo = cos(radians(float(frame/3))) * 10.0;
     glUseProgram(proiettile.programId);
@@ -92,6 +94,8 @@ void render(float currentFrame, int frame) {
     if (glfwGetTime() - timeCarSwing >= 2.0) {
         car_swing = false;
     }
+
+
 
 
     // BUCO STRADA
@@ -110,15 +114,15 @@ void render(float currentFrame, int frame) {
     if (show_bounding_boxes)
         glDrawArrays(GL_LINE_LOOP, buco_strada.nv - 4, 4);
 
+
+
     // MACCHIA FANGO
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     macchia_fango.Model = mat4(1.0);
     macchia_fango.position.y -= 0.5f;
     if (macchia_fango.position.y < 0) {
         macchia_fango.position = randomPosition(width, height);
-        cout << macchia_fango.position.x << ", " << buco_strada.position.x << endl;
-        while (macchia_fango.position.x - buco_strada.position.x > -70.0f
-            && macchia_fango.position.x - buco_strada.position.x < 70.0f) {
+        while (fabs(macchia_fango.position.x - buco_strada.position.x) < 100.0f) {
             macchia_fango.position = randomPosition(width, height);
         }
     }
@@ -132,19 +136,16 @@ void render(float currentFrame, int frame) {
         glDrawArrays(GL_LINE_LOOP, macchia_fango.nv - 4, 4);
 
 
+
+
     // CORPO MACCHINA
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     corpo_macchina.Model = translate(cupola_macchina.Model, vec3(corpo_macchina.position.x, corpo_macchina.position.y, 0.0));
     corpo_macchina.Model = scale(corpo_macchina.Model, vec3(140.0, 140.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(corpo_macchina.Model));
     glBindVertexArray(corpo_macchina.VAO);
-
-    //Update Bounding box del proiettile
     updateBB(&corpo_macchina);
-
-    //disegna il proiettile (nelle utilme 4 posizioni del VBO sono memorizzati i vertici del Bounding Box
     glDrawArrays(corpo_macchina.render, 0, corpo_macchina.nv - 4);
-    //disegna il Bounding Box
     if (show_bounding_boxes)
         glDrawArrays(GL_LINE_LOOP, corpo_macchina.nv - 4, 4);
 
@@ -154,7 +155,6 @@ void render(float currentFrame, int frame) {
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     ruota_macchina.Model = translate(cupola_macchina.Model, vec3(ruota_macchina.position.x - 40.0, ruota_macchina.position.y + 60.0, 0.0));
     ruota_macchina.Model = scale(ruota_macchina.Model, vec3(80.0, 80.0, 1.0));
-    //ruota_macchina.Model = rotate(ruota_macchina.Model, radians(angolo), vec3(0.0, 0.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(ruota_macchina.Model));
     glBindVertexArray(ruota_macchina.VAO);
     updateBB(&ruota_macchina);

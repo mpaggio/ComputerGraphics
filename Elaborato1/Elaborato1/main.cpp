@@ -16,7 +16,7 @@
 
 // ........................ VARIABILI GLOBALI ........................
 
-int height = 1000, width = 1000;
+int height = 1100, width = 1100;
 int frame;
 int i, j;
 
@@ -151,8 +151,7 @@ int main(void) {
     // MACCHIA FANGO
     macchia_fango.programId = programId;
     macchia_fango.position = randomPosition(width, height);
-    while (macchia_fango.position.x - buco_strada.position.x > - 70.0f 
-        && macchia_fango.position.x - buco_strada.position.x < 70.0f) {
+    while (fabs(macchia_fango.position.x - buco_strada.position.x) < 100.0f) {
         macchia_fango.position = randomPosition(width, height);
     }
     INIT_MACCHIA_FANGO(&macchia_fango);

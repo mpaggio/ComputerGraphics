@@ -10,8 +10,11 @@ extern float speed, deltaTime, lastFrame, minSpeed;
 vec2 randomPosition(int width, int height) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
-    std::uniform_real_distribution<> disX(0.0f, static_cast<float>(width));
-    return glm::vec2(disX(gen), height - 80.0f);
+    int numStepsX = static_cast<int>(width / 200);
+    std::uniform_int_distribution<> disX(0, numStepsX - 1);
+    float posX = disX(gen) * 200.0f;
+    float posY = static_cast<float>(height - 80);
+    return glm::vec2(posX, posY);
 }
 
 void findBB(Figura* fig) {

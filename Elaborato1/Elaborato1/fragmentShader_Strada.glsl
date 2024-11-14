@@ -16,17 +16,17 @@ vec3 road(vec2 uv)
     uv.x += speed * deltaTime * 0.005;  // Moltiplica la velocità per deltaTime
 
     // Cambia il colore in base alla posizione della strada
-    if (abs(uv.x) < 1.0)
+    if (abs(uv.x) < 0.35)
     {
         c1 = vec3(0.9, 0.1, 0.1); // strisce rosse
         c2 = vec3(0.9, 0.9, 0.9); // strisce bianche
     }
-    if (abs(uv.x) < 0.9)
+    if (abs(uv.x) < 0.32)
     {
         c1 = vec3(0.5, 0.5, 0.5); // asfalto grigio
         c2 = vec3(0.5, 0.5, 0.5); // asfalto grigio
     }
-    if (abs(uv.x) < 0.04)
+    if (abs(uv.x) < 0.015)
     {
         c1 = vec3(0.5, 0.5, 0.5); // asfalto grigio
         c2 = vec3(0.9, 0.9, 0.9); // strisce bianche

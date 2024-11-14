@@ -1,3 +1,19 @@
-﻿  rendering.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(83,43): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+﻿  main.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(26,23): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(30,16): warning C4244: 'inizializzazione': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(30,35): warning C4244: 'inizializzazione': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(110,40): warning C4244: '=': conversione da 'double' a 'T'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(111,41): warning C4244: '=': conversione da 'double' a 'T'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\main.cpp(208,28): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+  rendering.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(85,43): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+  Generazione del codice in corso...
   Elaborato1.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\x64\Debug\Elaborato1.exe

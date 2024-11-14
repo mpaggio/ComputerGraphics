@@ -118,13 +118,13 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h)
         h = 1;
     }
     
-    Projection = ortho(0.0f, (float)width, 0.0f, (float)height);
+    Projection = ortho(0.0f, (float)w, 0.0f, (float)h);
    
     //Rapporto larghezza altezza del  mondo
     float AspectRatio_mondo = (float)(width) / (float)(height);
 
     //Se ridimensioniamo la larghezza della Viewport 
-    if (AspectRatio_mondo > (w / h)) {   
+    if (AspectRatio_mondo > ((float)w / (float)h)) {   
         
         //La larghezza del viewport è uguale alla larghezza della finestra.
         w_update = (float)w;
@@ -134,11 +134,11 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h)
     }
     else {
         
-        //Il viewport viene esteso in larghezza per mantenere le proporzioni corrette
-        w_update = h * AspectRatio_mondo;
-
         //L'altezza del viewport è uguale all'altezza della finestra.
         h_update = (float)h;
+
+        //Il viewport viene esteso in larghezza per mantenere le proporzioni corrette
+        w_update = h * AspectRatio_mondo;
     }
 
     glViewport(0.0, 0.0, w_update, h_update);

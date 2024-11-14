@@ -83,22 +83,23 @@ void displayEndGame() {
     ImGui::NewFrame();
     ImGui::Begin("Fine Partita");
 
-    ImVec2 newWindowSize(600, 400);
+    ImVec2 newWindowSize(800, 400);
     ImGui::SetWindowSize(newWindowSize);
 
-    ImVec2 newPosition(200, 200);
+    ImVec2 newPosition(100, 200);
     ImGui::SetWindowPos(newPosition);
 
-    ImGui::Text("SEI MORTO!!! \n(la macchina è finita in un buco)\n\nClicca il pulsante \"Fine Partita\" per terminare");
+    ImGui::Text("SEI MORTO!!! \n(la macchina e' finita in un buco)\n\nClicca il pulsante \"Fine partita\" per terminare");
     // ImGui::Text("Punteggio finale: %d", punteggioFinale);
 
     ImVec2 windowSize = ImGui::GetWindowSize();
     ImVec2 buttonSize(150, 40);
 
-    ImVec2 cursorPos(windowSize.x - buttonSize.x - 10, windowSize.y - buttonSize.y - 10);
+    ImVec2 cursorPos(windowSize.x - buttonSize.x - 40, windowSize.y - buttonSize.y - 10);
     ImGui::SetCursorPos(cursorPos);
+    ImGui::SetWindowFontScale(2.0f);
 
-    if (ImGui::Button("Chiudi il gioco")) {
+    if (ImGui::Button("Fine partita")) {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     }
 

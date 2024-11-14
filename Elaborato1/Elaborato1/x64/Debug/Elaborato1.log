@@ -1,3 +1,2 @@
-﻿  rendering.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(83,43): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-  Elaborato1.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\x64\Debug\Elaborato1.exe
+﻿  Gui.cpp
+  Elaborato1.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Elaborato1\x64\Debug\Elaborato1.exe

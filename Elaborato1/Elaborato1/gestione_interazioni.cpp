@@ -162,7 +162,7 @@ void aggiornaProiettile(Curva* proiettile) {
         proiettile->position.y += vel_y_proiettile;
 
         //Controllo se il proiettile raggiunge il 
-        if (proiettile->position.y > height) {
+        if (proiettile->position.y > height || proiettile->position.y < 0.0 || proiettile->position.x > width || proiettile->position.x < 0.0) {
             proiettile->isalive = false;
             proiettile->position.y = 0.0;
             proiettile->position.x = 0.0;

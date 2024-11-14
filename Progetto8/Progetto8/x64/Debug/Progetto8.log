@@ -1,5 +1,44 @@
-﻿  gestione_interazioni.cpp
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(100,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,22): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-  Progetto8.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto8\x64\Debug\Progetto8.exe
+﻿  imgui.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui.cpp': No such file or directory
+  imgui_demo.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_demo.cpp': No such file or directory
+  imgui_draw.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_draw.cpp': No such file or directory
+  imgui_impl_glfw.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_impl_glfw.cpp': No such file or directory
+  imgui_impl_opengl3.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_impl_opengl3.cpp': No such file or directory
+  imgui_tables.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_tables.cpp': No such file or directory
+  imgui_widgets.cpp
+c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Progetto3D\ImGui\imgui_widgets.cpp': No such file or directory
+  geometria.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(48,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(93,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(121,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(173,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(232,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(243,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(243,11): warning C4101: 't': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(293,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(293,11): warning C4101: 't': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(342,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\geometria.cpp(342,11): warning C4101: 't': variabile locale senza riferimenti
+  gestione_interazioni.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(100,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\gestione_interazioni.cpp(104,22): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+  Gui.cpp
+  inizializzazioni.cpp
+  Progetto3D.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(148,28): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(156,25): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(192,100): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(205,101): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(218,110): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(231,101): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(243,100): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(256,100): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto8\Progetto8\Progetto3D.cpp(276,104): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+  ShaderMaker.cpp
+  Generazione del codice in corso...

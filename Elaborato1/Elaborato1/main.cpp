@@ -25,14 +25,14 @@ unsigned int VAO_Text, VBO_Text;
 
 float r = 0.0, g = 0.2, b = 1.0;
 float alpha;
-float speed = 1.5f, deltaTime = 0.0f, lastFrame = 0.0f;
+float speed = 0.65f, deltaTime = 0.0f, lastFrame = 0.0f;
 float w_update = height, h_update = width;
 
 double mousex,mousey;
 bool show_bounding_boxes = false, game_end = false;
 
 Figura background = {};
-Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {}, macchia_fango = {}, buco_strada = {};
+Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {}, macchia_fango = {}, buco_strada = {}, cannone = {};
 
 GLuint MatProj, MatModel, MatProjS, MatModelS, vec_resS,loc_time, loc_deltaTime;
 GLint loc_speed, loc_resolution;
@@ -125,6 +125,13 @@ int main(void) {
     ruota_macchina.position.y = 0.0;
     INIT_RUOTA_MACCHINA(&ruota_macchina);
     INIT_VAO_Curva(&ruota_macchina);
+
+    // CANNONE
+    cannone.programId = programId;
+    cannone.position.x = 0.0;
+    cannone.position.y = 0.0;
+    INIT_CANNONE(&cannone);
+    INIT_VAO_Curva(&cannone);
 
     // PROIETTILE
     proiettile.programId = programId;

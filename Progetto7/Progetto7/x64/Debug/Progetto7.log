@@ -12,73 +12,7 @@ c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..
 c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Esercitazione  7 Novembre 2024-20241107\Esercitazione7_A\ImGui\imgui_tables.cpp': No such file or directory
   imgui_widgets.cpp
 c1xx : fatal  error C1083: Non è possibile aprire il file origine: '..\..\..\..\Downloads\Esercitazione  7 Novembre 2024-20241107\Esercitazione7_A\ImGui\imgui_widgets.cpp': No such file or directory
-  Esercitazione7_A.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(17,23): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(109,31): warning C4244: '=': conversione da 'double' a 'T'. Possibile perdita di dati.
-          with
-          [
-              T=float
-          ]
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(110,32): warning C4244: '=': conversione da 'double' a 'T'. Possibile perdita di dati.
-          with
-          [
-              T=float
-          ]
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(138,41): warning C4305: 'argomento': troncamento da 'double' a 'float'
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(152,49): warning C4305: 'argomento': troncamento da 'double' a 'float'
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Esercitazione7_A.cpp(208,28): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
-  gestione_curve.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(20,100): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(22,100): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(25,126): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(27,126): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(32,105): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(34,106): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(37,126): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(39,126): warning C4244: 'return': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(71,16): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(96,119): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(97,120): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(101,37): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(72,6): warning C4101: 'j': variabile locale senza riferimenti
-  gestione_interazioni.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(80,30): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(82,30): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(121,36): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(121,26): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(121,21): warning C4244: 'argomento': conversione da 'double' a 'GLint'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(121,16): warning C4244: 'argomento': conversione da 'double' a 'GLint'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_interazioni.cpp(137,33): warning C4553: '==': risultato dell'espressione non usato. Si intendeva '='?
-  Gui.cpp
-  init_geometrie.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(19,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(31,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(61,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(70,14): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(79,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(80,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(98,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(101,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(114,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(122,17): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(141,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(144,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(166,35): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(216,34): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(219,18): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(230,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(233,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(280,34): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(283,18): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(304,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\init_geometrie.cpp(307,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  inizializzazioni.cpp
-  rendering.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\rendering.cpp(52,47): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-  ShaderMaker.cpp
   Utilities.cpp
 C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Utilities.cpp(16,29): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
 C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\Utilities.cpp(47,29): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   Generazione del codice in corso...
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(53): warning C4715: 'DX': non tutti i percorsi di controllo restituiscono un valore
-C:\Users\mpagg\Desktop\ComputerGraphics\Progetto7\Progetto7\gestione_curve.cpp(66): warning C4715: 'DY': non tutti i percorsi di controllo restituiscono un valore

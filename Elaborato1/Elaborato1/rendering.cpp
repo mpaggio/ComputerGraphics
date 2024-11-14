@@ -13,8 +13,9 @@
 double timeCarSwing = 0;
 extern int  height, width;
 
-float angolo;
+float angolo, angoloMouse, theta;
 extern float r, g, b;
+extern double mousex, mousey;
 extern float speed, deltaTime;
 extern float w_update, h_update, speed;
 
@@ -32,7 +33,7 @@ extern vector<float> timerFig;
 extern vector<Figura> Scena;
 
 extern Figura background;
-extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada;
+extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada, cannone;
 
 extern GLFWwindow* window;
 
@@ -98,12 +99,12 @@ void render(float currentFrame, int frame) {
     // BUCO STRADA
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     buco_strada.Model = mat4(1.0);
-    buco_strada.position.y -= 0.5f;
+    buco_strada.position.y -= 0.4f;
     if (buco_strada.position.y < 0) {
         buco_strada.position = randomPosition(width, height);
     }
     buco_strada.Model = translate(buco_strada.Model, vec3(buco_strada.position.x, buco_strada.position.y, 0.0));
-    buco_strada.Model = scale(buco_strada.Model, vec3(150.0, 150.0, 1.0));
+    buco_strada.Model = scale(buco_strada.Model, vec3(120.0, 120.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(buco_strada.Model));
     glBindVertexArray(buco_strada.VAO);
     updateBB(&buco_strada);
@@ -116,7 +117,7 @@ void render(float currentFrame, int frame) {
     // MACCHIA FANGO
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     macchia_fango.Model = mat4(1.0);
-    macchia_fango.position.y -= 0.5f;
+    macchia_fango.position.y -= 0.4f;
     if (macchia_fango.position.y < 0) {
         macchia_fango.position = randomPosition(width, height);
         while (fabs(macchia_fango.position.x - buco_strada.position.x) < 100.0f) {
@@ -124,7 +125,7 @@ void render(float currentFrame, int frame) {
         }
     }
     macchia_fango.Model = translate(macchia_fango.Model, vec3(macchia_fango.position.x, macchia_fango.position.y, 0.0));
-    macchia_fango.Model = scale(macchia_fango.Model, vec3(120.0, 120.0, 1.0));
+    macchia_fango.Model = scale(macchia_fango.Model, vec3(90.0, 90.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(macchia_fango.Model));
     glBindVertexArray(macchia_fango.VAO);
     updateBB(&macchia_fango);
@@ -145,6 +146,25 @@ void render(float currentFrame, int frame) {
     glDrawArrays(corpo_macchina.render, 0, corpo_macchina.nv - 4);
     if (show_bounding_boxes)
         glDrawArrays(GL_LINE_LOOP, corpo_macchina.nv - 4, 4);
+
+
+
+    // CANNONE
+    /* Sottraggo il valore corrispondente a 90° in radianti(poiche l'angolo sarebbe rispetto al verso positivo di x
+       ma qui serve rispetto al verso positivo di y. */
+    angoloMouse = atan2(mousey - cannone.position.y, mousex - cannone.position.x) - 1.571;
+    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+    cannone.Model = mat4(1.0);
+    cannone.position = cupola_macchina.position;
+    cannone.Model = translate(cannone.Model, vec3(cannone.position.x, cannone.position.y - 150.0, 0.0));
+    cannone.Model = rotate(cannone.Model, angoloMouse, vec3(0.0, 0.0, 1.0));
+    cannone.Model = scale(cannone.Model, vec3(40.0, 60.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(cannone.Model));
+    glBindVertexArray(cannone.VAO);
+    updateBB(&cannone);
+    glDrawArrays(cannone.render, 0, cannone.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, cannone.nv - 4, 4);
 
 
 
@@ -195,8 +215,13 @@ void render(float currentFrame, int frame) {
     
     // PROIETTILE
     if (!proiettile.isalive) {
+        theta = angoloMouse;
         glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-        proiettile.Model = translate(cupola_macchina.Model, vec3(proiettile.position.x, proiettile.position.y - 60.0, 0.0));
+        proiettile.Model = mat4(1.0);
+        proiettile.position.x = cannone.position.x;
+        proiettile.position.y = cannone.position.y;
+        proiettile.Model = translate(proiettile.Model, vec3(proiettile.position.x, proiettile.position.y - 150.0, 0.0));
+        proiettile.Model = rotate(proiettile.Model, angoloMouse, vec3(0.0, 0.0, 1.0));
         proiettile.Model = scale(proiettile.Model, vec3(20.0, 20.0, 1.0));
         glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(proiettile.Model));
         glBindVertexArray(proiettile.VAO);
@@ -206,9 +231,13 @@ void render(float currentFrame, int frame) {
         updateBB(&proiettile);
     }
     else {
+        proiettile.position.x -= cos(theta - 1.571);
+        proiettile.position.y -= sin(theta - 1.571);
+
         glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
         proiettile.Model = mat4(1.0);
-        proiettile.Model = translate(proiettile.Model, vec3(proiettile.position.x, proiettile.position.y - 60.0, 0.0));
+        proiettile.Model = translate(proiettile.Model, vec3(proiettile.position.x, proiettile.position.y - 150.0, 0.0));
+        proiettile.Model = rotate(proiettile.Model, theta, vec3(0.0, 0.0, 1.0));
         proiettile.Model = scale(proiettile.Model, vec3(20.0, 20.0, 1.0));
         glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(proiettile.Model));
         glBindVertexArray(proiettile.VAO);

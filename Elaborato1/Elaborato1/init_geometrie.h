@@ -18,3 +18,4 @@ void INIT_RUOTA_MACCHINA(Curva* curva);
 void INIT_PROIETTILE(Curva* curva);
 void INIT_BUCO_STRADA(Curva* curva);
 void INIT_MACCHIA_FANGO(Curva* curva);
+void INIT_CANNONE(Curva* curva);

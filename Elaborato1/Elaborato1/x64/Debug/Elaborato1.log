@@ -1,14 +1,2 @@
-﻿  rendering.cpp
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(83,43): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(155,83): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(234,37): warning C4244: '-=': conversione da 'double' a 'T'. Possibile perdita di dati.
-          with
-          [
-              T=float
-          ]
-C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\Elaborato1\rendering.cpp(235,37): warning C4244: '-=': conversione da 'double' a 'T'. Possibile perdita di dati.
-          with
-          [
-              T=float
-          ]
+﻿  Gui.cpp
   Elaborato1.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Elaborato1\x64\Debug\Elaborato1.exe

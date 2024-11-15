@@ -19,6 +19,7 @@
 int height = 1000, width = 950;
 int frame;
 int i, j;
+int playerPoints = 0;
 
 unsigned int programId, programIdS, programId_text;
 unsigned int VAO_Text, VBO_Text;
@@ -32,7 +33,8 @@ double mousex,mousey;
 bool show_bounding_boxes = false, game_end = false;
 
 Figura background = {};
-Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {}, macchia_fango = {}, buco_strada = {}, cannone = {};
+Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {};
+Curva macchia_fango = {}, buco_strada = {}, cannone = {}, bersaglio = {};
 
 GLuint MatProj, MatModel, MatProjS, MatModelS, vec_resS,loc_time, loc_deltaTime;
 GLint loc_speed, loc_resolution;
@@ -162,6 +164,12 @@ int main(void) {
     }
     INIT_MACCHIA_FANGO(&macchia_fango);
     INIT_VAO_Curva(&macchia_fango);
+
+    // BERSAGLIO
+    bersaglio.programId = programId;
+    bersaglio.position = randomPosition(width, height);
+    INIT_BERSAGLIO(&bersaglio);
+    INIT_VAO_Curva(&bersaglio);
     
     // .......................................................................
    

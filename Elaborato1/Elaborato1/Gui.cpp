@@ -9,6 +9,7 @@
 
 extern GLFWwindow* window;
 extern bool show_bounding_boxes;
+extern int playerPoints;
 
 
 
@@ -48,6 +49,9 @@ void my_interface( ) {
 
     // Crea una checkbox per mostrare i bounding box
     ImGui::Checkbox("Mostra Bounding Box", &show_bounding_boxes);
+
+    // Mostra i punti del giocatore
+    ImGui::Text("Player points: %d", playerPoints);
 
     // Crea uno slider per selezionare il numero di nuvole dello sfondo
     //ImGui::SliderInt("# ofClouds", &nClouds, 1,15, "%d");
@@ -89,8 +93,8 @@ void displayEndGame() {
     ImVec2 newPosition(100, 200);
     ImGui::SetWindowPos(newPosition);
 
-    ImGui::Text("SEI MORTO!!! \n(la macchina e' finita in un buco)\n\nClicca il pulsante \"Fine partita\" per terminare");
-    // ImGui::Text("Punteggio finale: %d", punteggioFinale);
+
+    ImGui::Text("SEI MORTO!!! \n(la macchina e' finita in un buco)\n\nPunteggio finale: %d \n\nClicca il pulsante \"Fine partita\" per terminare", playerPoints);
 
     ImVec2 windowSize = ImGui::GetWindowSize();
     ImVec2 buttonSize(150, 40);

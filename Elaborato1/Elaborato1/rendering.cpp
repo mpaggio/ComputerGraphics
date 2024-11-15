@@ -11,7 +11,7 @@
 
 // ....................... VARIABILI GLOBALI .......................
 double timeCarSwing = 0;
-extern int  height, width;
+extern int  height, width, playerPoints;
 
 float angolo, angoloMouse, theta;
 extern float r, g, b;
@@ -25,7 +25,7 @@ extern unsigned int VAO_Text, VBO_Text;
 extern GLint loc_speed, loc_resolution;
 
 bool car_swing = false;
-extern bool show_bounding_boxes, game_end, isTransitioning, isRoadTransitioning;
+extern bool show_bounding_boxes, game_end, isTransitioning, isRoadTransitioning, first_time_clicking;
 
 extern mat4 Projection;
 extern vec2 resolution;
@@ -33,7 +33,7 @@ extern vector<float> timerFig;
 extern vector<Figura> Scena;
 
 extern Figura background;
-extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada, cannone;
+extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada, cannone, bersaglio;
 
 extern GLFWwindow* window;
 
@@ -135,6 +135,23 @@ void render(float currentFrame, int frame) {
 
 
 
+    // BERSAGLIO
+    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+    bersaglio.Model = mat4(1.0);
+    if (frame%1000 == 800) {
+        bersaglio.position = randomPosition(width, height);
+    }
+    bersaglio.Model = translate(bersaglio.Model, vec3(bersaglio.position.x, bersaglio.position.y, 0.0));
+    bersaglio.Model = scale(bersaglio.Model, vec3(180.0, 180.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(bersaglio.Model));
+    glBindVertexArray(bersaglio.VAO);
+    updateBB(&bersaglio);
+    glDrawArrays(bersaglio.render, 0, bersaglio.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, bersaglio.nv - 4, 4);
+
+
+
 
     // CORPO MACCHINA
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
@@ -231,8 +248,8 @@ void render(float currentFrame, int frame) {
         updateBB(&proiettile);
     }
     else {
-        proiettile.position.x -= cos(theta - 1.571);
-        proiettile.position.y -= sin(theta - 1.571);
+        proiettile.position.x -= cos(theta - 1.521);
+        proiettile.position.y -= sin(theta - 1.521);
 
         glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
         proiettile.Model = mat4(1.0);
@@ -302,5 +319,13 @@ void render(float currentFrame, int frame) {
     if (checkCollision(corpo_macchina, macchia_fango)) {
         car_swing = true;
         timeCarSwing = glfwGetTime();
+    }
+    if (checkCollision(proiettile, bersaglio)) {
+        playerPoints += 1;
+        proiettile.isalive = false;
+        proiettile.position.y = 0.0;
+        proiettile.position.x = 0.0;
+        first_time_clicking = true;
+        cout << playerPoints << endl;
     }
 }

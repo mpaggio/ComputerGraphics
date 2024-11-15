@@ -181,6 +181,7 @@
     <None Include="VertexShader_Text.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="bersaglio.txt" />
     <Text Include="cannone.txt" />
     <Text Include="ruota_macchina.txt" />
     <Text Include="proiettile.txt" />

@@ -78,7 +78,7 @@ void findBB(Curva* fig) {
 }
 
 
-bool checkCollision(Figura obj1, Figura obj2) {
+bool checkCollision(Curva obj1, Figura obj2) {
     // guardo collisioni su asse x
 
     bool collisionX = obj1.min_BB.x <= obj2.max_BB.x &&

@@ -189,6 +189,7 @@
     <Text Include="cupola_macchina.txt" />
     <Text Include="macchia_fango.txt" />
     <Text Include="buco_strada.txt" />
+    <Text Include="scudo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

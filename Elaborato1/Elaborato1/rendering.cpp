@@ -8,24 +8,27 @@
 #include "Utilities.h"
 #include "Gui.h"
 
+#define PI 3.14159265358979323
+
 
 // ....................... VARIABILI GLOBALI .......................
-double timeCarSwing = 0;
+bool car_swing = false, is_player_invincible = false;
+extern bool show_bounding_boxes, game_end, isTransitioning, isRoadTransitioning, first_time_clicking;
+
 extern int  height, width, playerPoints;
 
-float angolo, angoloMouse, theta;
+float angolo, angoloMouse, theta, randomTime1 = randomTime(), randomTime2 = randomTime(), randomTime3 = randomTime();
+float invincibilityTimer = 0.0;
 extern float r, g, b;
 extern double mousex, mousey;
 extern float speed, deltaTime;
 extern float w_update, h_update, speed;
 
+double timeCarSwing = 0;
+
 extern unsigned int MatProjS, MatModelS, MatProj, MatModel, vec_resS, loc_time, loc_deltaTime;
 extern unsigned int programId_text;
 extern unsigned int VAO_Text, VBO_Text;
-extern GLint loc_speed, loc_resolution;
-
-bool car_swing = false;
-extern bool show_bounding_boxes, game_end, isTransitioning, isRoadTransitioning, first_time_clicking;
 
 extern mat4 Projection;
 extern vec2 resolution;
@@ -33,8 +36,10 @@ extern vector<float> timerFig;
 extern vector<Figura> Scena;
 
 extern Figura background;
-extern Curva cupola_macchina, corpo_macchina, ruota_macchina, proiettile, macchia_fango, buco_strada, cannone, bersaglio;
+extern Curva cupola_macchina, corpo_macchina, ruota_macchina, scudo;
+extern Curva proiettile, macchia_fango, buco_strada, cannone, bersaglio;
 
+extern GLint loc_speed, loc_resolution;
 extern GLFWwindow* window;
 
 // .................................................................
@@ -45,7 +50,6 @@ extern GLFWwindow* window;
 
 void render(float currentFrame, int frame) {
 
-    int n_deleted = 0;
     int i;
     
     
@@ -100,8 +104,11 @@ void render(float currentFrame, int frame) {
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     buco_strada.Model = mat4(1.0);
     buco_strada.position.y -= 0.4f;
-    if (buco_strada.position.y < 0) {
+    buco_strada.timerFig += deltaTime;
+    if (buco_strada.position.y < 0 && buco_strada.timerFig >= randomTime1) {
         buco_strada.position = randomPosition(width, height);
+        buco_strada.timerFig = 0.0f;
+        randomTime1 = randomTime();
     }
     buco_strada.Model = translate(buco_strada.Model, vec3(buco_strada.position.x, buco_strada.position.y, 0.0));
     buco_strada.Model = scale(buco_strada.Model, vec3(120.0, 120.0, 1.0));
@@ -118,11 +125,14 @@ void render(float currentFrame, int frame) {
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     macchia_fango.Model = mat4(1.0);
     macchia_fango.position.y -= 0.4f;
-    if (macchia_fango.position.y < 0) {
+    macchia_fango.timerFig += deltaTime;
+    if (macchia_fango.position.y < 0 && macchia_fango.timerFig >= randomTime2) {
         macchia_fango.position = randomPosition(width, height);
         while (fabs(macchia_fango.position.x - buco_strada.position.x) < 100.0f) {
             macchia_fango.position = randomPosition(width, height);
         }
+        macchia_fango.timerFig = 0.0f;
+        randomTime2 = randomTime();
     }
     macchia_fango.Model = translate(macchia_fango.Model, vec3(macchia_fango.position.x, macchia_fango.position.y, 0.0));
     macchia_fango.Model = scale(macchia_fango.Model, vec3(90.0, 90.0, 1.0));
@@ -138,9 +148,11 @@ void render(float currentFrame, int frame) {
     // BERSAGLIO
     glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
     bersaglio.Model = mat4(1.0);
-    if (frame%1000 == 800) {
-        bersaglio.position = randomPosition(width, height);
-    }
+    bersaglio.timerFig += deltaTime;
+    if (bersaglio.timerFig >= 1.5f) {
+        bersaglio.timerFig = 0.0f;
+        bersaglio.position = randomPositionForTarget(width, height);
+    };
     bersaglio.Model = translate(bersaglio.Model, vec3(bersaglio.position.x, bersaglio.position.y, 0.0));
     bersaglio.Model = scale(bersaglio.Model, vec3(180.0, 180.0, 1.0));
     glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(bersaglio.Model));
@@ -149,6 +161,32 @@ void render(float currentFrame, int frame) {
     glDrawArrays(bersaglio.render, 0, bersaglio.nv - 4);
     if (show_bounding_boxes)
         glDrawArrays(GL_LINE_LOOP, bersaglio.nv - 4, 4);
+
+
+
+    // SCUDO
+    glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
+    scudo.Model = mat4(1.0);
+    scudo.position.y -= 0.4f;
+    scudo.timerFig += deltaTime;
+    if (scudo.timerFig >= randomTime3 && scudo.position.y > height + 200.0) {
+        scudo.timerFig = 0.0f;
+        scudo.position = randomPositionForTarget(width, height);
+        randomTime3 = randomTime() * 2;
+    };
+    if (scudo.position.y < -200) {
+        scudo.timerFig = 0.0;
+        scudo.position = randomPosition(width, height);
+        scudo.position.y += 1000.0;
+    }
+    scudo.Model = translate(scudo.Model, vec3(scudo.position.x, scudo.position.y, 0.0));
+    scudo.Model = scale(scudo.Model, vec3(80.0, 80.0, 1.0));
+    glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(scudo.Model));
+    glBindVertexArray(scudo.VAO);
+    updateBB(&scudo);
+    glDrawArrays(scudo.render, 0, scudo.nv - 4);
+    if (show_bounding_boxes)
+        glDrawArrays(GL_LINE_LOOP, scudo.nv - 4, 4);
 
 
 
@@ -248,8 +286,8 @@ void render(float currentFrame, int frame) {
         updateBB(&proiettile);
     }
     else {
-        proiettile.position.x -= cos(theta - 1.521);
-        proiettile.position.y -= sin(theta - 1.521);
+        proiettile.position.x -= cos(theta - PI/2);
+        proiettile.position.y -= sin(theta - PI/2);
 
         glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
         proiettile.Model = mat4(1.0);
@@ -273,50 +311,11 @@ void render(float currentFrame, int frame) {
 
     //Fa il rendering del player
     glDrawArrays(cupola_macchina.render, 0, cupola_macchina.nv);
-    
-    //Disegna le shape animate
-    for (i = 1; i < Scena.size(); i++) {
-        
-        //Rendering della shape se non è entrata in collisione con il proiettile
-        if (Scena[i].isalive == true)
-        {
-            //Aggiornamento della posizione in maniera casuale
-            Scena[i].timerFig += deltaTime;
 
-            // Aggiorna ogni 1 secondo e mezzo
-            if (Scena[i].timerFig >= 1.5f) {
-                Scena[i].timerFig = 0.0f;
-                Scena[i].position = randomPosition(width, height);
-            };
-             
-
-
-
-            glUseProgram(proiettile.programId);
-            glUniformMatrix4fv(MatProj, 1, GL_FALSE, value_ptr(Projection));
-
-            Scena[i].Model = mat4(1.0);
-            Scena[i].Model = translate(Scena[i].Model, vec3(Scena[i].position.x, Scena[i].position.y, 1.0));
-            Scena[i].Model = scale(Scena[i].Model, Scena[i].scale);
-
-            //update Bounding Box
-            updateBB(&Scena[i]);
-
-
-            glUniformMatrix4fv(MatModel, 1, GL_FALSE, value_ptr(Scena[i].Model));
-            glBindVertexArray(Scena[i].VAO);
-            //renderizza la shape
-            glDrawArrays(Scena[i].render, 0, Scena[i].nv - 4);
-            //renderizza il bounding box
-            if (show_bounding_boxes)
-                glDrawArrays(GL_LINE_LOOP, Scena[i].nv - 4, 4);
-        }
-    }
-
-    if (checkCollision(corpo_macchina, buco_strada)) {
+    if (checkCollision(corpo_macchina, buco_strada) && !is_player_invincible) {
         game_end = true;
     }
-    if (checkCollision(corpo_macchina, macchia_fango)) {
+    if (checkCollision(corpo_macchina, macchia_fango) && !is_player_invincible) {
         car_swing = true;
         timeCarSwing = glfwGetTime();
     }
@@ -326,6 +325,22 @@ void render(float currentFrame, int frame) {
         proiettile.position.y = 0.0;
         proiettile.position.x = 0.0;
         first_time_clicking = true;
-        cout << playerPoints << endl;
+        bersaglio.timerFig = 0.0f;
+        bersaglio.position = randomPositionForTarget(width, height);
+    }
+    if (checkCollision(corpo_macchina, scudo)) {
+        is_player_invincible = true;
+        invincibilityTimer = 0.0;
+        scudo.timerFig = 0.0f;
+        scudo.position = randomPosition(width, height);
+        scudo.position.y += 1000.0;
+    }
+
+    if (is_player_invincible && invincibilityTimer >= 3.0) {
+        is_player_invincible = false;
+        invincibilityTimer = 0.0;
+    }
+    else if (is_player_invincible && invincibilityTimer < 3.0) {
+        invincibilityTimer += deltaTime;
     }
 }

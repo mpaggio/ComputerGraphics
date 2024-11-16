@@ -3,7 +3,7 @@ precision mediump float;
 #endif
 
 uniform float time;       // Tempo globale (rimane per altri calcoli se necessario)
-uniform float speed;      // Velocità costante della strada, modificabile esternamente
+uniform float speed;      // Costante della velocità della strada, modificabile esternamente
 uniform vec2 resolution;  // Risoluzione della finestra
 uniform float deltaTime;  // Tempo tra i fotogrammi
 

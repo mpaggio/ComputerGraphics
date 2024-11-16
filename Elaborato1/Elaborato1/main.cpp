@@ -11,12 +11,13 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "Gui.h"
+
 #define PI 3.14159265358979323
 
 
 // ........................ VARIABILI GLOBALI ........................
 
-int height = 1000, width = 950;
+int height = 1000, width = 1000;
 int frame;
 int i, j;
 int playerPoints = 0;
@@ -34,7 +35,7 @@ bool show_bounding_boxes = false, game_end = false;
 
 Figura background = {};
 Curva cupola_macchina = {}, corpo_macchina = {}, ruota_macchina = {}, proiettile = {};
-Curva macchia_fango = {}, buco_strada = {}, cannone = {}, bersaglio = {};
+Curva macchia_fango = {}, buco_strada = {}, cannone = {}, bersaglio = {}, scudo = {};
 
 GLuint MatProj, MatModel, MatProjS, MatModelS, vec_resS,loc_time, loc_deltaTime;
 GLint loc_speed, loc_resolution;
@@ -153,12 +154,16 @@ int main(void) {
     // BUCO STRADA
     buco_strada.programId = programId;
     buco_strada.position = randomPosition(width, height);
+    buco_strada.position.y += 1000.0;
+    buco_strada.timerFig = 0.0f;
     INIT_BUCO_STRADA(&buco_strada);
     INIT_VAO_Curva(&buco_strada);
 
     // MACCHIA FANGO
     macchia_fango.programId = programId;
     macchia_fango.position = randomPosition(width, height);
+    macchia_fango.position.y += 1000.0;
+    macchia_fango.timerFig = 0.0f;
     while (fabs(macchia_fango.position.x - buco_strada.position.x) < 100.0f) {
         macchia_fango.position = randomPosition(width, height);
     }
@@ -167,9 +172,18 @@ int main(void) {
 
     // BERSAGLIO
     bersaglio.programId = programId;
-    bersaglio.position = randomPosition(width, height);
+    bersaglio.position = randomPositionForTarget(width, height);
+    bersaglio.timerFig = 0.0f;
     INIT_BERSAGLIO(&bersaglio);
     INIT_VAO_Curva(&bersaglio);
+
+    // SCUDO
+    scudo.programId = programId;
+    scudo.position = randomPositionForTarget(width, height);
+    scudo.position.y += 1000.0;
+    scudo.timerFig = 0.0f;
+    INIT_SCUDO(&scudo);
+    INIT_VAO_Curva(&scudo);
     
     // .......................................................................
    

@@ -75,6 +75,7 @@ typedef struct {
     int render;                // Modalità di rendering (linee, triangoli, ...)
     unsigned int programId;    // Identificatore del programma shader
     bool isalive;
+    float timerFig;
 
 } Curva;
 

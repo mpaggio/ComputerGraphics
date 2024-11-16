@@ -4,15 +4,35 @@
 #include <random>
 
 
-
 vec2 randomPosition(int width, int height) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
-    int numStepsX = static_cast<int>(width / 200);
-    std::uniform_int_distribution<> disX(0, numStepsX - 1);
-    float posX = disX(gen) * 200.0f;
+    std::uniform_int_distribution<> disX(270, width - 270);
+    float posX = static_cast<float>(disX(gen));
     float posY = static_cast<float>(height - 80);
     return glm::vec2(posX, posY);
+}
+
+vec2 randomPositionForTarget(int width, int height) {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_int_distribution<> disX(70, width - 70);
+    float posX = static_cast<float>(disX(gen));
+    float posY = static_cast<float>(height - 80);
+    return glm::vec2(posX, posY);
+}
+
+float randomTime() {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(1.5f, 5.0f);
+    return dis(gen);  // Restituisce un solo valore casuale tra 1.5 e 5.0
+}
+
+
+bool elementShouldSpawn(float lastSpownTime, float interval) {
+    float currentTime = static_cast<float>(glfwGetTime()) / 1000.0f;
+    return (currentTime - lastSpownTime >= interval);
 }
 
 void findBB(Figura* fig) {

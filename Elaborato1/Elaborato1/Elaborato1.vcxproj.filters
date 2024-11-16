@@ -152,5 +152,6 @@
     <Text Include="ruota_macchina.txt" />
     <Text Include="cannone.txt" />
     <Text Include="bersaglio.txt" />
+    <Text Include="scudo.txt" />
   </ItemGroup>
 </Project>

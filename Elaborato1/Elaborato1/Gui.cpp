@@ -8,7 +8,7 @@
 
 
 extern GLFWwindow* window;
-extern bool show_bounding_boxes;
+extern bool show_bounding_boxes, is_player_invincible;
 extern int playerPoints;
 
 
@@ -51,10 +51,21 @@ void my_interface( ) {
     ImGui::Checkbox("Mostra Bounding Box", &show_bounding_boxes);
 
     // Mostra i punti del giocatore
-    ImGui::Text("Player points: %d", playerPoints);
+    ImGui::Text("Punti totali: %d", playerPoints);
 
-    // Crea uno slider per selezionare il numero di nuvole dello sfondo
-    //ImGui::SliderInt("# ofClouds", &nClouds, 1,15, "%d");
+    // Mostra l'invincibilità del giocatore
+    ImGui::Text("Invincibilita': ");
+    if (is_player_invincible) {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
+        ImGui::SameLine();
+        ImGui::Text("ON");
+    }
+    else {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+        ImGui::SameLine();
+        ImGui::Text("OFF");
+    }
+    ImGui::PopStyleColor();
 
     // Termina la finestra
     ImGui::End();

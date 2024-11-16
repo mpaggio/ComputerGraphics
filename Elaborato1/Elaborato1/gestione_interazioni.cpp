@@ -75,14 +75,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             break;
         case GLFW_KEY_A:
             if (action == GLFW_PRESS && car_swing == false) {
-                if (cupola_macchina.position.x - 3 * movement_step > 0) {
+                if (cupola_macchina.position.x - 4.5 * movement_step > 0) {
                     cupola_macchina.position.x -= movement_step;
                 }
             }
             break;
         case GLFW_KEY_D:
             if (action == GLFW_PRESS && car_swing == false) {
-                if (cupola_macchina.position.x + 3 * movement_step < width) {
+                if (cupola_macchina.position.x + 4.5 * movement_step < width) {
                     cupola_macchina.position.x += movement_step;
                 }
             }
@@ -174,7 +174,7 @@ void aggiornaProiettile(Curva* proiettile) {
         proiettile->position.y += vel_y_proiettile;
 
         //Controllo se il proiettile raggiunge il 
-        if (proiettile->position.y > height + 100.0 || proiettile->position.y < 0.0 || proiettile->position.x > width || proiettile->position.x < 0.0) {
+        if (proiettile->position.y > height + 200.0 || proiettile->position.y < -200.0 || proiettile->position.x > width + 200.0 || proiettile->position.x < -200.0) {
             proiettile->isalive = false;
             proiettile->position.y = 0.0;
             proiettile->position.x = 0.0;

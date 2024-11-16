@@ -20,3 +20,4 @@ void INIT_BUCO_STRADA(Curva* curva);
 void INIT_MACCHIA_FANGO(Curva* curva);
 void INIT_CANNONE(Curva* curva);
 void INIT_BERSAGLIO(Curva* curva);
+void INIT_SCUDO(Curva* curva);

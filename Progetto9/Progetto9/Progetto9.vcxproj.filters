@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione\imgui">
+      <UniqueIdentifier>{a66fbea8-814c-4b69-891a-2806b0471f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\imgui">
+      <UniqueIdentifier>{685e332b-008f-493c-a444-52ee6df3f153}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Esercitazione9.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="geometria.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="gestione_interazioni.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="gestione_telecamera.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="inizializzazioni.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderMaker.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_widgets.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_demo.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_draw.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_impl_glfw.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_tables.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragmentShaderM.glsl" />
+    <None Include="vertexShaderM.glsl" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="geometria.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="gestione_interazioni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="gestione_telecamera.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="inizializzazioni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="lib.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="strutture.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderMaker.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imstb_truetype.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imconfig.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_impl_glfw.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_impl_opengl3.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_impl_opengl3_loader.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imgui_internal.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imstb_rectpack.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Downloads\Esercitazione 21 Novembre-20241121\Esercitazione9\ImGui\imstb_textedit.h">
+      <Filter>File di intestazione\imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

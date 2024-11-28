@@ -1,0 +1,7 @@
+﻿  Esercitazione10.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(62,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(269,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(331,72): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(335,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(360,78): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Progetto10.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\x64\Debug\Progetto10.exe

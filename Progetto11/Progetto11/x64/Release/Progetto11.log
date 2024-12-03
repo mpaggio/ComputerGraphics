@@ -1,0 +1,12 @@
+﻿  rendering.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(44,89): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(114,104): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(118,50): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(142,110): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(26,12): warning C4101: 'k': variabile locale senza riferimenti
+  Generazione codice in corso...
+  4 of 2877 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    45 functions had inline decision re-evaluated but remain unchanged
+  Generazione codice terminata
+  Progetto11.vcxproj -> C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\x64\Release\Progetto11.exe

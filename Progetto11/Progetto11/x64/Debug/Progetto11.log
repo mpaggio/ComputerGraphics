@@ -1,0 +1,57 @@
+﻿  Esercitazione11.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(23,38): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(62,12): warning C4244: 'inizializzazione': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(62,26): warning C4244: 'inizializzazione': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(66,25): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(117,21): warning C4244: 'argomento': conversione da 'double' a 'GLint'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(117,16): warning C4244: 'argomento': conversione da 'double' a 'GLint'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\Esercitazione11.cpp(121,29): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+  geometria.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(76,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(117,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(150,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(207,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(273,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria.cpp(335,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  geometria_obj.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(10,30): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,38): warning C4101: 'maxz': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,26): warning C4101: 'maxx': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,32): warning C4101: 'maxy': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,8): warning C4101: 'minx': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,20): warning C4101: 'minz': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(12,14): warning C4101: 'miny': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\geometria_obj.cpp(81,29): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  gestioneTexture.cpp
+  gestione_interazioni.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(29,19): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(38,14): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(39,13): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(43,22): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(93,64): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(93,46): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(112,28): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(112,53): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(123,14): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(124,13): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(130,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(131,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(232,26): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(233,26): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(432,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(436,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(436,22): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\gestione_interazioni.cpp(453,29): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+  gestione_telecamera.cpp
+  Gui.cpp
+  inizializzazioni.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\inizializzazioni.cpp(5,10): fatal  error C1083: Non è possibile aprire il file inclusione: 'Materiali_Base.h': No such file or directory
+  load_meshes_assimp.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\load_meshes_assimp.cpp(3,10): fatal  error C1083: Non è possibile aprire il file inclusione: 'assimp/Importer.hpp': No such file or directory
+  rendering.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(86,104): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(90,50): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(114,110): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto11\Progetto11\rendering.cpp(26,12): warning C4101: 'k': variabile locale senza riferimenti
+  utilities.cpp
+  Generazione del codice in corso...

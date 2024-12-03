@@ -1,7 +1,58 @@
 ﻿  Esercitazione10.cpp
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(62,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(269,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(331,72): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(335,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(360,78): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Progetto10.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto10\x64\Debug\Progetto10.exe
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(62,25): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(269,28): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(331,108): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(335,53): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\Esercitazione10.cpp(360,114): warning C4267: 'argomento': conversione da 'size_t' a 'GLsizei'. Possibile perdita di dati.
+  geometria.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(54,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(94,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(122,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(171,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(232,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(291,32): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(243,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(243,11): warning C4101: 't': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(300,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(300,11): warning C4101: 't': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(351,8): warning C4101: 's': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria.cpp(351,11): warning C4101: 't': variabile locale senza riferimenti
+  geometria_obj.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(10,30): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,38): warning C4101: 'maxz': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,26): warning C4101: 'maxx': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,32): warning C4101: 'maxy': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,8): warning C4101: 'minx': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,20): warning C4101: 'minz': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(12,14): warning C4101: 'miny': variabile locale senza riferimenti
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\geometria_obj.cpp(79,29): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  gestione_interazioni.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(29,19): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(41,22): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(94,59): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(94,41): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(116,24): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(116,49): warning C4244: '=': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(131,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(132,17): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(233,26): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(234,26): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(433,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(437,28): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(437,22): warning C4244: 'argomento': conversione da 'float' a 'GLsizei'. Possibile perdita di dati.
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\gestione_interazioni.cpp(454,29): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+  gestione_telecamera.cpp
+  Gui.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  inizializzazioni.cpp
+  load_meshes_assimp.cpp
+C:\Users\mpagg\Desktop\ComputerGraphics\Progetto10\Progetto10\load_meshes_assimp.cpp(3,10): fatal  error C1083: Non è possibile aprire il file inclusione: 'assimp/Importer.hpp': No such file or directory
+  ShaderMaker.cpp
+  utilities.cpp
+  Generazione del codice in corso...

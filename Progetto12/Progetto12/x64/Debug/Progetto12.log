@@ -1,0 +1,72 @@
+﻿  Esercitazione11.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(23,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(23,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(23,34): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(62,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(62,26): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(66,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(118,21): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(118,16): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\Esercitazione11.cpp(122,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  geometria.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(76,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(117,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(150,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(207,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(273,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria.cpp(335,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  geometria_obj.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(10,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,38): warning C4101: 'maxz': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,26): warning C4101: 'maxx': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,32): warning C4101: 'maxy': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,8): warning C4101: 'minx': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,20): warning C4101: 'minz': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(12,14): warning C4101: 'miny': unreferenced local variable
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\geometria_obj.cpp(81,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  gestioneTexture.cpp
+  gestione_interazioni.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(29,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(38,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(39,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(43,16): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(93,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(93,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(112,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(112,53): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(123,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(124,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(130,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(131,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(232,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(233,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(432,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(436,28): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(436,22): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\gestione_interazioni.cpp(453,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  gestione_telecamera.cpp
+  Gui.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  inizializzazioni.cpp
+  load_meshes_assimp.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\load_meshes_assimp.cpp(25,31): warning C4018: '<': signed/unsigned mismatch
+  rendering.cpp
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(50,53): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(62,64): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(147,68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(151,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(175,74): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\rendering.cpp(26,12): warning C4101: 'k': unreferenced local variable
+  ShaderMaker.cpp
+  utilities.cpp
+  Generating Code...
+C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\Progetto12\inizializzazioni.cpp(66,1): warning C4715: 'INIT_GLAD_GLFW': not all control paths return a value
+  glad.c
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Progetto12.vcxproj -> C:\Users\marco.paggetti\Desktop\ComputerGraphics\Progetto12\x64\Debug\Progetto12.exe

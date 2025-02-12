@@ -133,14 +133,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_tables.cpp" />
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Esercitazione11.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="geometria.cpp" />
     <ClCompile Include="geometria_obj.cpp" />
     <ClCompile Include="gestioneTexture.cpp" />

@@ -48,6 +48,11 @@ struct Mesh {
     MaterialType material;
     vec4 ancora_obj;  // Punto di ancoraggio della mesh nello spazio locale dell'oggetto
     vec4 ancora_world;   // Punto di ancoraggio della mesh nello spazio del mondo
+
+    vec4 minBB;
+    vec4 maxBB;
+    vec3 min_BB_obj;
+    vec3 max_BB_obj;
 } ;
 
 
@@ -76,7 +81,7 @@ enum ElementiDiScena
 enum TipiTexture
 {
     cemento = 0,
-    mare = 1,
+    strada = 1,
     bandiera_ita = 2,
     mattoni=3,
 

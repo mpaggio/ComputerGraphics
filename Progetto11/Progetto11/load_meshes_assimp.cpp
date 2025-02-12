@@ -30,69 +30,52 @@ bool loadAssImp(const char* path, vector<MeshObj>& mymesh)
 
 		aiColor3D color;
 		float value;
+		
 		// Read mtl file vertex data
-
-		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_AMBIENT, color))
-		{
+		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_AMBIENT, color)) {
 			mymesh[nm].materiale.ambient = glm::vec3(color.r, color.g, color.b);
 		}
-		else
-		{
+		else {
 			printf("Errore in ambientale \n");
 		}
 
-		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_DIFFUSE, color))
-		{
+
+		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_DIFFUSE, color)) {
 			 
 			mymesh[nm].materiale.diffuse = glm::vec3(color.r, color.g, color.b);
 		}
-		else
-		{
+		else {
 			mymesh[nm].materiale.diffuse = glm::vec3(1.0, 0.2, 0.1);
 		}
 
-		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_SPECULAR, color))
-		{
+
+		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_COLOR_SPECULAR, color)) {
 			mymesh[nm].materiale.specular = glm::vec3(color.r, color.g, color.b);
 		}
-
-		else
-		{
+		else {
 			printf("Errore in specular \n");
 			mymesh[nm].materiale.specular = glm::vec3(0.5, 0.5, 0.5);
 		}
-		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_SHININESS_STRENGTH, value))
-		{
+
+
+		if (aiReturn_SUCCESS == material->Get(AI_MATKEY_SHININESS_STRENGTH, value)) {
 			mymesh[nm].materiale.shininess = value;
 		}
-		else
-		{
+		else {
 			//printf("Errore in shininess \n");
 			mymesh[nm].materiale.shininess = 50.0f;
-
 		}
 
-		// http://assimp.sourceforge.net/lib_html/structai_material.html
 
-
+		// Fill vertices data (position, texture coordinates, colors)
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-
 			aiVector3D pos = mesh->mVertices[i];
 			mymesh[nm].vertices.push_back(glm::vec3(pos.x, pos.y, pos.z));
-
-		}
-
-		// Fill vertices texture coordinates
-
-		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 			mymesh[nm].texCoords.push_back(glm::vec2(0.0, 0.0));
-			mymesh[nm].colors.push_back(vec4(1.0, 0.0, 1.0, 1.0));  //Colore di default assegnato ad ogni vertice
-
-
+			mymesh[nm].colors.push_back(vec4(1.0, 0.0, 1.0, 1.0));
 		}
 
 		// Fill vertices normals
-
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 			aiVector3D n = mesh->mNormals[i];
 			mymesh[nm].normals.push_back(glm::vec3(n.x, n.y, n.z));
@@ -100,9 +83,7 @@ bool loadAssImp(const char* path, vector<MeshObj>& mymesh)
 
 
 		// Fill face indices
-
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-			// Assume the model has only triangles.
 			mymesh[nm].indices.push_back(mesh->mFaces[i].mIndices[0]);
 			mymesh[nm].indices.push_back(mesh->mFaces[i].mIndices[1]);
 			mymesh[nm].indices.push_back(mesh->mFaces[i].mIndices[2]);

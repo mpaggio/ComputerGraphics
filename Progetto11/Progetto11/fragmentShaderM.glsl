@@ -12,11 +12,7 @@ void main()
 {
     if (sceltaShader == 0 || sceltaShader == 4){
         FragColor = ourColor;
-    }
-    
-    if (sceltaShader == 1 || sceltaShader == 5 || sceltaShader == 6){
+    } else {
         FragColor = mix(ourColor, texture(id_tex1, frag_coord), 0.5);
     }
-
-   
 }

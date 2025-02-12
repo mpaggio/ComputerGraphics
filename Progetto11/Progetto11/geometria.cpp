@@ -1,6 +1,7 @@
 #include "Strutture.h"
 #include "Lib.h"
 #include "inizializzazioni.h"
+#include "utilities.h"
 
 
 void crea_cubo(Mesh* mesh)
@@ -178,8 +179,6 @@ void crea_piano_suddiviso(Mesh* mesh, vec4 colore)
 	int cont = -1;
 
 
-	
-
 	for (i = 0; i <= pow(N, 2) - (N + 1); i++) {
 
 		j = i % (N);
@@ -194,21 +193,14 @@ void crea_piano_suddiviso(Mesh* mesh, vec4 colore)
 			mesh->indices.push_back(i+1);
 			mesh->indices.push_back(i + N);
 		}
-		
-
 	}
  
-
-	
 	mesh->vertices.push_back(vec3(0.0, 0.0, 0.0));
 	mesh->colors.push_back(vec4(0.0, 1.0, 0.0, 1.0));
 	mesh->ancora_obj = (vec4(0.0, 0.0, 0.0, 1.0));
 	mesh->colors.push_back(vec4(0.0, 1.0, 0.0, 1.0));
 	int nv = mesh->vertices.size();
 	mesh->indices.push_back(nv-1);
-
- 
-
 }
 
 void crea_sfera(Mesh* mesh, vec4 colore)
@@ -270,6 +262,42 @@ void crea_sfera(Mesh* mesh, vec4 colore)
 
 	mesh->ancora_obj = (vec4(0.0, 0.0, 0.0, 1.0));
 
+	/*findBV(mesh);
+	
+	int numVerticesBefore = mesh->vertices.size();
+	
+	mesh->vertices.push_back(vec3(mesh->min_BB_obj.x, mesh->min_BB_obj.y, mesh->min_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->max_BB_obj.x, mesh->min_BB_obj.y, mesh->min_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->max_BB_obj.x, mesh->max_BB_obj.y, mesh->min_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->min_BB_obj.x, mesh->max_BB_obj.y, mesh->min_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->min_BB_obj.x, mesh->max_BB_obj.y, mesh->max_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->min_BB_obj.x, mesh->min_BB_obj.y, mesh->max_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->max_BB_obj.x, mesh->min_BB_obj.y, mesh->max_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	mesh->vertices.push_back(vec3(mesh->max_BB_obj.x, mesh->max_BB_obj.y, mesh->max_BB_obj.z));
+	mesh->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
+	mesh->indices.push_back(numVerticesBefore); mesh->indices.push_back(numVerticesBefore + 1);
+	mesh->indices.push_back(numVerticesBefore + 1); mesh->indices.push_back(numVerticesBefore + 2);
+	mesh->indices.push_back(numVerticesBefore + 2); mesh->indices.push_back(numVerticesBefore + 3);
+	mesh->indices.push_back(numVerticesBefore + 3); mesh->indices.push_back(numVerticesBefore);
+
+	mesh->indices.push_back(numVerticesBefore + 4); mesh->indices.push_back(numVerticesBefore + 5);
+	mesh->indices.push_back(numVerticesBefore + 5); mesh->indices.push_back(numVerticesBefore + 6);
+	mesh->indices.push_back(numVerticesBefore + 6); mesh->indices.push_back(numVerticesBefore + 7);
+	mesh->indices.push_back(numVerticesBefore + 7); mesh->indices.push_back(numVerticesBefore + 4);
+
+	mesh->indices.push_back(numVerticesBefore); mesh->indices.push_back(numVerticesBefore + 4);
+	mesh->indices.push_back(numVerticesBefore + 1); mesh->indices.push_back(numVerticesBefore + 5);
+	mesh->indices.push_back(numVerticesBefore + 2); mesh->indices.push_back(numVerticesBefore + 6);
+	mesh->indices.push_back(numVerticesBefore + 3); mesh->indices.push_back(numVerticesBefore + 7);*/
+
 	int nv = mesh->vertices.size();
 	mesh->indices.push_back(nv-1);
 
@@ -280,7 +308,7 @@ void crea_toro(Mesh* mesh, vec4 colore)
 {
 	int Stacks = 30;  //numero di suddivisioni sull'asse x
 	int Slices = 30;  // numero di suddivisioni sull'asse y
-	float R = 1, r = 0.5;
+	float R = 0.52, r = 0.05;
 	float s, t;
 
 

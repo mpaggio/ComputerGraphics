@@ -12,8 +12,10 @@ extern float clear_color[3];
 extern bool flagWf;
 extern bool isNavigationMode;
 extern int selected_obj;
+extern int selected_obj_j;
 extern bool flagAncora;
 extern vector<Mesh>Scena;
+extern vector<vector<MeshObj>> ScenaObj;
 extern bool moving_trackball;
 extern int sceltaFs;
 //Variabili locali
@@ -21,7 +23,7 @@ bool isOverImGuiElement, value;
 extern string stringa_asse, Operazione;
 extern vector<MaterialObj> materials;
 extern vector<Shader> shaders;
-extern point_light light;
+extern point_light light, light2;
 void Initialize_IMGUI(GLFWwindow* window) {
 
     IMGUI_CHECKVERSION(); // Verifica la compatibilità della versione di ImGui
@@ -57,13 +59,44 @@ void my_interface(GLFWwindow* window)
         ImGuiWindowFlags_NoTitleBar |    //Nasconde la barra del titolo della finestra.
         ImGuiWindowFlags_NoMove          //Impedisce all'utente di spostare la finestra
     );
+
+    
      
-    ImGui::SliderFloat("position x", &light.position.x, -50.0f, 50.0f);  
-    ImGui::SliderFloat("position y", &light.position.y, -50.0f, 50.0f);  
-    ImGui::SliderFloat("position z", &light.position.z, -50.0f, 50.0f); 
+    // Luce puntuale 1
+    ImGui::Text("LUCE 1:");
+    ImGui::SliderFloat("x1", &light.position.x, -50.0f, 50.0f);  
+    ImGui::SliderFloat("y1", &light.position.y, -50.0f, 50.0f);  
+    ImGui::SliderFloat("z1", &light.position.z, -50.0f, 50.0f); 
+
+    // Luce puntuale 2
+    ImGui::Text("LUCE 2:");
+    ImGui::SliderFloat("x2", &light2.position.x, -50.0f, 50.0f);
+    ImGui::SliderFloat("y2", &light2.position.y, -50.0f, 50.0f);
+    ImGui::SliderFloat("z2", &light2.position.z, -50.0f, 50.0f);
 
     ImGui::Checkbox("Wireframe", &flagWf);
     ImGui::Checkbox("VisualizzaAncora ", &flagAncora);
+
+    if (isNavigationMode) {
+        ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "Navigation mode: true"); // Verde
+    }
+    else {
+        ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Navigation mode: false"); // Rosso
+    }
+
+    if (moving_trackball) {
+        ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "Tracball moving: true"); // Verde
+    }
+    else {
+        ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Trackball moving: false"); // Rosso
+    }
+
+    string scrittaOperazione = "Operazione: " + Operazione;
+    string scrittaAsse = "Asse: " + stringa_asse;
+
+    ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), scrittaOperazione.c_str());
+    ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), scrittaAsse.c_str());
+
 
 
   
@@ -107,86 +140,179 @@ void my_interface(GLFWwindow* window)
     }
 
     //Se il pop-up menù è stato creato
-    
     if (ImGui::BeginPopup("Opzioni")) {
-        //Si aggiunge un item denominato Navigazione, che, quando selezionato, mette a true la variabile booleana isNavigationMode
         
-        cout <<materials[MaterialType::EMERALD].name.c_str() << endl;
         if (ImGui::BeginMenu("Materiali")) {
             if (ImGui::MenuItem(materials[MaterialType::EMERALD].name.c_str())) {
                 // Azione per caricare un materiale
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::EMERALD;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::EMERALD;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::EMERALD;
+                    }
+                }
+                
             }
           
             if (ImGui::MenuItem(materials[MaterialType::BRASS].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::BRASS;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::BRASS;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::BRASS;
+                    }
+                }
             }
             if (ImGui::MenuItem(materials[MaterialType::RED_PLASTIC].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::RED_PLASTIC;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::RED_PLASTIC;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::RED_PLASTIC;
+                    }
+                }
             }
             if (ImGui::MenuItem(materials[MaterialType::SNOW_WHITE].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::SNOW_WHITE;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::SNOW_WHITE;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::SNOW_WHITE;
+                    }
+                }
             }
             if (ImGui::MenuItem(materials[MaterialType::YELLOW].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::YELLOW;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::YELLOW;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::YELLOW;
+                    }
+                }
             }
             if (ImGui::MenuItem(materials[MaterialType::PINK].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::PINK;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::PINK;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::PINK;
+                    }
+                }
             }
             if (ImGui::MenuItem(materials[MaterialType::BROWN].name.c_str())) {
-                if (selected_obj > -1)
-                    Scena[selected_obj].material = MaterialType::BROWN;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].material = MaterialType::BROWN;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].material = MaterialType::BROWN;
+                    }
+                }
             }
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Shader")) {
             if (ImGui::MenuItem(shaders[ShaderOption::NONE].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 0;
-
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 0;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 0;
+                    }
+                }
             }
             if (ImGui::MenuItem(shaders[ShaderOption::GOURAD_SHADING].name.c_str()))
             {
-
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 1;
-
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 1;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 1;
+                    }
+                }
             }
             if (ImGui::MenuItem(shaders[ShaderOption::BLINNPHONG_SHADING].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 2;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 2;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 2;
+                    }
+                }
             }
 
             if (ImGui::MenuItem(shaders[ShaderOption::PHONG_SHADING].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 3;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 3;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 3;
+                    }
+                }
             }
 
 
             if (ImGui::MenuItem(shaders[ShaderOption::NO_TEXTURE].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 4;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 4;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 4;
+                    }
+                }
             }
          
             if (ImGui::MenuItem(shaders[ShaderOption::WAVE].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 5;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 5;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 5;
+                    }
+                }
             }
             if (ImGui::MenuItem(shaders[ShaderOption::FLAG].name.c_str()))
             {
-                if (selected_obj > -1)
-                    Scena[selected_obj].sceltaShader = 6;
+                if (selected_obj_j == -1) {
+                    if (selected_obj > -1)
+                        Scena[selected_obj].sceltaShader = 6;
+                }
+                else {
+                    for (int j = 0; j < ScenaObj[selected_obj].size(); j++) {
+                        ScenaObj[selected_obj][j].sceltaShader = 6;
+                    }
+                }
             }
               
             ImGui::EndMenu();
@@ -214,7 +340,7 @@ void my_interface(GLFWwindow* window)
         ImGuiWindowFlags_NoBackground |  //Disabilita lo sfondo della finestra gui, rendendola trasparente.
         ImGuiWindowFlags_NoMove);
 
-     if (selected_obj >= 0 && selected_obj < Scena.size()) {
+    if (selected_obj >= 0 && selected_obj_j == -1 && selected_obj < Scena.size()) {
         ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Oggetto Selezionato:");
         ImGui::SameLine();
         ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "%s", Scena[selected_obj].nome.c_str());
@@ -225,8 +351,18 @@ void my_interface(GLFWwindow* window)
         ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "%s", stringa_asse.c_str());
         ImGui::SameLine();
         ImGui::Text("%s", Operazione);
-
-
+    }
+    else if (selected_obj >= 0 && selected_obj_j >= 0 && selected_obj < ScenaObj.size() && selected_obj_j < ScenaObj[selected_obj].size()) {
+        ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Oggetto Selezionato:");
+        ImGui::SameLine();
+        ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "%s", ScenaObj[selected_obj][selected_obj_j].nome.c_str());
+        ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Operazione:");
+        ImGui::SameLine();
+        ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "%s", Operazione.c_str());
+        ImGui::SameLine();
+        ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "%s", stringa_asse.c_str());
+        ImGui::SameLine();
+        ImGui::Text("%s", Operazione);
     }
     else {
         ImGui::Text("Nessun oggetto selezionato");

@@ -8,6 +8,9 @@ extern int selected_obj;
 extern vector<Mesh> Scena;
 extern Uniform uniform;
 extern LightShaderUniform light_unif;
+
+
+
 void modifyModelMatrix(vec3 translation_vector, vec3 rotation_vector, GLfloat angle, GLfloat scale_factor)
 {
 	//ricordare che mat4(1) costruisce una matrice identità di ordine 4
@@ -108,4 +111,88 @@ void getUniform() {
 	uniform.MatProjR = glGetUniformLocation(programIdr, "Projection");
 	uniform.loc_view_posR = glGetUniformLocation(programIdr, "ViewPos");
 	uniform.loc_cubemapR = glGetUniformLocation(programIdr, "cubemap");
+}
+
+
+void findBV(Mesh* fig) {
+	int n = fig->vertices.size();
+
+	float minx = fig->vertices[0].x;
+	float miny = fig->vertices[0].y;
+	float minz = fig->vertices[0].z;
+
+	float maxx = fig->vertices[0].x;
+	float maxy = fig->vertices[0].y;
+	float maxz = fig->vertices[0].z;
+
+	for (int i = 1; i < n; i++) {
+		if (fig->vertices[i].x < minx) {
+			minx = fig->vertices[i].x;
+		}
+		if (fig->vertices[i].x > maxx) {
+			maxx = fig->vertices[i].x;
+		}
+
+		if (fig->vertices[i].y < miny) {
+			miny = fig->vertices[i].y;
+		}
+
+		if (fig->vertices[i].y > maxy) {
+			maxy = fig->vertices[i].y;
+		}
+
+		if (fig->vertices[i].z < minz) {
+			minz = fig->vertices[i].z;
+		}
+
+		if (fig->vertices[i].z > maxz) {
+			maxz = fig->vertices[i].z;
+		}
+	}
+
+	fig->min_BB_obj = vec3(minx, miny, minz);
+	fig->max_BB_obj = vec3(maxx, maxy, maxz);
+}
+
+
+void updateBB(Mesh* mesh) {
+	mesh->minBB = vec4(mesh->min_BB_obj, 1.0);
+	mesh->maxBB = vec4(mesh->max_BB_obj, 1.0);
+	mesh->minBB = mesh->Model * mesh->minBB;
+	mesh->maxBB = mesh->Model * mesh->maxBB;
+}
+
+void updateBB2(Mesh* mesh) {
+	// Calcolare la Bounding Box trasformata usando la matrice Model
+
+	// Applica la matrice Model ai vertici per aggiornare minBB e maxBB
+	vec4 transformed_min = mesh->Model * vec4(mesh->min_BB_obj, 1.0);
+	vec4 transformed_max = mesh->Model * vec4(mesh->max_BB_obj, 1.0);
+
+	// Aggiorna la Bounding Box trasformata
+	mesh->minBB = transformed_min;
+	mesh->maxBB = transformed_max;
+
+	// Per ogni vertice della mesh, dobbiamo trovare i minimi e massimi estremi
+	// Risulta più efficace ripetere il calcolo dell'BB trasformato basandoci su tutti i vertici
+	for (size_t i = 0; i < mesh->vertices.size(); ++i) {
+		// Trasformiamo il vertice e aggiorniamo la BB
+		vec4 transformed_vertex = mesh->Model * vec4(mesh->vertices[i], 1.0);
+
+		// Aggiorna i limiti della Bounding Box
+		mesh->minBB.x = std::min(mesh->minBB.x, transformed_vertex.x);
+		mesh->minBB.y = std::min(mesh->minBB.y, transformed_vertex.y);
+		mesh->minBB.z = std::min(mesh->minBB.z, transformed_vertex.z);
+
+		mesh->maxBB.x = std::max(mesh->maxBB.x, transformed_vertex.x);
+		mesh->maxBB.y = std::max(mesh->maxBB.y, transformed_vertex.y);
+		mesh->maxBB.z = std::max(mesh->maxBB.z, transformed_vertex.z);
+	}
+}
+
+bool checkCollision(vec3 cameraPosition, Mesh* mesh) {
+	bool collisionX = cameraPosition.x >= mesh->minBB.x - 5.0f && cameraPosition.x <= mesh->maxBB.x + 5.0f;
+	bool collisionY = cameraPosition.y >= mesh->minBB.y - 5.0f && cameraPosition.y <= mesh->maxBB.y + 5.0f;
+	bool collisionZ = cameraPosition.z >= mesh->minBB.z - 5.0f && cameraPosition.z <= mesh->maxBB.z + 5.0f;
+	return collisionX && collisionY && collisionZ;
 }

@@ -17,7 +17,7 @@
       <UniqueIdentifier>{b18c97e6-1780-4fcc-b8ea-f6920bb11392}</UniqueIdentifier>
     </Filter>
     <Filter Include="File di origine\imgui">
-      <UniqueIdentifier>{39629571-66a2-4ea8-92bc-fd011b96e3c7}</UniqueIdentifier>
+      <UniqueIdentifier>{bf708c88-7b3c-4a67-9aae-ee7c02de9117}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,32 +54,32 @@
     <ClCompile Include="geometria.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="Esercitazione11.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_widgets.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_demo.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_draw.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_impl_glfw.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_impl_opengl3.cpp">
-      <Filter>File di origine\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Progetto10\Progetto10\ImGui\imgui_tables.cpp">
-      <Filter>File di origine\imgui</Filter>
     </ClCompile>
     <ClCompile Include="ShaderMaker.cpp">
       <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_glfw.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_opengl3.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>File di origine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>File di origine\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

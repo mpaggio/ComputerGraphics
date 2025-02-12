@@ -58,7 +58,7 @@ void normalizeModel(vector<MeshObj>& Model3D) {
 		}
 
 
-	// Calcoliamo if fattore di scala per ogni dimensione (per mantenere le proporzioni
+	// Calcoliamo if fattore di scala per ogni dimensione (per mantenere le proporzioni)
 	float rangeX = maxX - minX;
 	float rangeY = maxY - minY;
 	float rangeZ = maxZ - minZ;
@@ -77,26 +77,22 @@ void normalizeModel(vector<MeshObj>& Model3D) {
 
 
 
-void add_obj(const char* name, vec3 translateVec, vec3 scaleVec, float angolo, vec3 rotation_axis, vector<MeshObj>& Model3D){
-bool obj;
-auto path = Meshdir + name;
-obj = loadAssImp(path.c_str(), Model3D);
-int nmeshes = Model3D.size();
+void add_obj(const char* name, vec3 translateVec, vec3 scaleVec, float angolo, vec3 rotation_axis, vector<MeshObj>& Model3D, string nomeObj){
+	bool obj;
+	auto path = Meshdir + name;
+	obj = loadAssImp(path.c_str(), Model3D);
+	int nmeshes = Model3D.size();
 
-normalizeModel(Model3D);
+	normalizeModel(Model3D);
 
-for (int i = 0; i < nmeshes; i++)
-{
-    INIT_VAO(&Model3D[i]);
-    Model3D[i].Model = mat4(1.0);
-    Model3D[i].Model = translate(Model3D[i].Model, translateVec);
-	Model3D[i].Model = rotate(Model3D[i].Model, cos(radians(angolo)),rotation_axis);
-    Model3D[i].Model = scale(Model3D[i].Model, scaleVec);
-    Model3D[i].nome = "Modello";
-    Model3D[i].sceltaShader = 4;
-	Model3D[i].ancora_obj = vec4(0.0, 0.0, 0.0,1.0);
-	 
-}
-
-
+	for (int i = 0; i < nmeshes; i++) {
+		INIT_VAO(&Model3D[i]);
+		Model3D[i].Model = mat4(1.0);
+		Model3D[i].Model = translate(Model3D[i].Model, translateVec);
+		Model3D[i].Model = rotate(Model3D[i].Model, radians(angolo),rotation_axis);
+		Model3D[i].Model = scale(Model3D[i].Model, scaleVec);
+		Model3D[i].nome = nomeObj;
+		Model3D[i].sceltaShader = BLINNPHONG_SHADING;
+		Model3D[i].ancora_obj = vec4(0.0, 0.0, 0.0, 1.0); 
+	}
 }

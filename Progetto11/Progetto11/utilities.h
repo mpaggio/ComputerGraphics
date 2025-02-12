@@ -6,4 +6,7 @@ void update_ancora(Mesh* mesh);
 void normalizeModel(std::vector<MeshObj>& Model3D);
 void clear_objModel(vector<MeshObj>* Model3D);
 void getUniform();
-
+void findBV(Mesh* fig);
+void updateBB(Mesh* mesh);
+void updateBB2(Mesh* mesh);
+bool checkCollision(vec3 cameraPosition, Mesh* mesh);

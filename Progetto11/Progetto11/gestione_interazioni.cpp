@@ -6,6 +6,8 @@
 #include "ImGui/imgui.h"
 #include "enum.h"
 #include "utilities.h"
+
+
 extern GLFWwindow* window;
 extern mat4 Projection;
 extern int height, width;
@@ -15,7 +17,7 @@ extern mat4 View;
 extern float w_up, h_up;
 extern bool flagAncora;
  
-string stringa_asse, Operazione;
+string stringa_asse = "---", Operazione = "---";
 
 int last_mouse_pos_X, last_mouse_pos_Y;
 float Theta=-89.0;
@@ -24,126 +26,51 @@ bool moving_trackball = false;
 bool isNavigationMode = false;
  
 extern int selected_obj;
+extern int selected_obj_j;
 extern vector<Mesh> Scena;
-float raggio_sfera = 1.0;
+extern vector<vector<MeshObj>> ScenaObj;
+float raggio_sfera = 5.0;
 float amount = 0.2;
 
 vec3 asse;
 
+vec3 getTrackBallPoint(float x, float y) {
+    float Delta, tmp;
+    vec3 point;
 
+    // Mappo nell'intervallo normalizzato [-1,1]
+    point.x = (2.0f * x - width) / width;
+    point.y = (height - 2.0f * y) / height;
 
-void cursor_position_callback(GLFWwindow* window, double xposIn, double yposIn) {
-    
+    //Cooordinata z del punto di coordinate (x,y,z) che si muove sulla sfera virtuale con centro (0,0,0) e raggio r=1
+    tmp = pow(point.x, 2.0) - pow(point.y, 2.0);
+    Delta = 1.0f - tmp;
 
-    height = h_up;
-    width = w_up;
-    float xpos = static_cast<float>(xposIn);
-    float ypos = static_cast<float>(yposIn);
-    float xoffset, yoffset;
-    float alfa = 0.05; //serve ridimensionare l'offset tra due posizioni successive del mosue
-    ypos = height - ypos;
+    if (Delta > 0.0f)
+        point.z = sqrt(Delta);
+    else
+        point.z = 0;
 
-    float center_x = width / 2.0f;
-    float center_y = height / 2.0f;
-
-     
-     xoffset = xpos - center_x;
-     yoffset = ypos - center_y;
-    
-    if (isNavigationMode&&!moving_trackball)
-    {
-            xoffset *= alfa;
-            yoffset *= alfa;
-            //Aggiorna gli angoli di rotazione orizzontale(Theta) e verticale(Phi) in base agli offset calcolati.
-            // L'angolo Theta controlla la rotazione attorno all'asse y, mentre Phi controlla la rotazione attorno all'asse x.
-            Theta += xoffset;   //Aggiorno l'angolo Theta sommandogli l'offset della posizione x del mouse
-            Phi += yoffset;  //Aggiorno l'angolo Phi sommandogli l'offset della posizione y del mouse 
-
-            // Facciamo si' che l'angolo di Phi vari tra -90 e 90, evitando così di capovolgere la telecamera.
-            if (Phi > 89.0f)
-                Phi = 89.0f;
-            if (Phi < -89.0f)
-                Phi = -89.0f;
-
-            //Calcola le coordinate x, y e z di un punto sulla sfera unitaria, 
-            // utilizzando gli angoli Theta e Phi convertiti in radianti.Questo punto rappresenta la direzione in cui punta la telecamera.
-            vec3 front;
-            front.x = cos(radians(Theta)) * cos(radians(Phi));
-            front.y = sin(radians(Phi));
-            front.z = sin(radians(Theta)) * cos(radians(Phi));
-            //Normalizza il vettore front per ottenere un vettore unitario che rappresenta la nuova direzione della telecamera.
-
-            SetupTelecamera.direction = normalize(front); //Aggiorno la direzione della telecamera
-            SetupTelecamera.target = SetupTelecamera.position + SetupTelecamera.direction; //aggiorno il punto in cui guarda la telecamera
-            
-            //Disabilita il cursore del mouse per evitare che si muova fuori dalla finestra durante la navigazione.
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            // Imposta la nuova posizione del cursore
-
-            //Riposiziona il cursore al centro della finestra per mantenere una navigazione fluida.
-            glfwSetCursorPos(window, (int)center_x, (int)center_y);
-            
-
-    }
-    if (moving_trackball==true && !isNavigationMode)
-       {
-         
-        float velocity = 10.0;
-        glm::vec3 destination = getTrackBallPoint(xpos, ypos);
-        glm::vec3 origin = getTrackBallPoint(last_mouse_pos_X, last_mouse_pos_Y);
-        float dx, dy, dz;
-        dx = destination.x - origin.x;
-        dy = destination.y - origin.y;
-        dz = destination.z - origin.z;
-        if (dx || dy || dz) {
-            // rotation angle = acos( (v dot w) / (len(v) * len(w)) ) o approssimato da ||dest-orig||;
-            float pi = glm::pi<float>();
-            float angle = sqrt(dx * dx + dy * dy + dz * dz) * velocity;
-            // rotation axis = (dest vec orig) / (len(dest vec orig))
-            glm::vec3 rotation_vec = glm::cross(origin, destination);
-            // calcolo del vettore direzione w = C - A
-            SetupTelecamera.direction = -SetupTelecamera.target + SetupTelecamera.position;
-            // rotazione del vettore direzione w 
-            // determinazione della nuova posizione della camera 
-            SetupTelecamera.position = SetupTelecamera.target + vec3(rotate(mat4(1.0f), radians(-angle), rotation_vec) * vec4(SetupTelecamera.direction, 0.0));
-
-        }
-       
-        last_mouse_pos_X = xpos; last_mouse_pos_Y = ypos;
-
-     
-
-    }
+    return normalize(point);
 }
 
+// Calcola il raggio che parte dalla posizione della telecamera e passa per le coordinate del mouse
 vec3 get_ray_from_mouse(float mouse_x, float mouse_y) {
-    //La funzione get_ray_from_mouse calcola il raggio che parte dalla posizione della telecamera
-    //  e passa attraverso il punto sullo schermo corrispondente alla posizione del mouse.
 
-    height = h_up;
-    width = w_up;
-    cout << height << endl;
-    cout << width << endl;
     mouse_y = height - mouse_y;
 
     // mappiamo le coordinate di viewport del mouse [0,width], [0,height] in coordinate normalizzate [-1,1]  
     float ndc_x = (2.0f * mouse_x) / width - 1.0;
     float ndc_y = (2.0f * mouse_y) / height - 1.0;
-
-    //Nello spazio di clippling z più piccola, oggetto più vicino all'osservatore, quindi si pone la z a - 1, 
-    // posizionando il punto sul piano vicino del frustum.
-    // Questo significa che il raggio che stiamo calcolando partirà dalla telecamera e si dirigerà 
-    // verso il punto più vicino visibile sullo schermo.
     float ndc_z = -1.0f;
 
     // Coordinate nel clip space 
     vec4 P_clip = vec4(ndc_x, ndc_y, ndc_z, 1.0);
 
     // Le coordinate nell' eye space si ottengono premoltiplicando per l'inversa della matrice Projection.
-        vec4 ViewModelp = inverse(Projection) * P_clip;
+    vec4 ViewModelp = inverse(Projection) * P_clip;
 
     // le coordinate nel world space: si ottengono premoltiplicando per l'inversa della matrice di Vista 
-
     ViewModelp.w = 1;
     vec4 Pw = inverse(View) * ViewModelp;
 
@@ -153,21 +80,18 @@ vec3 get_ray_from_mouse(float mouse_x, float mouse_y) {
     return ray_wor;
 }
 
-/*controlla se un raggio interseca una sfera. In caso negativo, restituisce false. Rigetta
-le intersezioni dietro l'origine del raggio, e pone  intersection_distance all'intersezione p iù vicina.
-*/
 
 bool ray_sphere(vec3 O, vec3 d, vec3 sphere_centre_wor, float sphere_radius, float* intersection_distance) {
 
-    //Calcoliamo O-C
     vec3 dist_sfera = O - sphere_centre_wor;
     float b = dot(dist_sfera, d);
     float cc = dot(dist_sfera, dist_sfera) - sphere_radius * sphere_radius;
 
     float delta = b * b - cc;
 
-    if (delta < 0)  //Il raggio non interseca la sfera
+    if (delta < 0.0f)  //Il raggio non interseca la sfera
         return false;
+
     //Calcolo i valori di t per cui il raggio interseca la sfera e restituisco il valore dell'intersezione 
     //più vicina all'osservatore (la t più piccola)
     if (delta > 0.0f) {
@@ -184,11 +108,14 @@ bool ray_sphere(vec3 O, vec3 d, vec3 sphere_centre_wor, float sphere_radius, flo
 
         return true;
     }
+
     //Caso in cui il raggio è tangente alla sfera: un interesezione con molteplicità doppia.
     if (delta == 0) {
         float t = -b + sqrt(delta);
+        
         if (t < 0)
             return false;
+        
         *intersection_distance = t;
         return true;
     }
@@ -197,265 +124,357 @@ bool ray_sphere(vec3 O, vec3 d, vec3 sphere_centre_wor, float sphere_radius, flo
 }
 
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-{
-    double xpos, ypos;
-    switch (button) {
-      
-    case GLFW_MOUSE_BUTTON_LEFT:
-        if (!ImGui::IsAnyItemHovered())
-        {
-            if (action == GLFW_PRESS)
-                moving_trackball = true;
-            else
-                moving_trackball = false;
+void cursor_position_callback(GLFWwindow* window, double xposIn, double yposIn) {
 
-            glfwGetCursorPos(window, &xpos, &ypos);
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+    float xoffset, yoffset;
+    float alfaX = 0.10; // Ridimensionamento dell'offset fra due posizioni del mouse
+    float alfaY = 0.05;
+    ypos = height - ypos;
+
+    float center_x = width / 2.0f;
+    float center_y = height / 2.0f;
 
 
-            last_mouse_pos_X = (int)xpos;
-            last_mouse_pos_Y = (int)ypos;
+    xoffset = xpos - center_x;
+    yoffset = ypos - center_y;
 
-         
+    // Navigazione ma non come trackball
+    if (isNavigationMode && !moving_trackball) {
+
+        xoffset *= alfaX;
+        yoffset *= alfaY;
+        //Aggiorna gli angoli di rotazione orizzontale(Theta) e verticale(Phi) in base agli offset calcolati.
+        // L'angolo Theta controlla la rotazione attorno all'asse y, mentre Phi controlla la rotazione attorno all'asse x.
+        Theta += xoffset;   //Aggiorno l'angolo Theta sommandogli l'offset della posizione x del mouse
+        Phi += yoffset;  //Aggiorno l'angolo Phi sommandogli l'offset della posizione y del mouse 
+
+        // Facciamo si' che l'angolo di Phi vari tra -90 e 90, evitando così di capovolgere la telecamera.
+        if (Phi > 89.0f)
+            Phi = 89.0f;
+
+        if (Phi < -89.0f)
+            Phi = -89.0f;
+
+        //Calcola le coordinate x, y e z di un punto sulla sfera unitaria, 
+        // utilizzando gli angoli Theta e Phi convertiti in radianti.Questo punto rappresenta la direzione in cui punta la telecamera.
+        vec3 front;
+        front.x = cos(radians(Theta)) * cos(radians(Phi));
+        front.y = sin(radians(Phi));
+        front.z = sin(radians(Theta)) * cos(radians(Phi));
+
+        //Normalizza il vettore front per ottenere un vettore unitario che rappresenta la nuova direzione della telecamera.
+        cout << SetupTelecamera.direction.x << endl;
+        SetupTelecamera.direction = normalize(front); //Aggiorno la direzione della telecamera
+        cout << SetupTelecamera.direction.x << endl;
+        SetupTelecamera.target = SetupTelecamera.position + SetupTelecamera.direction; //aggiorno il punto in cui guarda la telecamera
+
+        //Disabilita il cursore del mouse per evitare che si muova fuori dalla finestra durante la navigazione.
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+        // Imposta la nuova posizione del cursore
+        //Riposiziona il cursore al centro della finestra per mantenere una navigazione fluida.
+        glfwSetCursorPos(window, (int)center_x, (int)center_y);
 
 
+    }
+
+    // Trackball ma non navigazione
+    if (moving_trackball == true && !isNavigationMode) {
+
+        float velocity = 10.0;
+        glm::vec3 destination = getTrackBallPoint(xpos, ypos);
+        glm::vec3 origin = getTrackBallPoint(last_mouse_pos_X, last_mouse_pos_Y);
+        float dx, dy, dz;
+        dx = destination.x - origin.x;
+        dy = destination.y - origin.y;
+        dz = destination.z - origin.z;
+
+        // Controllo se il mouse si è spostato, altrimenti non eseguo alcun calcolo
+        if (dx || dy || dz) {
+
+            // rotation angle = acos( (v dot w) / (len(v) * len(w)) ) o approssimato da ||dest-orig||;
+            float pi = glm::pi<float>();
+            float angle = sqrt(dx * dx + dy * dy + dz * dz) * velocity;
+
+            // rotation axis = (dest vec orig) / (len(dest vec orig))
+            glm::vec3 rotation_vec = glm::cross(origin, destination);
+
+            // calcolo del vettore direzione w = C - A
+            SetupTelecamera.direction = -SetupTelecamera.target + SetupTelecamera.position;
+
+            // rotazione del vettore direzione w 
+            // determinazione della nuova posizione della camera 
+            SetupTelecamera.position = SetupTelecamera.target + vec3(rotate(mat4(1.0f), radians(-angle), rotation_vec) * vec4(SetupTelecamera.direction, 0.0));
         }
-        break;
 
-    case GLFW_MOUSE_BUTTON_MIDDLE:
+        last_mouse_pos_X = xpos;
+        last_mouse_pos_Y = ypos;
+    }
+}
 
-        //Con il tasto destro si selezionano gli oggetti nella scena
-        if (action == GLFW_PRESS)
-        {
-             
-            glfwGetCursorPos(window, &xpos, &ypos);
-            float xmouse = xpos;
-            float ymouse = ypos;
-            vec3 ray_wor = get_ray_from_mouse(xmouse, ymouse);
 
-            selected_obj = -1;
-            float closest_intersection = 0.0f;
-            for (int i = 0; i < Scena.size(); i++)
-            {
-               
-                float t_dist = 0.0f;
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    double xpos, ypos;
+    
+    switch (button) {
 
-                if (ray_sphere(SetupTelecamera.position, ray_wor, Scena[i].ancora_world, raggio_sfera, &t_dist))
-                {
-                    if (selected_obj == -1 || t_dist < closest_intersection)
-                    {
-                        
-                        selected_obj = i;
-                        
-                        closest_intersection = t_dist;
+        // Pressione tasto sinistro del mouse  
+        case GLFW_MOUSE_BUTTON_LEFT:
+            
+            // Verifica che il mouse non sia sopra all'interfaccia di menu di ImGui 
+            if (!ImGui::IsAnyItemHovered()) {
+
+                // Abilita il movimento della trackball
+                if (action == GLFW_PRESS)
+                    moving_trackball = true;
+                // Disabilita il movimento della trackball
+                else
+                    moving_trackball = false;
+
+                // Prende le posizioni del mouse
+                glfwGetCursorPos(window, &xpos, &ypos);
+
+                // Salva le posizioni del mouse
+                last_mouse_pos_X = (int)xpos;
+                last_mouse_pos_Y = (int)ypos;
+            }
+            break;
+
+        // Pressione della rotella del mouse
+        case GLFW_MOUSE_BUTTON_MIDDLE:
+            if (action == GLFW_PRESS) {
+
+                // Ottieni la posizione del mouse
+                glfwGetCursorPos(window, &xpos, &ypos);
+                float xmouse = xpos;
+                float ymouse = ypos;
+
+                // Generazione del raggio (ray tracing) a partire dalle coordinate del mouse
+                vec3 ray_wor = get_ray_from_mouse(xmouse, ymouse);
+
+                cout << "Coordinate mouse: " << xmouse << ", " << ymouse << endl;
+
+                // Inizializzazione selezione oggetto (inizialmente nessuno selezionato)
+                selected_obj = -1;
+                selected_obj_j = -1;
+                
+                // Inizializzazione distanza intersezione più vicina
+                float closest_intersection = 3000.0f;
+                
+                // Verifica intersezione con oggetti della scena (prende quello più vicino all'osservatore)
+                for (int i = 0; i < Scena.size(); i++) {
+                    float t_dist = 0.0f;
+
+                    if (ray_sphere(SetupTelecamera.position, ray_wor, Scena[i].ancora_world, raggio_sfera, &t_dist)) {
+                        if (selected_obj == -1 || t_dist < closest_intersection) {
+                            // Imposta la selezione dell'oggetto all'indice del vettore Scena
+                            selected_obj = i;
+                            // Imposta la distanza dell'interesezione più vicina a quella dell'oggetto valutato
+                            closest_intersection = t_dist;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < ScenaObj.size(); i++) {
+                    for (int j = 0; j < ScenaObj[i].size(); j++) {
+                        float t_dist = 0.0f;
+
+                        if (ray_sphere(SetupTelecamera.position, ray_wor, ScenaObj[i][j].ancora_world, raggio_sfera, &t_dist)) {
+                            if (t_dist < closest_intersection) {
+                                // Imposta la selezione dell'oggetto all'indice del vettore Scena
+                                selected_obj = i;
+                                selected_obj_j = j;
+                                // Imposta la distanza dell'interesezione più vicina a quella dell'oggetto valutato
+                                closest_intersection = t_dist;
+                            }
+                        }
                     }
                 }
             }
-            if (selected_obj > -1)
-                 cout <<"Oggetto selezionato"<< Scena[selected_obj].nome.c_str() << endl;
-        }
-        break;
-    default:
-        break;
+            break;
+
+        // Default
+        default:
+            break;
     }
     
 }
  
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
-    // Se il tasto ESCAPE è premuto, chiude la finestra
     switch (key) {
-    case GLFW_KEY_ESCAPE:
-        if (action == GLFW_PRESS)
-            //Imposta a True il flag booleano di chiusura della finestr
-            glfwSetWindowShouldClose(window, GLFW_TRUE);
-        break;
 
-    case GLFW_KEY_W:  //Muove la telecamera in avanti
-        moveCameraForward();
+        // Se il tasto ESCAPE è premuto, chiude la finestra
+        case GLFW_KEY_ESCAPE:
+            if (action == GLFW_PRESS)
+                glfwSetWindowShouldClose(window, GLFW_TRUE);
+            break;
 
-        break;
-    case GLFW_KEY_S:  //Muove la telecamera indietro
-        if (mods & GLFW_MOD_SHIFT) {
-            OperationMode = SCALING; //Si entra in modalità di operazione scalatura
-            Operazione = "SCALATURA";
-        }
-        else
-            moveCameraBack();
+        //Muove la telecamera in avanti o in alto (shift)
+        case GLFW_KEY_W:
+            if (mods & GLFW_MOD_SHIFT)
+                moveCameraUp();
+            else
+                moveCameraForward();
+            break;
 
-        break;
+        // Muove la telecamera indietro o in basso (shift)
+        case GLFW_KEY_S:
+            if (mods & GLFW_MOD_CONTROL) {
+                OperationMode = SCALING;
+                Operazione = "SCALATURA";
+            }
+            else if (mods & GLFW_MOD_SHIFT)
+                moveCameraDown();
+            else
+                moveCameraBack();
+            break;
 
-    case GLFW_KEY_A:  //Muove la telecamera a sisnistra
-        moveCameraLeft();
-        break;
+        // Muove la telecamera a sinsitra
+        case GLFW_KEY_A:
+            moveCameraLeft();
+            break;
 
-    case GLFW_KEY_D:     //Muove la telecamera a destra
-        moveCameraRight();
-        break;
+        //Muove la telecamera a destra
+        case GLFW_KEY_D:
+            moveCameraRight();
+            break;
 
-    case GLFW_KEY_U:
-        if (mods & GLFW_MOD_SHIFT)
-            moveCameraDown();   //Se premuto insieme al tasto shift sposta la telecamera in basso
-        else
-            moveCameraUp();  //Sposta la telecamera in alto
-        break;
+        // Entra in modalità traslazione (come in Blender)
+        case GLFW_KEY_G:
+            OperationMode = TRASLATING;
+            Operazione = "TRASLAZIONE";
+            break;
 
-    case GLFW_KEY_G:  //Si entra in modalità di operazione traslazione
-        OperationMode = TRASLATING;
-        Operazione = "TRASLAZIONE";
-        break;
+        // Entra in modalità rotazione (come in Blender)
+        case GLFW_KEY_R:
+            OperationMode = ROTATING;
+            Operazione = "ROTAZIONE";
+            break;
 
-    case GLFW_KEY_R: //Si entra in modalità di operazione rotazione
-        OperationMode = ROTATING;
-        Operazione = "ROTAZIONE";
-        break;
+        // Seleziona l'asse x come asse lungo cui effetturare l'operazione selezionata
+        case GLFW_KEY_X:
+            WorkingAxis = X;
+            stringa_asse = " Asse X";
+            break;
 
-    case GLFW_KEY_X:
-        WorkingAxis = X;  //Seleziona l'asse X come asse lungo cui effettuare l'operazione selezionata (tra traslazione, rotazione, scalatura)
-        stringa_asse = " Asse X";
-        break;
-    case GLFW_KEY_Y:
-        WorkingAxis = Y;  //Seleziona l'asse Y come asse lungo cui effettuare l'operazione selezionata (tra traslazione, rotazione, scalatura)
-        stringa_asse = " Asse Y";
-        break;
-    case GLFW_KEY_Z:
-        WorkingAxis = Z;
-        stringa_asse = " Asse Z";  //Seleziona l'asse Z come asse lungo cui effettuare l'operazione selezionata (tra traslazione, rotazione, scalatura)
-        break;
+        // Seleziona l'asse y come asse lungo cui effetturare l'operazione selezionata
+        case GLFW_KEY_Y:
+            WorkingAxis = Y;
+            stringa_asse = " Asse Y";
+            break;
+
+        // Seleziona l'asse z come asse lungo cui effettuare l'operazione selezionata
+        case GLFW_KEY_Z:
+            WorkingAxis = Z;
+            stringa_asse = " Asse Z";
+            break;
    
-
-    default:
-        break;
+        // Default
+        default:
+            break;
     }
+
     // Selezione dell'asse per le trasformazioni
     switch (WorkingAxis) {
-         case X:	asse = glm::vec3(1.0, 0.0, 0.0);
-         break;
-    case Y: 
-        asse = glm::vec3(0.0, 1.0, 0.0);
-        break;
-    case Z: asse = glm::vec3(0.0, 0.0, 1.0);
-        break;
+        
+        // Asse x
+        case X:	
+            asse = glm::vec3(1.0, 0.0, 0.0);
+            break;
+        
+        // Asse y
+        case Y: 
+            asse = glm::vec3(0.0, 1.0, 0.0);
+            break;
 
-    default:
-        break;
+        // Asse z
+        case Z: 
+            asse = glm::vec3(0.0, 0.0, 1.0);
+            break;
+
+        // Default
+        default:
+            break;
 
     }
-
-
-    // I tasti -> e <-  aggiornano lo spostamento a destra o a sinistra, la rotazione in segno antiorario o in senso orario, 
-    // la scalatura come amplificazione o diminuizione delle dimensioni
 
  
     switch (OperationMode) {
-
-        //la funzione modifyModelMatrix(glm::vec3 translation_vector, glm::vec3 rotation_vector, GLfloat angle, GLfloat scale_factor) 
-        // definisce la matrice di modellazione che si vuole postmoltiplicare alla matrice di modellazione dell'oggetto selezionato, per poterlo traslare, ruotare scalare.
-        
     
-     
-    case TRASLATING:
-         
-            if (key==GLFW_KEY_RIGHT)
-            {  
+        // Traslazione
+        case TRASLATING:
+            
+            // Pressione freccia a destra (-> aggiorna la posizione dell'oggetto a destra)
+            if (key==GLFW_KEY_RIGHT) {  
                 amount = abs(amount);
                 modifyModelMatrix(asse * amount, asse, 0.0f, 1.0f);
             }
-       
-        
-            if (key == GLFW_KEY_LEFT )
-            {
+            
+            // Pressione freccia a sinistra (<- aggiorna la posizione dell'oggetto a sinistra)
+            if (key == GLFW_KEY_LEFT ) {
                 amount = -abs(amount);
                 modifyModelMatrix(asse * amount, asse, 0.0f, 1.0f);
             }
+            break;
 
-        break;
+        // Rotazione
+        case ROTATING:
+            
+            // Pressione freccia a destra (-> aggiorna la rotazione in senso antiorario)
+            if (key == GLFW_KEY_RIGHT) {
+                amount = abs(amount);
+                modifyModelMatrix(glm::vec3(0), asse, amount * 2.0f, 1.0f);
+            }
 
-    case ROTATING:
-        // SI mette a zero il vettore di traslazione (vec3(0) e ad 1 il fattore di scale
+            // Pressione freccia a sinistra (<- aggiorna la rotazione in senso orario)
+            if (key == GLFW_KEY_LEFT) {
+                amount = -abs(amount);
+                modifyModelMatrix(glm::vec3(0), asse, amount * 2.0f, 1.0f);
+            }
+            break;
 
-        if (key == GLFW_KEY_RIGHT) 
-        {
-            amount = abs(amount);
-            modifyModelMatrix(glm::vec3(0), asse, amount * 2.0f, 1.0f);
-        }
+        // Scalatura
+        case SCALING:
+            
+            // Pressione freccia a destra (-> aggiorna la scalatura come amplificazione delle dimensioni)
+            if (key == GLFW_KEY_RIGHT) {
+                amount = abs(amount);
+                modifyModelMatrix(glm::vec3(0), asse, 0.0f, 1.0f + amount);
+            }
 
+            // Pressione freccia a sinistra (<- aggiorna la scalatura come diminuzione delle dimensioni)
+            if (key == GLFW_KEY_LEFT) {
+                amount = -abs(amount);
+                modifyModelMatrix(glm::vec3(0), asse, 0.0f, 1.0f + amount);
+            }
+            break;
 
-        if (key == GLFW_KEY_LEFT) 
-        {
-            amount = -abs(amount);
-            modifyModelMatrix(glm::vec3(0), asse, amount * 2.0f, 1.0f);
-        }
-       
-        
-        break;
-
-    case SCALING:
-        // SI mette a zero il vettore di traslazione (vec3(0), angolo di rotazione a 0 e ad 1 il fattore di scala 1+amount.
-        if (key == GLFW_KEY_RIGHT) 
-        {
-            amount = abs(amount);
-            modifyModelMatrix(glm::vec3(0), asse, 0.0f, 1.0f + amount);
-        }
-
-
-        if (key == GLFW_KEY_LEFT) 
-        {
-            amount = -abs(amount);
-            modifyModelMatrix(glm::vec3(0), asse, 0.0f, 1.0f + amount);
-        }
-
- 
-        break;
+        // Default
+        default:
+            break;
 
     }
 }
  
 
-void framebuffer_size_callback(GLFWwindow* window, int w, int h)
-{
-
-    //Imposto la matrice di proiezione per la scena da diegnare
+void framebuffer_size_callback(GLFWwindow* window, int w, int h) {
     
-     
-    float AspectRatio_mondo = (float)(width) / (float)(height); //Rapporto larghezza altezza di tutto ciò che è nel mondo
-    //Se l'aspect ratio del mondo è diversa da quella della finestra devo mappare in modo diverso 
-    //per evitare distorsioni del disegno
-    if (AspectRatio_mondo > w / h)   //Se ridimensioniamo la larghezza della Viewport
-    {
-       
+    //Rapporto larghezza altezza di tutto ciò che è nel mondo 
+    float AspectRatio_mondo = (float)(width) / (float)(height);
+
+    //Se l'aspect ratio del mondo è diversa da quella della finestra, mappa in modo diverso per evitare distorsioni
+    if (AspectRatio_mondo > w / h) {
         w_up = (float)w;
         h_up = w / AspectRatio_mondo;
     }
-    else {  //Se ridimensioniamo la larghezza della viewport oppure se l'aspect ratio tra la finestra del mondo 
-        //e la finestra sullo schermo sono uguali
+    else {
         glViewport(0, 0, h * AspectRatio_mondo, h);
         w_up = h * AspectRatio_mondo;
         h_up = (float)h;
     }
+
     glViewport(0, 0, w_up, h_up);
-}
-
-    
- 
-
-vec3 getTrackBallPoint(float x, float y)
-{
-    //Dalla posizione del mouse al punto proiettato sulla semisfera con centro l'origine e raggio 1
-
-    float Delta, tmp;
-    vec3 point;
-    //map to [-1;1]
-    point.x = (2.0f * x - width) / width;
-    point.y = (height - 2.0f * y) / height;
-
-    //Cooordinata z del punto di coordinate (x,y,z) che si muove sulla sfera virtuale con centro (0,0,0) e raggio r=1
-    tmp = pow(point.x, 2.0) - pow(point.y, 2.0);
-    Delta = 1.0f - tmp;
-    if (Delta > 0.0f)
-        point.z = sqrt(Delta);
-    else
-        point.z = 0;
-
-    return normalize(point);
 }

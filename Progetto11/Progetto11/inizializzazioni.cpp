@@ -19,7 +19,7 @@ extern string SkyboxDir;
 extern vector<Mesh> Scena;
 extern vector<vector<MeshObj>> ScenaObj;
 
-extern point_light light;
+extern point_light light, light2;
 extern vector<MaterialObj> materials;
 extern vector<Shader> shaders;
 extern GLFWwindow* window;
@@ -145,7 +145,7 @@ void INIT_CAMERA_PROJECTION(void)
 {
     //Imposto la telecamera
 
-    SetupTelecamera.position = glm::vec3(0.0, 0.5, 30.0 );
+    SetupTelecamera.position = glm::vec3(0.0, 3.5, 30.0 );
     SetupTelecamera.target = glm::vec3(0.0, 0.0, 0.0 );
     SetupTelecamera.direction = SetupTelecamera.target - SetupTelecamera.position;
     SetupTelecamera.upVector = glm::vec3(0.0, 1.0, 0.0 );
@@ -161,10 +161,14 @@ void INIT_CAMERA_PROJECTION(void)
 
 void INIT_Illuminazione()
 {
-    //Setup della luce
-    light.position = { 1.0, 0.0, 4.0 };
+    //Setup delle luci
+    light.position = { -1.0, 50.0, -50.0 };
     light.color = { 1.0,1.0,1.0 };
     light.power = 2.f;
+
+    light2.position = { 1.0, 50.0, 50.0 };
+    light2.color = { 1.0,1.0,1.0 };
+    light2.power = 2.f;
 
     //Setup dei materiali
     // Materials setup
@@ -247,12 +251,6 @@ int INIT_Cubemap(string SkyboxDir)
     int cubemapTexture;
     vector<std::string> faces
     {
-        /*"right.jpg",
-            "left.jpg",
-            "top.jpg",
-            "bottom.jpg",
-            "front.jpg",
-            "back.jpg"*/
         SkyboxDir + "posx.jpg",
         SkyboxDir + "negx.jpg",
         SkyboxDir + "posy.jpg",
@@ -266,7 +264,7 @@ int INIT_Cubemap(string SkyboxDir)
 void INIT_Scene(vector<std::string> path_texture, vector<int>*texture, int* cubemapTexture)
 {
     int i;
-    Mesh cubo = {}, piano = {}, cono = {}, sfera = {}, toro = {}, asta = {}, drappo = {};
+    Mesh cubo = {}, cubo2 = {}, piano = {}, cono = {}, cono2 = {}, sfera = {}, toro1 = {}, toro2 = {}, asta = {}, drappo = {}, stella = {};
     vector<MeshObj> Model3D;
 
     INIT_SHADER();
@@ -284,128 +282,284 @@ void INIT_Scene(vector<std::string> path_texture, vector<int>*texture, int* cube
     //Inizializza la geometria della sfera, , la sua matrice di modellazione, il suo materiale ed il tipo di shader
     crea_sfera(&sfera, vec4(0.6, 1.0, 0.5, 1.0));
     sfera.Model = mat4(1.0);
-    sfera.Model = translate(sfera.Model, vec3(3.5, 5.5, 2.5));
-    sfera.Model = scale(sfera.Model, vec3(1.5, 1.5, 1.5));
+    sfera.Model = translate(sfera.Model, vec3(23.5, 65.5, -150.0));
+    sfera.Model = scale(sfera.Model, vec3(20, 20, 20));
     sfera.material = MaterialType::SNOW_WHITE;
     sfera.nome = "Sfera";
     sfera.sceltaShader = GOURAD_SHADING;
-
     //Genera il VAO della sfera
+    findBV(&sfera);
+    updateBB(&sfera);
     INIT_VAO(&sfera);
     Scena.push_back(sfera);
+
+
     //Inizializza la geometria del piano, , la sua matrice di modellazione, il suo materiale ed il tipo di shader
-    crea_piano_suddiviso(&piano, vec4(0.0, 0.2, 1.0, 1.0));
+    crea_piano_suddiviso(&piano, vec4(1.0, 1.0, 1.0, 1.0));
     piano.Model = mat4(1.0);
     piano.Model = rotate(piano.Model, radians(1.5f), vec3(1.0, 0.0, 0.0));
     piano.Model = translate(piano.Model, vec3(0.5, 0.0, 0.5));
     piano.Model = scale(piano.Model, vec3(300.0f, 1.0f, 300.0f));
     piano.Model = translate(piano.Model, vec3(-0.5, 0.0, -0.5));
     piano.nome = "Piano";
-    piano.sceltaShader = 5;
-    piano.material = MaterialType::BROWN;
+    piano.sceltaShader = GOURAD_SHADING;
+    piano.material = MaterialType::NO_MATERIAL;
     //Genera il VAO del piano
+    findBV(&piano);
+    updateBB(&piano);
     INIT_VAO(&piano);
     Scena.push_back(piano);
+
 
     //Inizializza la geometria del cubo, la sua matrice di modellazione, il suo materiale ed il tipo di shader
     crea_cubo(&cubo);
     cubo.Model = mat4(1.0);
-    cubo.Model = translate(cubo.Model, vec3(3.5, 2.0, 2.5));
-    cubo.Model = scale(cubo.Model, vec3(2.0f, 2.0f, 2.0f));
-    cubo.Model = rotate(cubo.Model, radians(10.0f), vec3(0.0, 1.0, 0.0));
+    cubo.Model = translate(cubo.Model, vec3(16.0, 5.0, -30.0));
+    cubo.Model = scale(cubo.Model, vec3(1.5f, 1.5f, 1.5f));
+    cubo.Model = rotate(cubo.Model, radians(0.0f), vec3(0.0, 1.0, 0.0));
     cubo.nome = "Cubo";
-    cubo.sceltaShader = GOURAD_SHADING;
+    cubo.sceltaShader = WAVE;
     cubo.material = MaterialType::EMERALD;
     //Genera il VAO del cubo
+    findBV(&cubo);
+    updateBB(&cubo);
     INIT_VAO(&cubo);
     Scena.push_back(cubo);
 
   
-
     //Inizializza la geometria della piramide,la sua matrice di modellazione, il suo materiale ed il tipo di shader
-
     crea_cono(&cono, vec4(0.0, 1.0, 0.0, 1.0));
     cono.Model = mat4(1.0);
-    cono.Model = translate(cono.Model, vec3(-2.5, 1.2, 12.0));
-    cono.Model = scale(cono.Model, vec3(1.2, 1.5, 1.2));
+    cono.Model = translate(cono.Model, vec3(16.0, 2.2, -30.0));
+    cono.Model = scale(cono.Model, vec3(1.0, 1.0, 1.0));
     cono.Model = rotate(cono.Model, radians(180.0f), vec3(1.0, 0.0, 0.0));
-
     cono.nome = "Cono";
-    cono.sceltaShader = 1;
-    cono.material = MaterialType::YELLOW;
+    cono.sceltaShader = GOURAD_SHADING;
+    cono.material = MaterialType::PINK;
     //Genera il VAO del cono
+    findBV(&cono);
+    updateBB(&cono);
     INIT_VAO(&cono);
     Scena.push_back(cono);
 
-    
-    
 
-
-    //Inizializza la geometria del toro, , la sua matrice di modellazione, il suo materiale ed il tipo di shader
-    crea_toro(&toro, vec4(0.0, 0.0, 1.0, 0.8));
-    toro.Model = mat4(1.0);
-    toro.Model = translate(toro.Model, vec3(-2.0, 2.0, 2.5));
-    toro.Model = rotate(toro.Model, radians(90.0f), vec3(1.0, 0.0, 0.0));
-    toro.Model = scale(toro.Model, vec3(1.5, 0.5, 1.5));
+    //Inizializza la geometria del toro, la sua matrice di modellazione, il suo materiale ed il tipo di shader
+    crea_toro(&toro1, vec4(0.0, 0.0, 1.0, 0.8));
+    toro1.Model = mat4(1.0);
+    toro1.Model = translate(toro1.Model, vec3(-17.0, 0.0, 80.0));
+    toro1.Model = rotate(toro1.Model, radians(90.0f), vec3(1.0, 0.0, 0.0));
+    toro1.Model = scale(toro1.Model, vec3(18, 18, 18));
     //Genera il VAO del toro
-    toro.nome = "Toro";
-    toro.sceltaShader = 1;
-    INIT_VAO(&toro);
-    Scena.push_back(toro);
+    toro1.nome = "Toro";
+    toro1.sceltaShader = GOURAD_SHADING;
+    toro1.material = MaterialType::YELLOW;
+    findBV(&toro1);
+    updateBB2(&toro1);
+    INIT_VAO(&toro1);
+    Scena.push_back(toro1);
+    cout << "Toro - min_BB_obj: " << toro1.minBB.x << ", " << toro1.minBB.y << ", " << toro1.minBB.z << endl;
+    cout << "Toro - max_BB_obj: " << toro1.maxBB.x << ", " << toro1.maxBB.y << ", " << toro1.maxBB.z << endl;
 
 
     //Inizializza geometria cilindo per costruire asta bandiera
     crea_cilindro(&asta,vec4(1.0,0.0,0.0,1.0));
     asta.Model = mat4(1.0);
-    asta.Model = translate(asta.Model, vec3(6.0, 2.0, -0.5));
-    asta.Model = scale(asta.Model, vec3(0.5, 10.0, 0.5));
+    asta.Model = translate(asta.Model, vec3(20.0, 0.0, -50.0));
+    asta.Model = scale(asta.Model, vec3(0.1, 20.0, 0.1));
     //Genera il VAO dell'asta
     asta.nome = "Asta";
     asta.sceltaShader = GOURAD_SHADING;
+    asta.material = MaterialType::BROWN;
+    findBV(&asta);
+    updateBB(&asta);
     INIT_VAO(&asta);
     Scena.push_back(asta);
 
 
     //Inizializza geometria piano per costruire drappo bandiera
-
-    crea_piano_suddiviso(&drappo, vec4(1.0, 1.0, 0.0, 1.0));
+    crea_piano_suddiviso(&drappo, vec4(1.0, 1.0, 1.0, 1.0));
     drappo.Model = mat4(1.0);
-    drappo.Model = translate(drappo.Model, vec3(8.0, 10.0, 0.0));
+    drappo.Model = translate(drappo.Model, vec3(-20.0, 16.0, -49.8));
     drappo.Model = rotate(drappo.Model, radians(90.0f), vec3(1.0, 0.0, 0.0));
-    drappo.Model = translate(drappo.Model, vec3(0.5, 0.0, 0.5));
-    drappo.Model = scale(drappo.Model, vec3(6.0f, 1.0f, 4.0f));
-    drappo.Model = translate(drappo.Model, vec3(-0.5,0.0, -0.5));
-   
+    drappo.Model = translate(drappo.Model, vec3(0.0, 0.0, 0.5));
+    drappo.Model = scale(drappo.Model, vec3(40.0f, 1.0f, 8.0f));
+    drappo.Model = translate(drappo.Model, vec3(0.0,0.0, -0.5));
     drappo.nome = "Drappo";
     drappo.sceltaShader = FLAG;
-    drappo.material = MaterialType::BROWN;
-    //Genera il VAO del piano
+    drappo.material = MaterialType::SNOW_WHITE;
+    // Genera il VAO del piano
+    findBV(&drappo);
+    updateBB2(&drappo);
     INIT_VAO(&drappo);
     Scena.push_back(drappo);
 
-    //carica modelli memorizzati in file obj e li aggiunge alla struttura ScenaObj
-    add_obj("piper_pa18.obj", vec3(-18.0, 14.0, 0.0), vec3(6.0, 6.0, 6.0), 180.0f, vec3(0.0, 1.0, 0.0), Model3D);
-    ScenaObj.push_back(Model3D);
 
+    //Inizializza la geometria del toro, la sua matrice di modellazione, il suo materiale ed il tipo di shader
+    crea_toro(&toro2, vec4(0.0, 0.0, 1.0, 0.8));
+    toro2.Model = mat4(1.0);
+    toro2.Model = translate(toro2.Model, vec3(17.0, 0.0, 80.0));
+    toro2.Model = rotate(toro2.Model, radians(90.0f), vec3(1.0, 0.0, 0.0));
+    toro2.Model = scale(toro2.Model, vec3(18, 18, 18));
+    //Genera il VAO del toro
+    toro2.nome = "Toro";
+    toro2.sceltaShader = GOURAD_SHADING;
+    toro2.material = MaterialType::YELLOW;
+    findBV(&toro2);
+    updateBB2(&toro2);
+    INIT_VAO(&toro2);
+    Scena.push_back(toro2);
+    cout << "Toro - min_BB_obj: " << toro2.minBB.x << ", " << toro2.minBB.y << ", " << toro2.minBB.z << endl;
+    cout << "Toro - max_BB_obj: " << toro2.maxBB.x << ", " << toro2.maxBB.y << ", " << toro2.maxBB.z << endl;
+
+
+    //Inizializza geometria cilindo per costruire asta bandiera
+    crea_cilindro(&asta, vec4(1.0, 0.0, 0.0, 1.0));
+    asta.Model = mat4(1.0);
+    asta.Model = translate(asta.Model, vec3(-20.0, 0.0, -50.0));
+    asta.Model = scale(asta.Model, vec3(0.1, 20.0, 0.1));
+    //Genera il VAO dell'asta
+    asta.nome = "Asta";
+    asta.sceltaShader = GOURAD_SHADING;
+    asta.material = MaterialType::BROWN;
+    findBV(&asta);
+    updateBB(&asta);
+    INIT_VAO(&asta);
+    Scena.push_back(asta);
+
+    //Inizializza la geometria del cubo, la sua matrice di modellazione, il suo materiale ed il tipo di shader
+    crea_cubo(&cubo2);
+    cubo2.Model = mat4(1.0);
+    cubo2.Model = translate(cubo2.Model, vec3(-16.0, 5.0, -30.0));
+    cubo2.Model = scale(cubo2.Model, vec3(1.5f, 1.5f, 1.5f));
+    cubo2.Model = rotate(cubo2.Model, radians(0.0f), vec3(0.0, 1.0, 0.0));
+    cubo2.nome = "Cubo";
+    cubo2.sceltaShader = WAVE;
+    cubo2.material = MaterialType::EMERALD;
+    //Genera il VAO del cubo
+    findBV(&cubo2);
+    updateBB(&cubo2);
+    INIT_VAO(&cubo2);
+    Scena.push_back(cubo2);
+
+
+    //Inizializza la geometria della piramide,la sua matrice di modellazione, il suo materiale ed il tipo di shader
+    crea_cono(&cono2, vec4(0.0, 1.0, 0.0, 1.0));
+    cono2.Model = mat4(1.0);
+    cono2.Model = translate(cono2.Model, vec3(-16.0, 2.2, -30.0));
+    cono2.Model = scale(cono2.Model, vec3(1.0, 1.0, 1.0));
+    cono2.Model = rotate(cono2.Model, radians(180.0f), vec3(1.0, 0.0, 0.0));
+    cono2.nome = "Cono";
+    cono2.sceltaShader = GOURAD_SHADING;
+    cono2.material = MaterialType::PINK;
+    //Genera il VAO del cono
+    findBV(&cono2);
+    updateBB(&cono2);
+    INIT_VAO(&cono2);
+    Scena.push_back(cono2);
+
+
+    // AGGIUNTA DEI MODELLI OBJ
+    add_obj("auto.obj", vec3(-13.0, 5.5, 100.0), vec3(8.0,8.0, 8.0), 0.0f, vec3(0.0, 1.0, 0.0), Model3D, "Auto 1");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
     clear_objModel(&Model3D);
 
-
-
-    add_obj("Shelby.obj", vec3(-15.0, 8.0, 0.0), vec3(8.0,8.0, 8.0), 0.0f, vec3(0.0, 1.0, 0.0), Model3D);
+    add_obj("auto.obj", vec3(20.0, 5.5, 100.0), vec3(8.0, 8.0, 8.0), 0.0f, vec3(1.0, 0.0, 0.0), Model3D, "Auto 2");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
     ScenaObj.push_back(Model3D);
     clear_objModel(&Model3D);
 
- 
-    add_obj("suv.obj", vec3(35.0, 8.0, 12.0), vec3(8.0, 8.0, 8.0), 0.0f, vec3(0.0, 1.0, 0.0), Model3D);
+    add_obj("Low Poly Coin_000001.obj", vec3(16.0, 2.0, 70.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 1");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
     ScenaObj.push_back(Model3D);
     clear_objModel(&Model3D);
 
-    add_obj("ombrellone.obj", vec3(-4.0, 4.0, 12.0), vec3(4.0, 4.0, 4.0), 0.0f, vec3(0.0, 1.0, 0.0), Model3D);
+    add_obj("Low Poly Coin_000001.obj", vec3(16.0, 2.0, 50.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 2");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
     ScenaObj.push_back(Model3D);
     clear_objModel(&Model3D);
 
-    add_obj("dog.obj", vec3(-4.0, 0.0, 18.0), vec3(2.0, 2.0, 2.0), 0.0f, vec3(0.0, 1.0, 0.0), Model3D);
+    add_obj("Low Poly Coin_000001.obj", vec3(16.0, 2.0, 30.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 3");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
     ScenaObj.push_back(Model3D);
     clear_objModel(&Model3D);
 
+    add_obj("Low Poly Coin_000001.obj", vec3(16.0, 2.0, 10.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 4");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(16.0, 2.0, -10.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 5");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(-16.0, 2.0, 70.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 6");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(-16.0, 2.0, 50.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 7");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(-16.0, 2.0, 30.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 8");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(-16.0, 2.0, 10.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 9");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("Low Poly Coin_000001.obj", vec3(-16.0, 2.0, -10.0), vec3(1.0, 1.0, 1.0), 270.0f, vec3(0.0, 1.0, 0.0), Model3D, "Moneta 10");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
+
+    add_obj("UFO2.obj", vec3(-30.0, 32.0, 10.0), vec3(8.0, 8.0, 8.0), 30.0f, vec3(1.0, 0.0, 0.0), Model3D, "Ufo");
+    for (int i = 0; i < Model3D.size(); ++i) {
+        findBV(&Model3D[i]);
+        updateBB(&Model3D[i]);
+    }
+    ScenaObj.push_back(Model3D);
+    clear_objModel(&Model3D);
  }
